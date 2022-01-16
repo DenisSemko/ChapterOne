@@ -1,0 +1,165 @@
+<div class="bee-page-container">
+    <app-header></app-header>
+    <div class="bee-row bee-row-9">
+        <div class="bee-row-content">
+            <div class="bee-col bee-col-1 bee-col-w12">
+                <div class="bee-block bee-block-1 bee-divider">
+                    <div class="center" style="border-top:30px solid #F5E8DD;width:100%;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-2 bee-divider">
+                    <div class="spacer" style="height:30px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-3 bee-text">
+                    <div class="bee-text-content"
+                        style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+                        <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                            <span style="font-size: 30px; line-height: 63px;">
+                                <strong>
+                                    REGISTRATION
+                                </strong>
+                            </span>
+                        </p>
+                        <p style="font-size: 20px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                            PLEASE PROVIDE INFORMATION
+                        </p>
+                    </div>
+                </div>
+                <div class="bee-block bee-block-4 bee-divider">
+                    <div class="spacer" style="height:10px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-5 bee-divider">
+                    <div class="spacer" style="height:5px;">
+                    </div>
+                </div>
+                <mat-card class="bee-block bee-block-6 bee-form" id="bee-matcard">
+                    <form [formGroup]="service.formModel" (ngSubmit)="onSubmit()" autocomplete="off">
+                      <mat-card-content>
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udn">
+                                    Name
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput id="name" name="Name" formControlName="Name" required>
+                                </mat-form-field>
+                            </div>
+                        </div>  
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udn">
+                                    Surname
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput id="surname" name="Surname" formControlName="Surname" required>
+                                </mat-form-field>
+                            </div>
+                        </div>  
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udn">
+                                    BirthDate
+                                </label>
+                                <mat-form-field class="example-full-width" style="width:98%">
+                                    <input matInput [max]="minDate" [matDatepicker]="picker" formControlName="BirthDate" required readonly>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>  
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Username
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput id="username" name="Username" formControlName="Username" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udn">
+                                    Email
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput id="email" name="Email" formControlName="Email" required>
+                                </mat-form-field>
+                            </div>
+                        </div>  
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_gyxlj1">
+                                <label for="id_gyxlj1">
+                                    Password
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput id="password" matInput [type]="hide ? 'password' : 'text'" name="Password" formControlName="PasswordHash" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_gyxlj2">
+                                    Subscription
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <mat-select formControlName="Subscription">
+                                        <mat-option *ngFor="let subscription of subscriptionsList" [value]="subscription.id">
+                                          {{subscription.name}}
+                                        </mat-option>
+                                      </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                      </mat-card-content>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                        <div class="bee-field bee-field-id_j76u77">
+                            <div class="bee-button-container">
+                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">REGISTER</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                  </mat-card>
+                <div class="bee-block bee-block-7 bee-divider">
+                    <div class="spacer" style="height:10px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-8 bee-divider">
+                    <div class="spacer" style="height:40px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-9 bee-divider">
+                    <div class="center" style="border-top:30px solid #F5E8DD;width:100%;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-10 bee-divider">
+                    <div class="spacer" style="height:20px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-11 bee-divider">
+                    <div class="spacer" style="height:20px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-12 bee-divider">
+                    <div class="spacer" style="height:20px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-13 bee-divider">
+                    <div class="spacer" style="height:0px;">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,61 @@
+<!-- Back to top button -->
+<a id="button" href="#header" target="_self" [ngClass]="navbarfixed?'show':''" *ngIf="isMainPage">
+    <mat-icon class="arrow_upward">arrow_upward</mat-icon>
+</a>
+<div class="bee-row bee-row-1" id="header">
+    <div class="bee-row-content">
+        <div class="bee-col bee-col-1 bee-col-w12">
+            <div class="bee-block bee-block-1 bee-divider">
+                <div class="spacer" style="height:5px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bee-row bee-row-2" (scroll)="onscroll()" [ngClass]="navbarfixed?'fixed':'nofixed'">
+    <div class="bee-row-content">
+        <div class="bee-col bee-col-1 bee-col-w3">
+            <div class="bee-block bee-block-1 bee-image">
+                <a routerLink="/" routerLinkActive="active"><img alt="" class="bee-center bee-autowidth" src="/assets/img/LogoMakr-49eOqp.png"
+                    style="max-width:300px;" /></a>
+            </div>
+        </div>
+        <div class="bee-col bee-col-2 bee-col-w4">
+            <div class="bee-block bee-block-1 bee-divider">
+                <div class="spacer" style="height:10px;">
+                </div>
+            </div>
+        </div>
+        <div class="bee-col bee-col-3 bee-col-w5">
+            <div class="bee-block bee-block-1 bee-menu">
+                <nav class="bee-menu">
+                    <input class="bee-hamburger-trigger" id="bee-hamburger-mk2hx85" type="checkbox" />
+                    <label class="bee-hamburger-controls" for="bee-hamburger-mk2hx85">
+                        <span class="bee-hamburger-open">
+                        </span>
+                        <span class="bee-hamburger-close">
+                        </span>
+                    </label>
+                    <ul class="bee-horizontal with-bee-hamburger">
+                        <li>
+                            <a href="#about" target="_self" title="">
+                                ABOUT</a>
+                        </li>
+                        <li>
+                            <a href="#contact-us" target="_self" title="">
+                                CONTACT US</a>
+                        </li>
+                        <li>
+                            <a routerLink="/login" routerLinkActive="active" target="_self" title="">
+                                LOGIN</a>
+                        </li>
+                        <li>
+                            <a routerLink="/register" routerLinkActive="active" target="_self" title="">
+                                REGISTRATION</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
