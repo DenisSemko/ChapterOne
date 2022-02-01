@@ -12,6 +12,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatMenuModule} from '@angular/material/menu'
+import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 
 
 
@@ -31,6 +38,12 @@ import {MatSelectModule} from '@angular/material/select';
     MatDatepickerModule,
     MatSelectModule,
     MatNativeDateModule,
+    MatDividerModule,
+    MatButtonModule,
+    FlexLayoutModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-right'
@@ -49,7 +62,14 @@ import {MatSelectModule} from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    ToastrModule
+    ToastrModule,
+    MatNativeDateModule,
+    MatDividerModule,
+    MatButtonModule,
+    FlexLayoutModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatListModule,
   ]
 })
 export class SharedModule { }

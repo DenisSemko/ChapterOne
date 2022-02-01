@@ -26,6 +26,7 @@ namespace DAL
             modelBuilder.Entity<Subscription>()
                 .HasMany(s => s.UserSubscription)
                 .WithOne(a => a.Subscription);
+
         }
     }
 }

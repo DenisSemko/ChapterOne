@@ -1,5 +1,7 @@
+using AutoMapper;
 using BLL.Services.Abstract;
 using BLL.Services.Concrete;
+using CIL.Helpers;
 using CIL.Models;
 using DAL;
 using DIL;
@@ -42,6 +44,15 @@ namespace ChapterOne
             services.AddIdentity<User, IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
+
+            // Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapping());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddControllersWithViews().AddNewtonsoftJson();
 

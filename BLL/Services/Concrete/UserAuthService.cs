@@ -3,6 +3,7 @@ using BLL.Services.Abstract;
 using CIL.DTOs;
 using CIL.Models;
 using DAL;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -44,6 +46,7 @@ namespace BLL.Services.Concrete
                 };
             }
             var selectedSubscription = await _myDbContext.Subscription.Where(c => c.Id == registerModel.Subscription).FirstOrDefaultAsync();
+            var uniqueFileName = UploadedFile(registerModel);
             var newUser = new User
             {
                 Name = registerModel.Name,
@@ -53,7 +56,7 @@ namespace BLL.Services.Concrete
                 Email = registerModel.Email,
                 PasswordHash = registerModel.PasswordHash,
                 Subscription = selectedSubscription,
-                ProfileImage = registerModel.ProfileImage
+                ProfileImage = uniqueFileName
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, registerModel.PasswordHash);
@@ -96,6 +99,7 @@ namespace BLL.Services.Concrete
                 };
             }
             var selectedSubscription = await _myDbContext.Subscription.Where(c => c.Id == registerModel.Subscription).FirstOrDefaultAsync();
+            var uniqueFileName = UploadedFile(registerModel);
             var newUser = new User
             {
                 Name = registerModel.Name,
@@ -105,7 +109,7 @@ namespace BLL.Services.Concrete
                 Email = registerModel.Email,
                 PasswordHash = registerModel.PasswordHash,
                 Subscription = selectedSubscription,
-                ProfileImage = registerModel.ProfileImage
+                ProfileImage = uniqueFileName
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, registerModel.PasswordHash);
@@ -184,6 +188,23 @@ namespace BLL.Services.Concrete
                 AccessToken = tokenHandler.WriteToken(token),
                 Username = user.UserName
             };
+        }
+
+        private string UploadedFile(RegisterModel model)
+        {
+            string uniqueFileName = null;
+
+            if (model.ProfileImage != null)
+            {
+                string uploadsFolder = Path.Combine("Resources", "Images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfileImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.ProfileImage.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
         }
     }
 }

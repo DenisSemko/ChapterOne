@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
             if(tokenInfo.role === "Admin")
             {
               this.toastr.success("Successfully logged in as " + tokenInfo.unique_name);
+              this.router.navigateByUrl('admin/account');
             } else if(tokenInfo.role === "User") {
               this.toastr.success("Successfully logged in as " + tokenInfo.unique_name);
             }

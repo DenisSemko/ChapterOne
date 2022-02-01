@@ -66,8 +66,7 @@ export class UserService {
     return this.http.post(environment.baseURI + 'UserAuth/registration-admin', body)
   }
 
-  getSubscriptionsList() {
-    return this.http.get(environment.baseURI + 'Subscription')
+  getUserById(id: string) {
+    return this.http.get(environment.baseURI + 'User/' + id);
   }
-  
 }

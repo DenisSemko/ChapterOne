@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from 'src/admin/dashboard/dashboard.component';
+import { DefaultComponent } from 'src/admin/default/default.component';
+import { AuthGuard } from 'src/guard/auth.guard';
 import { AboutUsComponent } from 'src/mainPage/about-us/about-us.component';
 import { HomeComponent } from 'src/mainPage/home/home.component';
 import { LoginComponent } from 'src/mainPage/login/login.component';
@@ -17,6 +20,15 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegistrationComponent
+  },
+  {
+    path: 'admin',
+    component: DefaultComponent,
+    children: [{
+      path: 'account',
+      component: DashboardComponent,
+      canActivate:[AuthGuard]
+    }]
   },
   {
     path: '',

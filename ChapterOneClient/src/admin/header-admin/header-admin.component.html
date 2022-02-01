@@ -1,0 +1,46 @@
+<mat-toolbar class="bee-nav">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="toggleSideBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>
+            <a class="imgLogo" routerLinkActive="active" routerLink="/admin/account">
+                <img src="/assets/img/LogoMakr-49eOqp.png" class="logo">
+            </a>
+        </span>
+
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <ul fxLayout="row" fxLayoutGap="20px">
+                <li>
+                    <button mat-icon-button> 
+                        <mat-icon>notifications</mat-icon>
+                    </button>
+                </li>
+                <li>
+                    <button mat-icon-button> 
+                        <mat-icon>settings</mat-icon>
+                    </button>
+                </li>
+                <li>
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>person_outline</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                    <button mat-menu-item id="my_profile">
+                        <mat-icon>person</mat-icon>
+                        My Profile
+                    </button>
+                      <button mat-menu-item id="sign_out">
+                          <mat-icon>exit_to_app</mat-icon>
+                          Sign Out
+                      </button>
+                    </mat-menu>
+                </li>
+            </ul>
+
+        </div>
+    
+    </mat-toolbar-row>
+</mat-toolbar>
+

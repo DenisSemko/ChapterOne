@@ -1,0 +1,12 @@
+<app-header-admin (toggleSideBarForMe)="sideBarToggler($event)"></app-header-admin>
+
+<mat-drawer-container>
+    <mat-drawer mode="side" [opened]="sideBarOpen">
+        <app-sidebar-admin></app-sidebar-admin>
+    </mat-drawer>
+    <mat-drawer-content>
+        
+        <router-outlet></router-outlet>
+
+    </mat-drawer-content>
+</mat-drawer-container>

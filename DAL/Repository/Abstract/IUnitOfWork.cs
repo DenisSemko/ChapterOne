@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DAL.Repository.Abstract
 {
@@ -8,8 +9,8 @@ namespace DAL.Repository.Abstract
     {
         ISubscriptionRepository SubscriptionRepository { get; }
         IUserRepository UserRepository {  get; }
-        
-        void Complete();
+
+        Task<bool> Complete();
         bool HasChanges();
     }
 }

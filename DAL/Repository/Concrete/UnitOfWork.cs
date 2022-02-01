@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DAL.Repository.Concrete
 {
@@ -17,9 +18,9 @@ namespace DAL.Repository.Concrete
         public ISubscriptionRepository SubscriptionRepository => new SubscriptionRepository(myDbContext);
         public IUserRepository UserRepository => new UserRepository(myDbContext);
 
-        public void Complete()
+        public async Task<bool> Complete()
         {
-            myDbContext.SaveChangesAsync();
+           return await myDbContext.SaveChangesAsync() > 0;
         }
 
         public bool HasChanges()

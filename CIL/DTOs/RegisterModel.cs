@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,7 +13,7 @@ namespace CIL.DTOs
         public string Username { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
-        public string ProfileImage { get; set; }
+        public IFormFile ProfileImage { get; set; }
         public Guid Subscription { get; set; }
     }
 }

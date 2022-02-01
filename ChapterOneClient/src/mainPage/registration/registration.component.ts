@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { SubscriptionService } from 'src/services/subscription.service';
 import { UserService } from 'src/services/user.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   minDate: Date;
   subscriptionsList: any;
 
-  constructor(public service: UserService, private toastr: ToastrService) { 
+  constructor(public service: UserService, private toastr: ToastrService, public subscriptionService: SubscriptionService) { 
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 10, 11, 31);
   }
@@ -23,7 +24,7 @@ export class RegistrationComponent implements OnInit {
 
     this.service.formModel.reset();
 
-    this.service.getSubscriptionsList().subscribe(
+    this.subscriptionService.getSubscriptionsList().subscribe(
       res => {
         this.subscriptionsList = res
       },
