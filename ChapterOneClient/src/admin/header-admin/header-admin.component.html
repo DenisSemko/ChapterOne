@@ -19,7 +19,7 @@
                 </li>
                 <li>
                     <button mat-icon-button> 
-                        <mat-icon>settings</mat-icon>
+                        <mat-icon>timeline</mat-icon>
                     </button>
                 </li>
                 <li>
@@ -27,11 +27,11 @@
                         <mat-icon>person_outline</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                    <button mat-menu-item id="my_profile">
+                    <button mat-menu-item (click)="profileClick();" id="my_profile">
                         <mat-icon>person</mat-icon>
                         My Profile
                     </button>
-                      <button mat-menu-item id="sign_out">
+                      <button mat-menu-item (click)="logout();" id="sign_out">
                           <mat-icon>exit_to_app</mat-icon>
                           Sign Out
                       </button>

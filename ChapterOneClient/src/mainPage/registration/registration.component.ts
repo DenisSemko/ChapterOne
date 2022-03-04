@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(public service: UserService, private toastr: ToastrService, public subscriptionService: SubscriptionService) { 
     const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 10, 11, 31);
+    this.minDate = new Date(currentYear - 14, 11, 31);
   }
 
   ngOnInit(): void {

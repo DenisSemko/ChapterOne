@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, LOCALE_ID, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-header-admin',
@@ -11,7 +12,7 @@ export class HeaderAdminComponent implements OnInit {
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
 
-  constructor(private router: Router, private toastr: ToastrService, @Inject(LOCALE_ID) protected localeId: string) {
+  constructor(private router: Router, private userService: UserService, private toastr: ToastrService, @Inject(LOCALE_ID) protected localeId: string) {
   }
 
 
@@ -20,6 +21,14 @@ export class HeaderAdminComponent implements OnInit {
 
   toggleSideBar(){
     this.toggleSideBarForMe.emit();
+  }
+
+  profileClick() {
+    this.router.navigateByUrl('admin/my-account');
+  }
+
+  logout() {
+    this.userService.logout();
   }
 
 }

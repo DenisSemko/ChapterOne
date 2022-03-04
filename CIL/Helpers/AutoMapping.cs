@@ -11,7 +11,7 @@ namespace CIL.Helpers
     {
         public AutoMapping()
         {
-            
+            CreateMap<UserDto, User>();
         }
     }
 }

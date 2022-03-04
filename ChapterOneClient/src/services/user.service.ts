@@ -24,6 +24,17 @@ export class UserService {
 
   })
 
+  public formUpdateModel = this.fb.group({
+    Name : [''],
+    MiddleName : [''],
+    Surname : [''],
+    BirthDate : [''],
+    PhoneNumber : [''],
+    Address : [''],
+    Username : ['', Validators.required],
+    Email : ['', Validators.email]
+  })
+
   login(formData: any){
     return this.http.post(environment.baseURI + 'UserAuth/login', formData);
   }
@@ -68,5 +79,19 @@ export class UserService {
 
   getUserById(id: string) {
     return this.http.get(environment.baseURI + 'User/' + id);
+  }
+
+  updateProfile(body: any) {
+    body = {
+      Name : this.formUpdateModel.value.Name,
+      MiddleName : this.formUpdateModel.value.MiddleName,
+      Surname : this.formUpdateModel.value.Surname,
+      BirthDate : this.formUpdateModel.value.BirthDate,
+      PhoneNumber : this.formUpdateModel.value.PhoneNumber,
+      Address : this.formUpdateModel.value.Address,
+      Username : this.formUpdateModel.value.Username,
+      Email : this.formUpdateModel.value.Email
+    };
+    return this.http.put(environment.baseURI + 'User', body)
   }
 }

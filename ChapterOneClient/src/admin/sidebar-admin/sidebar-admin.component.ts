@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { BackupService } from 'src/services/backup.service';
 import { UserService } from 'src/services/user.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class SidebarAdminComponent implements OnInit {
   userDetails: any;
   url = '';
 
-  constructor(private router: Router, private toastr: ToastrService, private userService: UserService) {
+  constructor(private router: Router, private toastr: ToastrService, private userService: UserService,
+    private backupService: BackupService) {
   }
   OnSelectFile(event: any) {
     if (event.target.files && event.target.files[0]) {
@@ -36,6 +38,18 @@ export class SidebarAdminComponent implements OnInit {
       },
       err =>{
         console.log(err);
+      }
+    );
+  }
+
+  getBackup() {
+    this.backupService.getSystemBackup().subscribe(
+      res => {
+        this.toastr.success('Backup was created successfully', 'System Backup');
+      },
+      err =>{
+        console.log(err);
+        this.toastr.error('There is an issue. Check the console.', 'Error');
       }
     );
   }

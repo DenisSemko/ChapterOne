@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
 import { ProfileComponent } from './profile/profile.component';
+import { StatisticComponent } from './statistic/statistic.component';
 
 
 
@@ -17,7 +18,8 @@ import { ProfileComponent } from './profile/profile.component';
        DashboardComponent,
        HeaderAdminComponent,
        SidebarAdminComponent,
-       ProfileComponent
+       ProfileComponent,
+       StatisticComponent
   ],
   imports: [
     CommonModule,

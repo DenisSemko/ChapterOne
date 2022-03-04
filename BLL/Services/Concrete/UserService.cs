@@ -1,6 +1,9 @@
-﻿using BLL.Services.Abstract;
+﻿using AutoMapper;
+using BLL.Services.Abstract;
+using CIL.DTOs;
 using CIL.Models;
 using DAL.Repository.Abstract;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,10 +14,14 @@ namespace BLL.Services.Concrete
     public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<User> _userManager;
+        private readonly IMapper _mapper;
 
-        public UserService(IUnitOfWork unitOfWork)
+        public UserService(IUnitOfWork unitOfWork, UserManager<User> userManager, IMapper mapper)
         {
             this._unitOfWork = unitOfWork;
+            this._userManager = userManager;
+            this._mapper = mapper;
         }
 
         public async Task<IEnumerable<User>> Get()
@@ -38,6 +45,14 @@ namespace BLL.Services.Concrete
         {
             var result = await _unitOfWork.UserRepository.Update(user);
             return result;
+        }
+
+        public async Task<User> Update(UserDto userDto)
+        {
+            var user = await _userManager.FindByNameAsync(userDto.Username);
+            _mapper.Map(userDto, user);
+            await _unitOfWork.UserRepository.Update(user);
+            return user;
         }
 
         public async Task<User> DeleteById(Guid id)

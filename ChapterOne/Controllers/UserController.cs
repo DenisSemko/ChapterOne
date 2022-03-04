@@ -4,7 +4,9 @@ using CIL.DTOs;
 using CIL.Models;
 using DAL;
 using DAL.Repository.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -23,13 +25,16 @@ namespace ChapterOne.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly ApplicationContext _context;
         private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
 
-        public UserController(IUserService userService, ApplicationContext context, IUnitOfWork unitOfWork, IMapper mapper)
+        public UserController(IUserService userService, ApplicationContext context, IUnitOfWork unitOfWork, IMapper mapper,
+            UserManager<User> userManager)
         {
             this._userService = userService;
             this._context = context;
             this._unitOfWork = unitOfWork;
             this._mapper = mapper;
+            this._userManager = userManager;
         }
 
         [HttpGet]
@@ -75,6 +80,22 @@ namespace ChapterOne.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<ActionResult<User>> Update(UserDto userDto)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(userDto.Username);
+                _mapper.Map(userDto, user);
+                await _unitOfWork.UserRepository.Update(user);
+                return user;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         [HttpDelete("{id:Guid}")]
         public async Task<ActionResult<User>> DeleteById(Guid id)
@@ -109,7 +130,7 @@ namespace ChapterOne.Controllers
             if (profileImage != null && profileImage.Length > 0)
             {
                 var extension = Path.GetExtension(profileImage.FileName);
-                if (validExtensions.Contains(extension))
+/*                if (validExtensions.Contains(extension))
                 {
                     if (await studentRepository.Exists(studentId))
                     {
@@ -126,7 +147,7 @@ namespace ChapterOne.Controllers
                     }
                 }
 
-                return BadRequest("This is not a valid Image format");
+                return BadRequest("This is not a valid Image format");*/
             }
 
             return NotFound();
