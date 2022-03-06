@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from 'src/admin/dashboard/dashboard.component';
 import { DefaultComponent } from 'src/admin/default/default.component';
 import { ProfileComponent } from 'src/admin/profile/profile.component';
+import { StatisticComponent } from 'src/admin/statistic/statistic.component';
 import { AuthGuard } from 'src/guard/auth.guard';
 import { AboutUsComponent } from 'src/mainPage/about-us/about-us.component';
 import { HomeComponent } from 'src/mainPage/home/home.component';
@@ -33,6 +34,11 @@ const routes: Routes = [
     {
       path: 'my-account',
         component: ProfileComponent,
+        canActivate:[AuthGuard]
+    },
+    {
+      path: 'statistics',
+        component: StatisticComponent,
         canActivate:[AuthGuard]
     }]
   },

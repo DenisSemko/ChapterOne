@@ -674,3 +674,15 @@ mat-drawer-content{
   background-color: #f8f3ed;
   width: 70%;
 }
+
+
+//dashboard
+table {
+  width: 100%;
+}
+mat-header-cell, mat-cell {
+  justify-content: left;
+}
+.left-text {
+  text-align: left;
+}

@@ -1,4 +1,4 @@
-<mat-toolbar class="bee-nav">
+<mat-toolbar class="bee-nav" id="header">
     <mat-toolbar-row>
         <button mat-icon-button (click)="toggleSideBar()">
             <mat-icon>menu</mat-icon>
@@ -18,7 +18,7 @@
                     </button>
                 </li>
                 <li>
-                    <button mat-icon-button> 
+                    <button mat-icon-button (click)="statisticsClick();"> 
                         <mat-icon>timeline</mat-icon>
                     </button>
                 </li>

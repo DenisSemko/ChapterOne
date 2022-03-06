@@ -18,6 +18,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatMenuModule} from '@angular/material/menu'
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { NgxEchartsModule } from "ngx-echarts";
+import {MatRadioModule} from '@angular/material/radio';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -40,10 +48,20 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatNativeDateModule,
     MatDividerModule,
     MatButtonModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule,
+    MatTableModule,
     FlexLayoutModule,
     MatMenuModule,
+    MatRadioModule,
+    MatGridListModule,
+    MatCheckboxModule,
     MatSidenavModule,
     MatListModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import("echarts")
+    }),
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-right'
@@ -64,12 +82,20 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatSelectModule,
     ToastrModule,
     MatNativeDateModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule,
     MatDividerModule,
     MatButtonModule,
+    MatTableModule,
     FlexLayoutModule,
     MatSidenavModule,
+    MatRadioModule,
+    MatGridListModule,
+    MatCheckboxModule,
     MatMenuModule,
     MatListModule,
+    NgxEchartsModule
   ]
 })
 export class SharedModule { }

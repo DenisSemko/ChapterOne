@@ -1,1 +1,16 @@
-<p>statistic works!</p>
+<div class="row" *ngIf="subscriptionData">  
+    <div class="bee-text-content"
+    style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+        <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+            <span style="font-size: 30px; line-height: 63px;">
+                <strong>
+                    OUR STATISTICS
+                </strong>
+            </span>
+        </p>
+    </div>
+    <div style="display: block">  
+        <echarts [initOpts]="initOpts" [options]="options"></echarts>
+    </div>  
+</div>  
+

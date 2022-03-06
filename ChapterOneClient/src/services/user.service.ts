@@ -38,6 +38,12 @@ export class UserService {
   login(formData: any){
     return this.http.post(environment.baseURI + 'UserAuth/login', formData);
   }
+
+  logout() {
+    localStorage.removeItem('accessToken');
+    this.router.navigateByUrl('/login');
+  }
+
   getDecodedAccessToken(token: string): any {
     try{
         return jwt_decode(token);
@@ -45,10 +51,6 @@ export class UserService {
     catch(Error){
         return null;
     }
-  }
-  logout() {
-    localStorage.removeItem('accessToken');
-    this.router.navigateByUrl('/login');
   }
 
   registerUser(){
@@ -79,6 +81,10 @@ export class UserService {
 
   getUserById(id: string) {
     return this.http.get(environment.baseURI + 'User/' + id);
+  }
+
+  getAllUsers() {
+    return this.http.get(environment.baseURI + 'User');
   }
 
   updateProfile(body: any) {

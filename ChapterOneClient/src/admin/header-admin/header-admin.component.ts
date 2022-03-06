@@ -27,6 +27,10 @@ export class HeaderAdminComponent implements OnInit {
     this.router.navigateByUrl('admin/my-account');
   }
 
+  statisticsClick() {
+    this.router.navigateByUrl('admin/statistics');
+  }
+
   logout() {
     this.userService.logout();
   }

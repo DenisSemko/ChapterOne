@@ -25,6 +25,8 @@ namespace DIL
             services.AddScoped<IUserAuthService, UserAuthService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISubscriptionService, SubscriptionService>();
+            services.AddScoped<IStatisticService, StatisticService>();
+
 
             return services;
         }
