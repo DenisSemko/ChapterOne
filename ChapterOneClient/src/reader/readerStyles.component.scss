@@ -677,33 +677,3 @@ mat-drawer-content{
 
 
 //dashboard
-table {
-  width: 100%;
-}
-mat-header-cell, mat-cell {
-  justify-content: left;
-}
-.left-text {
-  text-align: left;
-}
-
-#add-admin {
-    background-color: #62716a;
-    border-bottom: 0 solid transparent;
-    border-left: 0 solid transparent;
-    border-radius: 4px;
-    border-right: 0px solid transparent;
-    border-top: 0 solid transparent;
-    color: #fff;
-    letter-spacing: 1px;
-    line-height: 200%;
-    padding: 7px 17px;
-}
-
-//add-admin
-::ng-deep .custom-modalbox {
-    mat-dialog-container {
-        background-color: #f8f3ed;
-        height: 95%;
-    }
-  }

@@ -9,6 +9,9 @@ import { AboutUsComponent } from 'src/mainPage/about-us/about-us.component';
 import { HomeComponent } from 'src/mainPage/home/home.component';
 import { LoginComponent } from 'src/mainPage/login/login.component';
 import { RegistrationComponent } from 'src/mainPage/registration/registration.component';
+import { DashboardReaderComponent } from 'src/reader/dashboard-reader/dashboard-reader.component';
+import { DefaultReaderComponent } from 'src/reader/default-reader/default-reader.component';
+import { ProfileReaderComponent } from 'src/reader/profile-reader/profile-reader.component';
 
 const routes: Routes = [
   {
@@ -27,7 +30,7 @@ const routes: Routes = [
     path: 'admin',
     component: DefaultComponent,
     children: [{
-      path: 'account',
+      path: 'dashboard',
       component: DashboardComponent,
       canActivate:[AuthGuard]
     },
@@ -39,6 +42,20 @@ const routes: Routes = [
     {
       path: 'statistics',
         component: StatisticComponent,
+        canActivate:[AuthGuard]
+    }]
+  },
+  {
+    path: 'reader',
+    component: DefaultReaderComponent,
+    children: [{
+      path: 'dashboard',
+      component: DashboardReaderComponent,
+      canActivate:[AuthGuard]
+    },
+    {
+      path: 'my-account',
+        component: ProfileReaderComponent,
         canActivate:[AuthGuard]
     }]
   },

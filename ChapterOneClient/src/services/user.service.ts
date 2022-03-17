@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
+  tokenHeader = new HttpHeaders({'Authorization' : 'Bearer ' + localStorage.getItem('accessToken')});
+
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
   public formModel = this.fb.group({
@@ -31,6 +33,14 @@ export class UserService {
     BirthDate : [''],
     PhoneNumber : [''],
     Address : [''],
+    Username : ['', Validators.required],
+    Email : ['', Validators.email]
+  })
+
+  public formUpdateByAdminModel = this.fb.group({
+    Name : [''],
+    Surname : [''],
+    BirthDate : [''],
     Username : ['', Validators.required],
     Email : ['', Validators.email]
   })
@@ -99,5 +109,20 @@ export class UserService {
       Email : this.formUpdateModel.value.Email
     };
     return this.http.put(environment.baseURI + 'User', body)
+  }
+
+  updateUserByAdmin(body: any) {
+    body = {
+      Name : this.formUpdateByAdminModel.value.Name,
+      Surname : this.formUpdateByAdminModel.value.Surname,
+      BirthDate : this.formUpdateByAdminModel.value.BirthDate,
+      Username : this.formUpdateByAdminModel.value.Username,
+      Email : this.formUpdateByAdminModel.value.Email
+    };
+    return this.http.put(environment.baseURI + 'User', body)
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete(environment.baseURI + 'User/' + id, {headers: this.tokenHeader})
   }
 }

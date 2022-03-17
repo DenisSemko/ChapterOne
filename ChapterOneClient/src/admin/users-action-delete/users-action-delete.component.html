@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Do you want to {{action}} a user?</h2>
+<div mat-dialog-content>
+  <ng-template>
+   <p>Do you want to delete?</p>
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>
+

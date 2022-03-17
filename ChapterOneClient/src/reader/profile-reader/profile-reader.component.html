@@ -1,0 +1,129 @@
+<div class="bee-page-container" *ngIf="userDetails">
+    <div class="bee-row bee-row-9">
+        <div class="bee-row-content">
+            <div class="bee-col bee-col-1 bee-col-w12">
+                <div class="bee-block bee-block-3 bee-text">
+                    <div class="bee-text-content"
+                        style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+                        <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                            <span style="font-size: 30px; line-height: 63px;">
+                                <strong>
+                                    MY PROFILE
+                                </strong>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <mat-card class="bee-block bee-block-6 bee-form" id="bee-matcard">
+                    <form autocomplete="off" [formGroup]="userService.formUpdateModel" (ngSubmit)="onSubmit()">
+                      <mat-card-content>
+                        <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Name
+                                </label>
+                                <mat-form-field>
+                                    <input matInput [(ngModel)]="userDetails.name" formControlName="Name" name="Name" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Middle Name
+                                </label>
+                                <mat-form-field>
+                                    <input matInput [(ngModel)]="userDetails.middleName" formControlName="MiddleName" name="MiddleName" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Surname
+                                </label>
+                                <mat-form-field>
+                                    <input matInput [(ngModel)]="userDetails.surname" formControlName="Surname" name="Surname" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="bee-form-row" fxLayout="row" fxLayoutAlign="space-between">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Username
+                                </label>
+                                <mat-form-field>
+                                    <input matInput [(ngModel)]="userDetails.userName" formControlName="Username" name="Username" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Email
+                                </label>
+                                <mat-form-field>
+                                    <input matInput [(ngModel)]="userDetails.email" formControlName="Email" name="Email" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Phone Number
+                                </label>
+                                <mat-form-field>
+                                    <input matInput [(ngModel)]="userDetails.phoneNumber" formControlName="PhoneNumber" name="PhoneNumber" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="bee-form-row" fxLayout="row" fxLayoutAlign="center center">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Address
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput [(ngModel)]="userDetails.address" formControlName="Address" name="Address" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Birth Date
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput [max]="minDate" [matDatepicker]="picker" [(ngModel)]="userDetails.birthDate" formControlName="BirthDate" required readonly>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                      </mat-card-content>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                        <div class="bee-field bee-field-id_j76u77">
+                            <div class="bee-button-container">
+                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">SEND</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                  </mat-card>
+                <div class="bee-block bee-block-7 bee-divider">
+                    <div class="spacer" style="height:10px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-8 bee-divider">
+                    <div class="spacer" style="height:40px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-9 bee-divider">
+                    <div class="spacer" style="height:10px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-7 bee-divider">
+                    <div class="spacer" style="height:30px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  

@@ -1,0 +1,114 @@
+<div class="bee-page-container">
+    <button mat-stroked-button color="primary" class="btn-block" (click)="closeDialog()" style="cursor: pointer; border: none; left: 90%;"><img src="/assets/img/close-button.png" style="width:20px; height:20px;"></button>
+    <div class="bee-row bee-row-9">
+        <div class="bee-row-content">
+            <div class="bee-col bee-col-1 bee-col-w12">
+                <mat-card class="bee-block bee-block-6 bee-form" id="bee-matcard">
+                    <form autocomplete="off" [formGroup]="service.formModel" (ngSubmit)="onSubmit()">
+                      <mat-card-content>
+                        <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Name
+                                </label>
+                                <mat-form-field>
+                                    <input matInput formControlName="Name" name="Name" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Surname
+                                </label>
+                                <mat-form-field>
+                                    <input matInput formControlName="Surname" name="Surname" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Email
+                                </label>
+                                <mat-form-field>
+                                    <input matInput formControlName="Email" name="Email" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="bee-form-row" fxLayout="row" fxLayoutAlign="space-between">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Username
+                                </label>
+                                <mat-form-field>
+                                    <input matInput formControlName="Username" name="Username" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="bee-field bee-field-id_gyxlj1">
+                                <label for="id_gyxlj1">
+                                    Password
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput id="password" matInput [type]="hide ? 'password' : 'text'" name="Password" formControlName="PasswordHash" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_gyxlj2">
+                                    Subscription
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <mat-select formControlName="Subscription">
+                                        <mat-option *ngFor="let subscription of subscriptionsList" [value]="subscription.id">
+                                          {{subscription.name}}
+                                        </mat-option>
+                                      </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="bee-form-row" fxLayout="row" fxLayoutAlign="center center">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_vu4udm">
+                                    Birth Date
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput [max]="minDate" [matDatepicker]="picker" formControlName="BirthDate" required readonly>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                      </mat-card-content>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                        <div class="bee-field bee-field-id_j76u77">
+                            <div class="bee-button-container">
+                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">ADD</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                  </mat-card>
+                <div class="bee-block bee-block-7 bee-divider">
+                    <div class="spacer" style="height:10px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-8 bee-divider">
+                    <div class="spacer" style="height:40px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-9 bee-divider">
+                    <div class="spacer" style="height:10px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-7 bee-divider">
+                    <div class="spacer" style="height:30px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  

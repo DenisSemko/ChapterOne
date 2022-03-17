@@ -1,0 +1,37 @@
+<mat-nav-list>
+    <div class="profile-card" *ngIf="userDetails">
+        <label class="hoverable" for="fileInput">
+            <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+            <div class="hover-text">Update picture</div>
+            <div class="background"></div>
+        </label>
+        <br/>
+        <input id="fileInput" type="file" (change)="OnSelectFile($event)">
+        <div class="header">
+            <div *ngIf="freeSubs">
+                <img src="/assets/img/avatar-free.png" style="width: 50px;">
+            </div>
+            <div *ngIf="mediumSubs">
+                <img src="/assets/img/avatar-medium.png" style="width: 50px;">
+            </div>
+            <div *ngIf="highSubs">
+                <img src="/assets/img/avatar-high.png" style="width: 50px;">
+            </div>
+            <h3 id="name_sidebar">{{userDetails.name}} {{userDetails.surname}}</h3>
+            <h3>{{userDetails.userName}}</h3>
+            <h3>{{userDetails.email}}</h3>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>My Activity</h2>
+    <a mat-list-item>
+        <mat-icon>search</mat-icon>
+        Search for a Book</a>
+    <a mat-list-item><mat-icon>library_books</mat-icon>
+        My Library</a>
+    <a mat-list-item><mat-icon>cloud_upload</mat-icon>
+        Upload Books</a>
+    <a mat-list-item><mat-icon>share</mat-icon>
+        BookSharing</a>
+</mat-nav-list>

@@ -8,6 +8,9 @@ import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
 import { ProfileComponent } from './profile/profile.component';
 import { StatisticComponent } from './statistic/statistic.component';
+import { UsersActionsComponent } from './users-actions/users-actions.component';
+import { UsersActionDeleteComponent } from './users-action-delete/users-action-delete.component';
+import { UsersActionAddAdminComponent } from './users-action-add-admin/users-action-add-admin.component';
 
 
 
@@ -19,7 +22,10 @@ import { StatisticComponent } from './statistic/statistic.component';
        HeaderAdminComponent,
        SidebarAdminComponent,
        ProfileComponent,
-       StatisticComponent
+       StatisticComponent,
+       UsersActionsComponent,
+       UsersActionDeleteComponent,
+       UsersActionAddAdminComponent
   ],
   imports: [
     CommonModule,

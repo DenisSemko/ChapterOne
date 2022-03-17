@@ -115,7 +115,7 @@ namespace ChapterOne.Controllers
         }
 
 
-        //Photo
+        /*//Photo
         [HttpPost("{userId:Guid}")]
         public async Task<IActionResult> UploadImage([FromRoute] Guid userId, IFormFile profileImage)
         {
@@ -130,7 +130,7 @@ namespace ChapterOne.Controllers
             if (profileImage != null && profileImage.Length > 0)
             {
                 var extension = Path.GetExtension(profileImage.FileName);
-/*                if (validExtensions.Contains(extension))
+*//*                if (validExtensions.Contains(extension))
                 {
                     if (await studentRepository.Exists(studentId))
                     {
@@ -147,10 +147,10 @@ namespace ChapterOne.Controllers
                     }
                 }
 
-                return BadRequest("This is not a valid Image format");*/
+                return BadRequest("This is not a valid Image format");*//*
             }
 
             return NotFound();
-        }
+        }*/
     }
 }
