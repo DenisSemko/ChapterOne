@@ -11,21 +11,10 @@ import { UserService } from 'src/services/user.service';
 })
 export class SidebarAdminComponent implements OnInit {
   userDetails: any;
-  url = '';
+  imageToShow: any;
 
   constructor(private router: Router, private toastr: ToastrService, private userService: UserService,
     private backupService: BackupService) {
-  }
-  OnSelectFile(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); 
-
-      reader.onload = (event) => { 
-        this.url = <string>reader.result;
-      }
-    }
   }
 
   ngOnInit(): void {
@@ -34,12 +23,54 @@ export class SidebarAdminComponent implements OnInit {
     this.userService.getUserById(tokenInfo.id).subscribe(
       res => {
         this.userDetails = res
-        console.log(this.userDetails);
+        this.setImage(this.userDetails.profileImage);
       },
       err =>{
         console.log(err);
       }
     );
+  }
+
+  private setImage(imageUrl: any) {
+    this.userService.getImagePath(imageUrl).subscribe(data => {
+      this.createImageFromBlob(data);
+    }, error => {
+      console.log(error);
+    });
+}
+
+  private createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+        this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+        reader.readAsDataURL(image);
+    }
+  }
+
+  OnSelectFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const file: File = event.target.files[0];
+      let token = localStorage.getItem('accessToken') as string;
+      let tokenInfo = this.userService.getDecodedAccessToken(token);
+      this.userService.uploadImage(tokenInfo.id, file).subscribe(
+        res => {
+          console.log(res);
+        },
+        err =>{
+          console.log(err);
+        }
+      );
+
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); 
+
+      reader.onload = (event) => { 
+        this.imageToShow = <string>reader.result;
+      }
+    }
   }
 
   getBackup() {

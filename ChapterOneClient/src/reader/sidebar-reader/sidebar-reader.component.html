@@ -1,7 +1,7 @@
 <mat-nav-list>
     <div class="profile-card" *ngIf="userDetails">
         <label class="hoverable" for="fileInput">
-            <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+            <img [src]="imageToShow ? imageToShow : 'https://www.w3schools.com/howto/img_avatar.png'"> 
             <div class="hover-text">Update picture</div>
             <div class="background"></div>
         </label>

@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -124,5 +125,19 @@ export class UserService {
 
   deleteUser(id: string) {
     return this.http.delete(environment.baseURI + 'User/' + id, {headers: this.tokenHeader})
+  }
+
+  getImagePath(relativePath: string) : Observable<Blob> {
+    let result = relativePath.substring(17, relativePath.length);
+    return this.http.get(environment.baseURI + 'Image?fileName=' + result, {responseType: 'blob'});
+  }
+
+  uploadImage(userId: string, file: File): Observable<any>  {
+    const formData = new FormData();
+    formData.append("profileImage", file);
+    return this.http.post(environment.baseURI + 'Image/' + userId + '/upload-image', 
+    formData, {
+      responseType: 'text'
+    });
   }
 }

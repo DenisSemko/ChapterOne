@@ -13,20 +13,9 @@ export class SidebarReaderComponent implements OnInit {
   freeSubs: any;
   mediumSubs: any;
   highSubs: any;
-  url = '';
+  imageToShow: any;
 
   constructor(private router: Router, private toastr: ToastrService, private userService: UserService) {
-  }
-  OnSelectFile(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); 
-
-      reader.onload = (event) => { 
-        this.url = <string>reader.result;
-      }
-    }
   }
 
   ngOnInit(): void {
@@ -35,7 +24,8 @@ export class SidebarReaderComponent implements OnInit {
     this.userService.getUserById(tokenInfo.id).subscribe(
       res => {
         this.userDetails = res
-        this.addImageToSidebar(this.userDetails.subscription.name);
+        this.addIconToSidebar(this.userDetails.subscription.name);
+        this.setImage(this.userDetails.profileImage);
       },
       err =>{
         console.log(err);
@@ -43,7 +33,7 @@ export class SidebarReaderComponent implements OnInit {
     );
   }
 
-  addImageToSidebar(name: any) {
+  private addIconToSidebar(name: any) {
     if(name === "Free") {
       this.freeSubs = "Free";
     } else if(name === "Medium") {
@@ -52,5 +42,47 @@ export class SidebarReaderComponent implements OnInit {
       this.highSubs = "High";
     }
   } 
+
+  private setImage(imageUrl: any) {
+    this.userService.getImagePath(imageUrl).subscribe(data => {
+      this.createImageFromBlob(data);
+    }, error => {
+      console.log(error);
+    });
+}
+
+  private createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+        this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+        reader.readAsDataURL(image);
+    }
+  }
+
+  OnSelectFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const file: File = event.target.files[0];
+      let token = localStorage.getItem('accessToken') as string;
+      let tokenInfo = this.userService.getDecodedAccessToken(token);
+      this.userService.uploadImage(tokenInfo.id, file).subscribe(
+        res => {
+          console.log(res);
+        },
+        err =>{
+          console.log(err);
+        }
+      );
+
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); 
+
+      reader.onload = (event) => { 
+        this.imageToShow = <string>reader.result;
+      }
+    }
+  }
 
 }

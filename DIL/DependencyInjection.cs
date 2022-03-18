@@ -15,6 +15,7 @@ namespace DIL
         {
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

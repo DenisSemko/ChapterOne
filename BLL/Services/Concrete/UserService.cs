@@ -3,9 +3,11 @@ using BLL.Services.Abstract;
 using CIL.DTOs;
 using CIL.Models;
 using DAL.Repository.Abstract;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,6 +61,42 @@ namespace BLL.Services.Concrete
         {
             var result = await _unitOfWork.UserRepository.DeleteById(id);
             return result;
+        }
+
+        public async Task<string> UploadImage(Guid userId, IFormFile profileImage)
+        {
+            var validExtensions = new List<string>
+            {
+               ".jpeg",
+               ".png",
+               ".gif",
+               ".jpg"
+            };
+
+            if (profileImage != null && profileImage.Length > 0)
+            {
+                var extension = Path.GetExtension(profileImage.FileName);
+                if (validExtensions.Contains(extension))
+                {
+                    if (await _unitOfWork.UserRepository.GetById(userId) != null)
+                    {
+                        var fileName = Guid.NewGuid() + Path.GetExtension(profileImage.FileName);
+
+                        var fileImagePath = await _unitOfWork.ImageRepository.Upload(profileImage, fileName);
+
+                        if (await _unitOfWork.UserRepository.UpdateProfileImage(userId, fileImagePath))
+                        {
+                            return fileImagePath;
+                        }
+
+                        return "Error uploading image";
+                    }
+                }
+
+                return "This is not a valid Image format";
+            }
+
+            return "Not Found";
         }
     }
 }

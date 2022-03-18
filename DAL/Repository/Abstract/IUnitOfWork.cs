@@ -9,6 +9,7 @@ namespace DAL.Repository.Abstract
     {
         ISubscriptionRepository SubscriptionRepository { get; }
         IUserRepository UserRepository {  get; }
+        IImageRepository ImageRepository {  get; }
 
         Task<bool> Complete();
         bool HasChanges();

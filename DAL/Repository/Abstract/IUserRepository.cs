@@ -9,5 +9,6 @@ namespace DAL.Repository.Abstract
     public interface IUserRepository : IRepository<User>
     {
         public new Task<User> GetById(Guid id);
+        public Task<bool> UpdateProfileImage(Guid userId, string profileImageUrl);
     }
 }

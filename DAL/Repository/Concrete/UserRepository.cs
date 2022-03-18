@@ -18,5 +18,19 @@ namespace DAL.Repository.Concrete
             var result = await myDbContext.Users.Where(o => o.Id == id).Include(o => o.Subscription).FirstOrDefaultAsync();
             return result;
         }
+
+        public async Task<bool> UpdateProfileImage(Guid userId, string profileImageUrl)
+        {
+            var user = await GetById(userId);
+
+            if (user != null)
+            {
+                user.ProfileImage = profileImageUrl;
+                await myDbContext.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
     }
 }
