@@ -15,5 +15,7 @@ namespace BLL.Services.Abstract
         public Task<User> Update(User item);
         public Task<User> DeleteById(Guid id);
         public Task<string> UploadImage(Guid userId, IFormFile profileImage);
+        public Task<bool> SendSubscriptionPayment(Guid user);
+        public Task<bool> GetSubscriptionPaymentDays(Guid userId);
     }
 }

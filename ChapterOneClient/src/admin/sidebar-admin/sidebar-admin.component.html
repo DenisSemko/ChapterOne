@@ -8,19 +8,19 @@
         <br/>
         <input id="fileInput" type="file" (change)="OnSelectFile($event)">
         <div class="header">
-            <h3 id="name_sidebar">{{userDetails.name}} {{userDetails.surname}} 
+            <h3 id="name_sidebar">Name: {{userDetails.name}} {{userDetails.surname}} 
                 <img alt="verified" class="d2edcug0" referrerpolicy="origin-when-cross-origin" 
                     src="https://static.xx.fbcdn.net/assets/?revision=358494459481360&amp;name=ig-verifiedbadge-shared&amp;density=1" style="width:17px;"></h3>
-            <h3>{{userDetails.userName}}</h3>
-            <h3>{{userDetails.email}}</h3>
+            <h3>Username: {{userDetails.userName}}</h3>
+            <h3>Email: {{userDetails.email}}</h3>
         </div>
     </div>
     <mat-divider></mat-divider>
 
     <h2 matSubheader>My Activity</h2>
-    <a mat-list-item>
-        <mat-icon>description</mat-icon>
-        ???????</a>
+    <a mat-list-item (click)="redirectToUsers();">
+        <mat-icon>view_list</mat-icon>
+        Users</a>
     <a mat-list-item (click)="getBackup();"><mat-icon>done</mat-icon>
         Windows System BackUp</a>
         

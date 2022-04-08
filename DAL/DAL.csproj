@@ -9,12 +9,15 @@
     <Compile Remove="Migrations\20220128215122_AddPhotoo.Designer.cs" />
     <Compile Remove="Migrations\20220129103614_New.cs" />
     <Compile Remove="Migrations\20220129103614_New.Designer.cs" />
+    <Compile Remove="Migrations\20220318143315_AddFields.cs" />
+    <Compile Remove="Migrations\20220318143315_AddFields.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="CloudinaryDotNet" Version="1.16.0" />
+    <PackageReference Include="MailKit" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.19" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.19" />

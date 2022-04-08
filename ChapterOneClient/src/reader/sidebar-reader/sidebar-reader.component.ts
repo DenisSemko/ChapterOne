@@ -85,4 +85,8 @@ export class SidebarReaderComponent implements OnInit {
     }
   }
 
+  moveToDetails() {
+    this.router.navigateByUrl('reader/subscription-details');
+  }
+
 }

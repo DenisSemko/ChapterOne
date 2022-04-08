@@ -1,17 +1,25 @@
-﻿using CIL.Models;
+﻿using CIL.Helpers;
+using CIL.Models;
 using DAL.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
+using MailKit.Net.Smtp;
+using System.Globalization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DAL.Repository.Concrete
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        public UserRepository(ApplicationContext myDbContext) : base(myDbContext) { }
+        public UserRepository(ApplicationContext myDbContext) : base(myDbContext) 
+        {
+        }
 
         public new async Task<User> GetById(Guid id)
         {
@@ -31,6 +39,32 @@ namespace DAL.Repository.Concrete
             }
 
             return false;
+        }
+
+        public async Task<bool> GetSubscriptionPaymentDays(Guid userId)
+        {
+            const int days = 30;
+            var currentDate = DateTime.Now;
+            var user = await GetById(userId);
+
+            if (user != null)
+            {
+                if(user.TimeSubscriptionPaid != null)
+                {
+                    var dateDifference = currentDate - user.TimeSubscriptionPaid;
+                    var userDays = dateDifference.Value;
+
+                    if (userDays.Days > days)
+                        return true;
+                } else
+                {
+                    return false;
+                }
+                
+            }
+
+            return false;
+
         }
     }
 }

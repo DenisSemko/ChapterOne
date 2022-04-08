@@ -56,7 +56,8 @@ namespace BLL.Services.Concrete
                 Email = registerModel.Email,
                 PasswordHash = registerModel.PasswordHash,
                 Subscription = selectedSubscription,
-                ProfileImage = uniqueFileName
+                ProfileImage = uniqueFileName,
+                RegistrationDate = DateTime.Now
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, registerModel.PasswordHash);
@@ -109,7 +110,8 @@ namespace BLL.Services.Concrete
                 Email = registerModel.Email,
                 PasswordHash = registerModel.PasswordHash,
                 Subscription = selectedSubscription,
-                ProfileImage = uniqueFileName
+                ProfileImage = uniqueFileName,
+                RegistrationDate = DateTime.Now
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, registerModel.PasswordHash);
@@ -134,6 +136,7 @@ namespace BLL.Services.Concrete
 
         public async Task<AuthenticationResult> LoginAsync(LoginModel loginModel)
         {
+
             var user = await _userManager.FindByNameAsync(loginModel.Username);
 
             if (user == null)

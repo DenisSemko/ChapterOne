@@ -85,4 +85,8 @@ export class SidebarAdminComponent implements OnInit {
     );
   }
 
+  redirectToUsers() {
+    this.router.navigateByUrl("admin/dashboard");
+  }
+
 }

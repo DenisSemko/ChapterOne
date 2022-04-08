@@ -26,6 +26,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -58,6 +60,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatGridListModule,
     MatCheckboxModule,
     MatSidenavModule,
+    BrowserAnimationsModule,
+    MatTooltipModule,
     MatListModule,
     NgxEchartsModule.forRoot({
       echarts: () => import("echarts")
@@ -95,6 +99,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCheckboxModule,
     MatMenuModule,
     MatListModule,
+    BrowserAnimationsModule,
+    MatTooltipModule,
     NgxEchartsModule
   ]
 })

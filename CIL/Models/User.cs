@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace CIL.Models
 {
@@ -15,7 +16,13 @@ namespace CIL.Models
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
         public string ProfileImage { get; set; }
+        public DateTime RegistrationDate { get; set; }
         public Subscription Subscription {  get; set; }
+        public DateTime? TimeSubscriptionPaid { get; set; }
+        public bool? IsSubscriptionPaid { get; set; }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public ICollection<Combination> Combinations { get; set; }
     }
 }

@@ -9,17 +9,29 @@
         <input id="fileInput" type="file" (change)="OnSelectFile($event)">
         <div class="header">
             <div *ngIf="freeSubs">
-                <img src="/assets/img/avatar-free.png" style="width: 50px;">
+                <button mat-raised-button matTooltip="Subscription Details" 
+                matTooltipPosition="right"
+                style="box-shadow: none;" (click)="moveToDetails();">
+                    <img src="/assets/img/avatar-free.png" style="width: 50px;">
+                </button>
             </div>
             <div *ngIf="mediumSubs">
-                <img src="/assets/img/avatar-medium.png" style="width: 50px;">
+                <button mat-raised-button matTooltip="Subscription Details" 
+                matTooltipPosition="right"
+                style="box-shadow: none;" (click)="moveToDetails();">
+                    <img src="/assets/img/avatar-medium.png" style="width: 50px;">
+                </button>
             </div>
             <div *ngIf="highSubs">
-                <img src="/assets/img/avatar-high.png" style="width: 50px;">
+                <button mat-raised-button matTooltip="Subscription Details" 
+                matTooltipPosition="right"
+                style="box-shadow: none;" (click)="moveToDetails();">
+                    <img src="/assets/img/avatar-high.png" style="width: 50px;">
+                </button>
             </div>
-            <h3 id="name_sidebar">{{userDetails.name}} {{userDetails.surname}}</h3>
-            <h3>{{userDetails.userName}}</h3>
-            <h3>{{userDetails.email}}</h3>
+            <h3 id="name_sidebar">Name: {{userDetails.name}} {{userDetails.surname}}</h3>
+            <h3>Username: {{userDetails.userName}}</h3>
+            <h3>Email: {{userDetails.email}}</h3>
         </div>
     </div>
     <mat-divider></mat-divider>

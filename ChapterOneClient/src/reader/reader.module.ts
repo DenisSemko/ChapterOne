@@ -7,6 +7,8 @@ import { DefaultReaderComponent } from './default-reader/default-reader.componen
 import { HeaderReaderComponent } from './header-reader/header-reader.component';
 import { SidebarReaderComponent } from './sidebar-reader/sidebar-reader.component';
 import { ProfileReaderComponent } from './profile-reader/profile-reader.component';
+import { SubscriptionDetailsComponent } from './subscription-details/subscription-details.component';
+import { ModalSubscriptionComponent } from './modal-subscription/modal-subscription.component';
 
 
 
@@ -16,7 +18,9 @@ import { ProfileReaderComponent } from './profile-reader/profile-reader.componen
     DefaultReaderComponent,
     HeaderReaderComponent,
     SidebarReaderComponent,
-    ProfileReaderComponent
+    ProfileReaderComponent,
+    SubscriptionDetailsComponent,
+    ModalSubscriptionComponent
   ],
   imports: [
     CommonModule,

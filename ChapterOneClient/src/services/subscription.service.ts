@@ -13,4 +13,14 @@ export class SubscriptionService {
   getSubscriptionsList() {
     return this.http.get(environment.baseURI + 'Subscription')
   }
+
+  getSubscriptionPaymentDays(userId: string) {
+    return this.http.get(environment.baseURI + 'SubscriptionPayment/' + userId);
+  }
+
+  sendSubscriptionPayment(userId: string) {
+    return this.http.get(environment.baseURI + 'SubscriptionPayment/' + userId + "/send-email");
+  }
+
+
 }

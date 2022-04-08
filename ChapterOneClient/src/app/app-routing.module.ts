@@ -12,6 +12,7 @@ import { RegistrationComponent } from 'src/mainPage/registration/registration.co
 import { DashboardReaderComponent } from 'src/reader/dashboard-reader/dashboard-reader.component';
 import { DefaultReaderComponent } from 'src/reader/default-reader/default-reader.component';
 import { ProfileReaderComponent } from 'src/reader/profile-reader/profile-reader.component';
+import { SubscriptionDetailsComponent } from 'src/reader/subscription-details/subscription-details.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,11 @@ const routes: Routes = [
     {
       path: 'my-account',
         component: ProfileReaderComponent,
+        canActivate:[AuthGuard]
+    },
+    {
+      path: 'subscription-details',
+        component: SubscriptionDetailsComponent,
         canActivate:[AuthGuard]
     }]
   },

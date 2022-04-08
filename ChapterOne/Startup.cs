@@ -118,6 +118,10 @@ namespace ChapterOne
                };
            });
 
+            //MailKit - email
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+
 
         }
 
