@@ -9,6 +9,7 @@ import { AboutUsComponent } from 'src/mainPage/about-us/about-us.component';
 import { HomeComponent } from 'src/mainPage/home/home.component';
 import { LoginComponent } from 'src/mainPage/login/login.component';
 import { RegistrationComponent } from 'src/mainPage/registration/registration.component';
+import { BookDetailsComponent } from 'src/reader/book-details/book-details.component';
 import { DashboardReaderComponent } from 'src/reader/dashboard-reader/dashboard-reader.component';
 import { DefaultReaderComponent } from 'src/reader/default-reader/default-reader.component';
 import { ProfileReaderComponent } from 'src/reader/profile-reader/profile-reader.component';
@@ -62,6 +63,11 @@ const routes: Routes = [
     {
       path: 'subscription-details',
         component: SubscriptionDetailsComponent,
+        canActivate:[AuthGuard]
+    },
+    {
+      path: 'book/:id',
+        component: BookDetailsComponent,
         canActivate:[AuthGuard]
     }]
   },

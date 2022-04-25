@@ -10,6 +10,9 @@ namespace DAL.Repository.Abstract
         ISubscriptionRepository SubscriptionRepository { get; }
         IUserRepository UserRepository {  get; }
         IImageRepository ImageRepository {  get; }
+        IBookRepository BookRepository {  get; }
+        IGenreRepository GenreRepository {  get; }
+        ICombinationRepository CombinationRepository {  get; }
 
         Task<bool> Complete();
         bool HasChanges();

@@ -12,6 +12,10 @@ namespace CIL.Helpers
         public AutoMapping()
         {
             CreateMap<UserDto, User>();
+            CreateMap<BookAddDto, Book>();
+            CreateMap<Guid, Genre>();
+            CreateMap<Guid, BookImage>();
+            CreateMap<Guid, BookFile>();
         }
     }
 }

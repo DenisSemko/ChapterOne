@@ -1,1 +1,11 @@
-<p>dashboard works!</p>
+<div class="row" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div class="col-2" fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let book of booksList">
+        <app-book-card [book]="book"></app-book-card>
+    </div>
+</div>
+<div *ngIf="pagination">
+    <mat-paginator [length]="pagination.totalItems"
+    [pageSize]="pagination.itemsPerPage"
+    (page)="pageChanged($event)"
+    [showFirstLastButtons]="true"></mat-paginator>
+</div>

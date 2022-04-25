@@ -1,0 +1,18 @@
+<div class="content" *ngIf="book">
+    <mat-card class="mat-elevation-z4">
+    <div class="img-mat-card">
+        <img mat-card-image [src]="imageToShow ? imageToShow : 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Flag_of_None_%28square%29.svg/768px-Flag_of_None_%28square%29.svg.png'"
+                            style="margin-top:0px;height:320px; width:200px;">
+    </div>
+    <mat-card-content>
+        <div class="card-body p-1">
+            <h6 class="card-title">
+                <strong><a id="book-link" routerLink="/reader/book/{{book.id}}" routerLinkActive="active" target="_blank">{{book.title}}</a></strong><br>
+                {{book.author}}<br>
+                price $<br>
+            </h6>
+            <ngb-rating [max]="5" [(rate)]="currentRating" [readonly]="true"></ngb-rating> <p style="font-style:italic;">(number reviews)</p>
+        </div>
+    </mat-card-content>
+    </mat-card>
+</div><br>

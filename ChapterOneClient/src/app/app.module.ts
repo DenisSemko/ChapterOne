@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubscriptionService } from 'src/services/subscription.service';
 import { StatisticsService } from 'src/services/statistics.service';
 import { BackupService } from 'src/services/backup.service';
+import { BookService } from 'src/services/book.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { BackupService } from 'src/services/backup.service';
     AdminModule,
     ReaderModule
   ],
-  providers: [UserService, SubscriptionService, StatisticsService, BackupService],
+  providers: [UserService, SubscriptionService, StatisticsService, BackupService, BackupService, BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

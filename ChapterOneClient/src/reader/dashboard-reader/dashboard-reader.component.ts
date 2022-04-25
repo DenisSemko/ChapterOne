@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Book } from 'src/models/book';
+import { Pagination } from 'src/models/pagination';
+import { BookService } from 'src/services/book.service';
 import { SubscriptionService } from 'src/services/subscription.service';
 import { UserService } from 'src/services/user.service';
 import { ModalSubscriptionComponent } from '../modal-subscription/modal-subscription.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-dashboard-reader',
@@ -11,8 +15,13 @@ import { ModalSubscriptionComponent } from '../modal-subscription/modal-subscrip
 })
 export class DashboardReaderComponent implements OnInit {
   userDetails: any;
+  booksList: Book[];
+  pagination: Pagination;
+  pageNumber = 1;
+  pageSize = 4;
 
-  constructor(public userService: UserService, public dialog: MatDialog, private subscriptionService: SubscriptionService) { }
+  constructor(public userService: UserService, public dialog: MatDialog, private subscriptionService: SubscriptionService,
+    public bookService: BookService) { }
 
   ngOnInit(): void {
     let token = localStorage.getItem('accessToken') as string;
@@ -26,6 +35,7 @@ export class DashboardReaderComponent implements OnInit {
         console.log(err);
       }
     );
+    this.getBooks();
   }
 
   checkSubscriptionPayment(user: any) {
@@ -33,16 +43,16 @@ export class DashboardReaderComponent implements OnInit {
       this.openDialog();
     } else if(user.timeSubscriptionPaid) {
       this.subscriptionService.getSubscriptionPaymentDays(user.id).subscribe(
-        res => {
+        (res: any) => {
           if(res)
           this.subscriptionService.sendSubscriptionPayment(user.id).subscribe(
-            result => {
+            (result:any) => {
               this.openDialog();
             }
           )
             
       },
-      err =>{
+      (err:any) =>{
           console.log(err);
         }
       );
@@ -55,6 +65,23 @@ export class DashboardReaderComponent implements OnInit {
       panelClass: 'custom-modalbox',
       disableClose: true
     });
+  }
+
+  getBooks() {
+    this.bookService.getBooksList(this.pageNumber, this.pageSize).subscribe(
+      result => {
+        this.booksList = result.result;
+        this.pagination = result.pagination
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  pageChanged(event: any): void {
+    this.pageNumber = event.pageIndex + 1;
+    this.getBooks();
   }
 
 

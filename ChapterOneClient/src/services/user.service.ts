@@ -128,7 +128,7 @@ export class UserService {
   }
 
   getImagePath(relativePath: string) : Observable<Blob> {
-    let result = relativePath.substring(17, relativePath.length);
+    let result = relativePath.substring(16, relativePath.length);
     return this.http.get(environment.baseURI + 'Image?fileName=' + result, {responseType: 'blob'});
   }
 

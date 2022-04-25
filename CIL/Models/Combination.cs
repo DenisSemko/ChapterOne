@@ -10,7 +10,7 @@ namespace CIL.Models
         public User Reader { get; set; }
         public string Author { get; set; }
         public int Year { get; set; }
-        public Genre Genre { get; set; }
+        public string Genre { get; set; }
         public string Publisher { get; set; }
         public string ShortDescription { get; set; }
         public bool IsSuccessful { get; set; }

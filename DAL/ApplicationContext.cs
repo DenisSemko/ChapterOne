@@ -13,6 +13,7 @@ namespace DAL
     {
         public DbSet<Subscription> Subscription {  get; set; }
         public DbSet<Type> Type {  get; set; }
+        public DbSet<BooksTypes> BooksTypes {  get; set; }
         public DbSet<Genre> Genre {  get; set; }
         public DbSet<Book> Book {  get; set; }
         public DbSet<BookFile> BookFile {  get; set; }
@@ -61,15 +62,6 @@ namespace DAL
                 .HasMany(s => s.Books)
                 .WithOne(a => a.Image);
 
-            //Combination-Genre
-            modelBuilder.Entity<Combination>()
-                .HasOne(s => s.Genre)
-                .WithMany(a => a.Combinations);
-
-            modelBuilder.Entity<Genre>()
-                .HasMany(s => s.Combinations)
-                .WithOne(a => a.Genre);
-
             //Combination-User
             modelBuilder.Entity<Combination>()
                 .HasOne(s => s.Reader)
@@ -78,6 +70,24 @@ namespace DAL
             modelBuilder.Entity<User>()
                 .HasMany(s => s.Combinations)
                 .WithOne(a => a.Reader);
+
+            //BooksTypes-Book
+            modelBuilder.Entity<BooksTypes>()
+                 .HasOne(s => s.Book)
+                 .WithMany(a => a.BooksTypes);
+
+            modelBuilder.Entity<Book>()
+                .HasMany(s => s.BooksTypes)
+                .WithOne(a => a.Book);
+
+            //BooksTypes-Type
+            modelBuilder.Entity<BooksTypes>()
+                .HasOne(s => s.Type)
+                .WithMany(a => a.BooksTypes);
+
+            modelBuilder.Entity<Type>()
+                .HasMany(s => s.BooksTypes)
+                .WithOne(a => a.Type);
         }
     }
 }

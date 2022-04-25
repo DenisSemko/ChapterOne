@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace CIL.Models
 {
@@ -18,7 +20,14 @@ namespace CIL.Models
         public int ReadingAge { get; set; }
         public BookImage Image { get; set; }
         public BookFile File { get; set; }
+        public string BookImage { get; set; }
+        public string BookWebFile { get; set; }
+        public string BookAudioFile { get; set; }
         public bool IsQualified { get; set; }
         public DateTime? UploadDate { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public ICollection<BooksTypes> BooksTypes { get; set; }
     }
 }

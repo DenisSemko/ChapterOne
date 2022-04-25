@@ -9,6 +9,9 @@ import { SidebarReaderComponent } from './sidebar-reader/sidebar-reader.componen
 import { ProfileReaderComponent } from './profile-reader/profile-reader.component';
 import { SubscriptionDetailsComponent } from './subscription-details/subscription-details.component';
 import { ModalSubscriptionComponent } from './modal-subscription/modal-subscription.component';
+import { BookCardComponent } from './book-card/book-card.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
+
 
 
 
@@ -20,7 +23,9 @@ import { ModalSubscriptionComponent } from './modal-subscription/modal-subscript
     SidebarReaderComponent,
     ProfileReaderComponent,
     SubscriptionDetailsComponent,
-    ModalSubscriptionComponent
+    ModalSubscriptionComponent,
+    BookCardComponent,
+    BookDetailsComponent
   ],
   imports: [
     CommonModule,

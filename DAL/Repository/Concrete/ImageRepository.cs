@@ -12,7 +12,7 @@ namespace DAL.Repository.Concrete
     {
         public async Task<string> Upload(IFormFile file, string fileName)
         {
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"Resources\Images", fileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"Resources\Files", fileName);
             using Stream fileStream = new FileStream(filePath, FileMode.Create);
             await file.CopyToAsync(fileStream);
             return GetServerRelativePath(fileName);
@@ -20,7 +20,7 @@ namespace DAL.Repository.Concrete
 
         private string GetServerRelativePath(string fileName)
         {
-            return Path.Combine(@"Resources\Images", fileName);
+            return Path.Combine(@"Resources\Files", fileName);
         }
     }
 }

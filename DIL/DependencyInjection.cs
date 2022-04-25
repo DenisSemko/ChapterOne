@@ -16,6 +16,9 @@ namespace DIL
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<ICombinationRepository, CombinationRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
@@ -27,6 +30,11 @@ namespace DIL
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISubscriptionService, SubscriptionService>();
             services.AddScoped<IStatisticService, StatisticService>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IGenreService, GenreService>();
+            services.AddScoped<IBooksSearchingService, BooksSearchingService>();
+            services.AddScoped<ICombinationService, CombinationService>();
+            services.AddScoped<IFileContentTypeService, FileContentTypeService>();
 
 
             return services;

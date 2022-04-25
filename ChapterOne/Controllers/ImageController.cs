@@ -14,16 +14,19 @@ namespace ChapterOne.Controllers
     public class ImageController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IFileContentTypeService _fileContentTypeService;
 
-        public ImageController(IUserService userService)
+        public ImageController(IUserService userService, IFileContentTypeService fileContentTypeService)
         {
             this._userService = userService;
+            this._fileContentTypeService = fileContentTypeService;
         }
         [HttpGet]
         public IActionResult Get(string fileName)
         {
-            var image = System.IO.File.OpenRead(Path.Combine(Directory.GetCurrentDirectory(), @"Resources\Images", fileName));
-            return File(image, "image/jpeg");
+            var path = Path.Combine(Directory.GetCurrentDirectory(), @"Resources\Files", fileName);
+            var image = System.IO.File.OpenRead(path);
+            return File(image, _fileContentTypeService.GetContentType(path));
         }
 
         [HttpPost("{userId:Guid}/upload-image")]

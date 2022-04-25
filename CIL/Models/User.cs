@@ -24,5 +24,6 @@ namespace CIL.Models
         [JsonIgnore]
         [IgnoreDataMember]
         public ICollection<Combination> Combinations { get; set; }
+       
     }
 }

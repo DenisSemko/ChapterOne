@@ -689,3 +689,15 @@ mat-drawer-content{
 }
 
 //dashboard
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.col-2 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  max-width: 25% !important;
+}

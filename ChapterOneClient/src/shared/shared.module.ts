@@ -28,7 +28,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -58,6 +58,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatMenuModule,
     MatRadioModule,
     MatGridListModule,
+    NgbModule,
     MatCheckboxModule,
     MatSidenavModule,
     BrowserAnimationsModule,
@@ -101,7 +102,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatListModule,
     BrowserAnimationsModule,
     MatTooltipModule,
-    NgxEchartsModule
+    NgxEchartsModule,
+    NgbModule
   ]
 })
 export class SharedModule { }

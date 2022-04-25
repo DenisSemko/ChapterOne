@@ -28,6 +28,15 @@ namespace DAL.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BookAudioFile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BookImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BookWebFile")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid?>("FileId")
                         .HasColumnType("uniqueidentifier");
 
@@ -112,6 +121,30 @@ namespace DAL.Migrations
                     b.ToTable("BookImage");
                 });
 
+            modelBuilder.Entity("CIL.Models.BooksTypes", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<Guid?>("TypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("TypeId");
+
+                    b.ToTable("BooksTypes");
+                });
+
             modelBuilder.Entity("CIL.Models.Combination", b =>
                 {
                     b.Property<Guid>("Id")
@@ -119,6 +152,9 @@ namespace DAL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Genre")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("GenreId")
@@ -438,9 +474,20 @@ namespace DAL.Migrations
                         .HasForeignKey("ImageId");
                 });
 
+            modelBuilder.Entity("CIL.Models.BooksTypes", b =>
+                {
+                    b.HasOne("CIL.Models.Book", "Book")
+                        .WithMany("BooksTypes")
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("CIL.Models.Type", "Type")
+                        .WithMany("BooksTypes")
+                        .HasForeignKey("TypeId");
+                });
+
             modelBuilder.Entity("CIL.Models.Combination", b =>
                 {
-                    b.HasOne("CIL.Models.Genre", "Genre")
+                    b.HasOne("CIL.Models.Genre", null)
                         .WithMany("Combinations")
                         .HasForeignKey("GenreId");
 

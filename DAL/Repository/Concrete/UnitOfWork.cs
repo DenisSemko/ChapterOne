@@ -18,6 +18,9 @@ namespace DAL.Repository.Concrete
         public ISubscriptionRepository SubscriptionRepository => new SubscriptionRepository(myDbContext);
         public IUserRepository UserRepository => new UserRepository(myDbContext);
         public IImageRepository ImageRepository => new ImageRepository();
+        public IBookRepository BookRepository => new BookRepository(myDbContext);
+        public IGenreRepository GenreRepository => new GenreRepository(myDbContext);
+        public ICombinationRepository CombinationRepository => new CombinationRepository(myDbContext);
 
         public async Task<bool> Complete()
         {

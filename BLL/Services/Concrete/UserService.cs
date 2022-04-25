@@ -75,7 +75,8 @@ namespace BLL.Services.Concrete
                ".jpeg",
                ".png",
                ".gif",
-               ".jpg"
+               ".jpg",
+               ".pdf"
             };
 
             if (profileImage != null && profileImage.Length > 0)
