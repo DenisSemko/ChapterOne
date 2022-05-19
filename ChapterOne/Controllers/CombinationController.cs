@@ -1,4 +1,5 @@
 ﻿using BLL.Services.Abstract;
+using CIL.DTOs;
 using CIL.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -25,9 +26,26 @@ namespace ChapterOne.Controllers
         {
             return Ok(await _combinationService.GenerateCombination());
         }
+        [HttpGet("{userId:Guid}/from-collection")]
+        public async Task<ActionResult<IEnumerable<Combination>>> GenerateCombinationFromCollection(Guid userId)
+        {
+            return Ok(await _combinationService.GenerateCombinationFromCollection(userId));
+        }
+
+        [HttpGet("{user:Guid}/by-user")]
+        public async Task<ActionResult<IEnumerable<Combination>>> GetByUser(Guid user)
+        {
+            return Ok(await _combinationService.GetByUser(user));
+        }
+
+        [HttpGet("{user:Guid}/load-old")]
+        public async Task<ActionResult<IEnumerable<Combination>>> LoadOldSchemes(Guid user)
+        {
+            return Ok(await _combinationService.LoadOldSchemes(user));
+        }
 
         [HttpPost]
-        public async Task<ActionResult<Combination>> Add(Combination combination)
+        public async Task<ActionResult<Combination>> Add(CombinationDto combination)
         {
             try
             {
@@ -37,6 +55,26 @@ namespace ChapterOne.Controllers
                 }
 
                 var result = await _combinationService.Add(combination);
+                return result;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Combination>> Update(CombinationDto combinationDto)
+        {
+            try
+            {
+                if (combinationDto == null)
+                {
+                    return BadRequest();
+                }
+
+                var result = await _combinationService.Update(combinationDto);
                 return result;
 
             }

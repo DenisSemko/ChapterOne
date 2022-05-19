@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL.Services.Abstract;
 using CIL.Models;
+using CIL.DTOs;
+using CIL.Helpers;
 
 namespace ChapterOne.Controllers
 {
@@ -20,10 +22,11 @@ namespace ChapterOne.Controllers
             this._booksService = booksService;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<IEnumerable<Book>>> FindBooks(Combination combination)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Book>>> FindBooks([FromQuery] CombinationDto combination, [FromQuery] BookParams bookParams)
         {
-            return Ok(await _booksService.FindBooks(combination));
+            var result = await _booksService.FindBooks(combination);
+            return Ok(result);
         }
     }
 }

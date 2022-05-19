@@ -8,29 +8,34 @@ namespace DAL.Repository.Concrete
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ApplicationContext myDbContext;
+        private readonly ApplicationContext _applicationContext;
 
-        public UnitOfWork(ApplicationContext myDbContext)
+        public UnitOfWork(ApplicationContext applicationContext)
         {
-            this.myDbContext = myDbContext;
+            this._applicationContext = applicationContext;
         }
 
-        public ISubscriptionRepository SubscriptionRepository => new SubscriptionRepository(myDbContext);
-        public IUserRepository UserRepository => new UserRepository(myDbContext);
+        public ISubscriptionRepository SubscriptionRepository => new SubscriptionRepository(_applicationContext);
+        public IUserRepository UserRepository => new UserRepository(_applicationContext);
         public IImageRepository ImageRepository => new ImageRepository();
-        public IBookRepository BookRepository => new BookRepository(myDbContext);
-        public IGenreRepository GenreRepository => new GenreRepository(myDbContext);
-        public ICombinationRepository CombinationRepository => new CombinationRepository(myDbContext);
+        public IBookRepository BookRepository => new BookRepository(_applicationContext);
+        public IGenreRepository GenreRepository => new GenreRepository(_applicationContext);
+        public ICombinationRepository CombinationRepository => new CombinationRepository(_applicationContext);
+        public IBookTypeRepository BookTypeRepository => new BookTypeRepository(_applicationContext);
+        public IRateRepository RateRepository => new RateRepository(_applicationContext);
+        public IBookCollectionRepository BookCollectionRepository => new BookCollectionRepository(_applicationContext);
+        public ICategoryRepository CategoryRepository => new CategoryRepository(_applicationContext);
+        public ICollectionRepository CollectionRepository => new CollectionRepository(_applicationContext);
 
         public async Task<bool> Complete()
         {
-           return await myDbContext.SaveChangesAsync() > 0;
+           return await _applicationContext.SaveChangesAsync() > 0;
         }
 
         public bool HasChanges()
         {
-            myDbContext.ChangeTracker.DetectChanges();
-            var changes = myDbContext.ChangeTracker.HasChanges();
+            _applicationContext.ChangeTracker.DetectChanges();
+            var changes = _applicationContext.ChangeTracker.HasChanges();
 
             return changes;
         }

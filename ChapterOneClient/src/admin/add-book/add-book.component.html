@@ -1,0 +1,10 @@
+
+<div class="profile-card">
+    <label class="hoverable" for="fileInput">
+        <img [src]="imageToShow ? imageToShow : 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Flag_of_None_%28square%29.svg/768px-Flag_of_None_%28square%29.svg.png'"> 
+        <div class="hover-text">Update picture</div>
+        <div class="background"></div>
+    </label>
+    <br/>
+    <input id="fileInput" type="file" (change)="OnSelectFile($event)">
+</div>

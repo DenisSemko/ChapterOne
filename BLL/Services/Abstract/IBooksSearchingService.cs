@@ -1,4 +1,6 @@
-﻿using CIL.Models;
+﻿using CIL.DTOs;
+using CIL.Helpers;
+using CIL.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +10,6 @@ namespace BLL.Services.Abstract
 {
     public interface IBooksSearchingService
     {
-        public Task<IEnumerable<Book>> FindBooks(Combination combination);
+        public Task<IEnumerable<Book>> FindBooks(CombinationDto combination);
     }
 }

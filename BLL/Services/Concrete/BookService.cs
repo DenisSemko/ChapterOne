@@ -19,7 +19,6 @@ namespace BLL.Services.Concrete
     public class BookService : IBookService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
         private readonly ApplicationContext _applicationContext;
 
         public BookService(IUnitOfWork unitOfWork, ApplicationContext applicationContext)

@@ -1,0 +1,22 @@
+<div class="bee-page-container">
+    <div class="bee-row bee-row-9">
+        <div class="bee-row-content">
+            <div class="bee-col bee-col-1 bee-col-w12">
+                <div class="bee-block bee-block-6 bee-form" style="width:30%; margin:0;">
+                  <div class="bee-form-row">
+                    <div class="bee-field bee-field-id_j76u77">
+                        <div class="bee-button-container">
+                            <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width: 65%; float:left;" (click)="deleteCollection(collectionId)">DELETE COLLECTION</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div class="col-2" fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let book of booksList">
+        <app-book-card [book]="book"></app-book-card>
+    </div>
+</div>

@@ -29,5 +29,13 @@ namespace CIL.Models
         [JsonIgnore]
         [IgnoreDataMember]
         public ICollection<BooksTypes> BooksTypes { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public ICollection<BookCollection> BookCollections { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public ICollection<Rate> BookRates { get; set; }
     }
 }

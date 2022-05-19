@@ -14,6 +14,7 @@ import { SubscriptionService } from 'src/services/subscription.service';
 import { StatisticsService } from 'src/services/statistics.service';
 import { BackupService } from 'src/services/backup.service';
 import { BookService } from 'src/services/book.service';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BookService } from 'src/services/book.service';
     SharedModule,
     MainPageModule,
     AdminModule,
-    ReaderModule
+    ReaderModule,
+    MatTabsModule
   ],
   providers: [UserService, SubscriptionService, StatisticsService, BackupService, BackupService, BookService],
   bootstrap: [AppComponent]

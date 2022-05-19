@@ -13,6 +13,11 @@ namespace DAL.Repository.Abstract
         IBookRepository BookRepository {  get; }
         IGenreRepository GenreRepository {  get; }
         ICombinationRepository CombinationRepository {  get; }
+        IBookTypeRepository BookTypeRepository {  get; }
+        IRateRepository RateRepository {  get; }
+        IBookCollectionRepository BookCollectionRepository {  get; }
+        ICategoryRepository CategoryRepository {  get; }
+        ICollectionRepository CollectionRepository {  get; }
 
         Task<bool> Complete();
         bool HasChanges();

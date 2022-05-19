@@ -11,6 +11,7 @@ import { StatisticComponent } from './statistic/statistic.component';
 import { UsersActionsComponent } from './users-actions/users-actions.component';
 import { UsersActionDeleteComponent } from './users-action-delete/users-action-delete.component';
 import { UsersActionAddAdminComponent } from './users-action-add-admin/users-action-add-admin.component';
+import { AddBookComponent } from './add-book/add-book.component';
 
 
 
@@ -25,7 +26,8 @@ import { UsersActionAddAdminComponent } from './users-action-add-admin/users-act
        StatisticComponent,
        UsersActionsComponent,
        UsersActionDeleteComponent,
-       UsersActionAddAdminComponent
+       UsersActionAddAdminComponent,
+       AddBookComponent
   ],
   imports: [
     CommonModule,

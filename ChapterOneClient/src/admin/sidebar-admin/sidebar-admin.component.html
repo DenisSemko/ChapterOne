@@ -26,7 +26,11 @@
         
     <mat-divider></mat-divider>
     <h2 matSubheader>Other activity</h2>
-    <a mat-list-item>
+    <a mat-list-item (click)="redirectToManageBooks();">
+        <mat-icon>book</mat-icon>
+        Manage Books
+    </a>
+    <a mat-list-item (click)="showMessage();">
     <mat-icon>collections_bookmark</mat-icon>
     New Books Requests
     </a>

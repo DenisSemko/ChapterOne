@@ -1,0 +1,82 @@
+<div class="bee-page-container">
+    <button mat-stroked-button color="primary" class="btn-block" (click)="closeDialog()" style="cursor: pointer; border: none; left: 90%;"><img src="/assets/img/close-button.png" style="width:20px; height:20px;"></button>
+    <div class="bee-row bee-row-9">
+        <div class="bee-row-content">
+            <div class="bee-col bee-col-1 bee-col-w12">
+                <mat-card class="bee-block bee-block-6 bee-form" id="bee-matcard">
+                    <form autocomplete="off" [formGroup]="bookCollectionService.formModel" (ngSubmit)="onSubmit()">
+                      <mat-card-content>
+                        <div class="bee-text-content"
+                        style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+                            <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                                <span style="font-size: 22px; line-height: 63px;">
+                                    <strong>
+                                        Add a book to the existing collection!
+                                    </strong>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
+                            <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                <mat-form-field *ngIf="uuidValue">
+                                    <input matInput [(ngModel)]="uuidValue" formControlName="Id" name="Id" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                <mat-form-field *ngIf="local_data">
+                                    <input matInput [(ngModel)]="local_data.id" formControlName="Book" name="Book" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="bee-form-row" fxLayout="row" fxLayoutAlign="space-between">
+                            <div class="bee-field bee-field-id_vu4udm">
+                                <label for="id_gyxlj2">
+                                    Collection
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <mat-select formControlName="Collection">
+                                        <mat-option *ngFor="let collection of collections" [value]="collection.id">
+                                          {{collection.name}}
+                                        </mat-option>
+                                      </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                      </mat-card-content>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                      </div>
+                      <div class="bee-form-row">
+                        <div class="bee-field bee-field-id_j76u77">
+                            <div class="bee-button-container">
+                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;" (click)="generateUUID();">ADD</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                  </mat-card>
+                <div class="bee-block bee-block-7 bee-divider">
+                    <div class="spacer" style="height:10px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-8 bee-divider">
+                    <div class="spacer" style="height:40px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-9 bee-divider">
+                    <div class="spacer" style="height:10px;">
+                    </div>
+                </div>
+                <div class="bee-block bee-block-7 bee-divider">
+                    <div class="spacer" style="height:30px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  

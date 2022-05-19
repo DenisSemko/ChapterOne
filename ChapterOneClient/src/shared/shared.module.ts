@@ -29,6 +29,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularD3CloudModule } from 'angular-d3-cloud'
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -60,9 +64,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatGridListModule,
     NgbModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
     MatSidenavModule,
+    MatTabsModule,
+    MatChipsModule,
     BrowserAnimationsModule,
     MatTooltipModule,
+    AngularD3CloudModule,
     MatListModule,
     NgxEchartsModule.forRoot({
       echarts: () => import("echarts")
@@ -98,12 +106,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatRadioModule,
     MatGridListModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
     MatMenuModule,
     MatListModule,
     BrowserAnimationsModule,
     MatTooltipModule,
+    MatTabsModule,
+    MatChipsModule,
     NgxEchartsModule,
-    NgbModule
+    NgbModule,
+    AngularD3CloudModule
   ]
 })
 export class SharedModule { }

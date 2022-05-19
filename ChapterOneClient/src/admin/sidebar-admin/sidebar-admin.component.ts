@@ -89,4 +89,13 @@ export class SidebarAdminComponent implements OnInit {
     this.router.navigateByUrl("admin/dashboard");
   }
 
+  redirectToManageBooks() {
+    this.router.navigateByUrl("admin/manage-books");
+  }
+
+
+  showMessage() {
+    this.toastr.info("This feature will be in the next release v.1.1");
+  }
+
 }

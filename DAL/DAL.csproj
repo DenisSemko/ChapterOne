@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20220129103614_New.Designer.cs" />
     <Compile Remove="Migrations\20220318143315_AddFields.cs" />
     <Compile Remove="Migrations\20220318143315_AddFields.Designer.cs" />
+    <Compile Remove="Migrations\20220430191926_FinalUpdCombModel.cs" />
+    <Compile Remove="Migrations\20220430191926_FinalUpdCombModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

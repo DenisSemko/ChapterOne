@@ -89,4 +89,16 @@ export class SidebarReaderComponent implements OnInit {
     this.router.navigateByUrl('reader/subscription-details');
   }
 
+  redirectToSearching() {
+    this.router.navigateByUrl('reader/book-search');
+  }
+
+  redirectToCollection() {
+    this.router.navigateByUrl('reader/my-book-collection');
+  }
+  showMessage() {
+    this.toastr.info("This feature will be in the next release v.1.1");
+  }
+  
+
 }

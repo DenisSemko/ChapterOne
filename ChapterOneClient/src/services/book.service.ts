@@ -46,5 +46,13 @@ export class BookService {
     return this.http.get(environment.baseURI + 'Books/' + id);
   }
 
+  getBookTypeById(id: any) {
+    return this.http.get(environment.baseURI + 'BookType/' + id);
+  }
+
+  getWebFileByBookId(id: any) {
+    return this.http.get(environment.baseURI + 'BookType/' + id + "/web-file");
+  }
+
 }
 

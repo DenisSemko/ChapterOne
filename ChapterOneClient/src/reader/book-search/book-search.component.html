@@ -1,0 +1,325 @@
+<div class="bee-page-container">
+  <div class="bee-row bee-row-9">
+      <div class="bee-row-content">
+          <div class="bee-col bee-col-1 bee-col-w12">
+              <div class="bee-block bee-block-3 bee-text">
+                  <div class="bee-text-content"
+                      style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+                      <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                          <span style="font-size: 30px; line-height: 63px;">
+                              <strong>
+                                  FIND A BOOK YOU WANT TO READ
+                              </strong>
+                          </span>
+                      </p>
+                      <p id="message" style="font-size: 20px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                        PLEASE CLICK ON A BUTTON TO GET THE GENERATED WORDS COMBINATION
+                      </p>
+                  </div>
+              </div>
+              <div class="bee-block bee-block-6 bee-form" style="width:30%; margin:0;">
+                <div class="bee-form-row">
+                  <div class="bee-field bee-field-id_j76u77">
+                      <div class="bee-button-container">
+                          <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width: 92%;" (click)="generateCombination();">NEW</button>
+                      </div>
+                      <div class="bee-button-container" *ngIf="isCollectionButtonVisible">
+                        <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width: 98%;" (click)="generateCombinationFromCollection(readerId);">FROM COLLECTIONS</button>
+                      </div>
+                      <div class="bee-button-container" *ngIf="isOldButtonVisible">
+                        <button mat-stroked-button [matMenuTriggerFor]="menu" color="primary" class="btn-block" id="old-button" [disabled]="isOldButtonDisable" style="cursor: pointer; width: 95%; background-color: #adb2ba;" (click)="getOldSchemes();">USE OLD</button>
+                        <mat-menu #menu="matMenu" class="old-combination-menu">
+                            <table mat-table [dataSource]="oldCombinationsList" matSort style="width: 120%; cursor:pointer">
+                          
+                                <ng-container matColumnDef="Author">
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> Author </th>
+                                  <td mat-cell *matCellDef="let element" class="left-text" (click)="applyOldScheme(element)"> {{element.author}} </td>
+                                </ng-container>
+                            
+                                <ng-container matColumnDef="Year">
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> Year </th>
+                                  <td mat-cell *matCellDef="let element" class="left-text"> {{element.year}} </td>
+                                </ng-container>
+                          
+                                <ng-container matColumnDef="Genre">
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> Genre </th>
+                                  <td mat-cell *matCellDef="let element" class="left-text"> {{element.genre}} </td>
+                                </ng-container>
+                          
+                                <ng-container matColumnDef="Publisher">
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> Publisher </th>
+                                  <td mat-cell *matCellDef="let element" class="left-text"> {{element.publisher}} </td>
+                                </ng-container>
+                          
+                                <ng-container matColumnDef="ShortDescription">
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> Short Description </th>
+                                  <td mat-cell *matCellDef="let element" class="left-text"> {{element.shortDescription}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="ResultPercentage">
+                                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Percentage </th>
+                                    <td mat-cell *matCellDef="let element" class="left-text"> {{element.resultPercentage}} </td>
+                                  </ng-container>
+                            
+                                <tr mat-header-row *matHeaderRowDef="displayedCombinationColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedCombinationColumns;"></tr>
+                              </table>
+                              
+                        </mat-menu>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;">
+                <angular-d3-cloud style="display: flex;" fxFlex="50%"
+                  [data]="data"
+                  [width]="550"
+                  [height]="400"
+                  [padding]="5"
+                  font="serif"
+                  [rotate]="0"
+                  [autoFill]="true"
+                  [animations]="true"
+                  (wordClick)="onWorkClick($event)"
+                ></angular-d3-cloud>
+                <mat-card class="bee-block bee-block-6 bee-form" id="bee-matcard" fxFlex="50%">
+                  <form autocomplete="off" [formGroup]="combinationService.formModel" (ngSubmit)="onSubmit()">
+                    <mat-card-content>
+                      <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
+                        <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                          <label for="id_vu4udm">
+                              Id
+                          </label>
+                          <mat-form-field *ngIf="combination">
+                              <input matInput [(ngModel)]="combination.id" formControlName="Id" name="Id">
+                          </mat-form-field>
+                          </div>
+                          <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                            <label for="id_vu4udm">
+                                IsSuccessful
+                            </label>
+                            <mat-form-field *ngIf="combination">
+                                <input matInput [(ngModel)]="combination.isSuccessful" formControlName="IsSuccessful" name="IsSuccessful">
+                            </mat-form-field>
+                          </div>
+                          <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                            <label for="id_vu4udm">
+                                TempCombination
+                            </label>
+                            <mat-form-field *ngIf="combination">
+                                <input matInput [(ngModel)]="combination.tempCombination" formControlName="TempCombination" name="TempCombination">
+                            </mat-form-field>
+                          </div>
+                          <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                            <label for="id_vu4udm">
+                                Reader
+                            </label>
+                            <mat-form-field *ngIf="readerId">
+                                <input matInput [(ngModel)]="readerId" formControlName="Reader" name="Reader">
+                            </mat-form-field>
+                          </div>
+                          <div class="bee-field bee-field-id_vu4udm">
+                              <label for="id_vu4udm" id="authorLabel">
+                                  Author
+                              </label>
+                              <mat-form-field>
+                                  <input matInput [(ngModel)]="author" formControlName="Author" name="Author" id="author">
+                                  <mat-checkbox [checked]="checked" color="primary" (change)="crossAuthor($event)" id="authorCheckBox">Cross out!</mat-checkbox>
+                              </mat-form-field>
+                          </div>
+                          <div class="bee-field bee-field-id_vu4udm">
+                            <label for="id_vu4udm" id="yearLabel">
+                                Year
+                            </label>
+                            <mat-form-field>
+                                <input matInput [(ngModel)]="year" formControlName="Year" name="Year" id="year">
+                                <mat-checkbox [checked]="checked" color="primary" (change)="crossYear($event)">Cross out!</mat-checkbox>
+                            </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
+                        <div class="bee-field bee-field-id_vu4udm">
+                            <label for="id_vu4udm" id="genreLabel">
+                                Genre
+                            </label>
+                            <mat-form-field>
+                                <input matInput [(ngModel)]="genre" formControlName="Genre" name="Genre" id="genre">
+                                <mat-checkbox [checked]="checked" color="primary" (change)="crossGenre($event)">Cross out!</mat-checkbox>
+                            </mat-form-field>
+                        </div>
+                        <div class="bee-field bee-field-id_vu4udm">
+                          <label for="id_vu4udm" id="publisherLabel">
+                              Publisher
+                          </label>
+                          <mat-form-field>
+                              <input matInput [(ngModel)]="publisher" formControlName="Publisher" name="Publisher" id="publisher">
+                              <mat-checkbox [checked]="checked" color="primary" (change)="crossPublisher($event)">Cross out!</mat-checkbox>
+                          </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
+                      <div class="bee-field bee-field-id_vu4udm">
+                          <label for="id_vu4udm" id="shortLabel">
+                              Short Description
+                          </label>
+                          <mat-form-field>
+                              <input matInput [(ngModel)]="short" formControlName="ShortDescription" name="ShortDescription" id="short">
+                              <mat-checkbox [checked]="checked" color="primary" (change)="crossDescription($event)">Cross out!</mat-checkbox>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                    </mat-card-content>
+                    <div class="bee-form-row">
+                    </div>
+                    <div class="bee-form-row">
+                    </div>
+                    <div class="bee-form-row">
+                      <div class="bee-field bee-field-id_j76u77">
+                          <div class="bee-button-container">
+                              <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;" (click)="generateUUID();">SEND</button>
+                          </div>
+                      </div>
+                  </div>
+                  </form>
+                </mat-card>
+            </div><br><br><br>
+            <div clas="successful" *ngIf="isSuccessfulDivVisible">
+                <mat-card class="bee-block bee-block-6 bee-form" id="bee-matcard" style="width: 44%; height: 115px; float: left;">
+                    <form autocomplete="off" [formGroup]="combinationService.formUpdateModel" (ngSubmit)="onUpdate()">
+                        <mat-card-content>
+                            <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between" *ngIf="combination">
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Was is successful to you?
+                                    </label>
+                                    <mat-checkbox color="primary" formControlName="IsSuccessful">Sure!</mat-checkbox>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Percentage
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput formControlName="ResultPercentage" name="ResultPercentage" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_j76u77">
+                                    <div class="bee-button-container" style="padding-top:43px;">
+                                        <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width:60%; height:88%;">SEND</button>
+                                    </div>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                    <label for="id_vu4udm">
+                                        Id
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="combination.id" formControlName="Id" name="Id" required>
+                                    </mat-form-field>
+                                    </div>
+                                    <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                      <label for="id_vu4udm">
+                                          Reader
+                                      </label>
+                                      <mat-form-field *ngIf="readerId"> 
+                                          <input matInput [(ngModel)]="readerId" formControlName="Reader" name="Reader" required>
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                        <label for="id_vu4udm">
+                                            Author
+                                        </label>
+                                        <mat-form-field>
+                                            <input matInput [(ngModel)]="combination.author" formControlName="Author" name="Author" id="author" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                      <label for="id_vu4udm">
+                                          Year
+                                      </label>
+                                      <mat-form-field>
+                                          <input matInput [(ngModel)]="combination.year" formControlName="Year" name="Year" id="year" required>
+                                      </mat-form-field>
+                                  </div>
+                                  <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                    <label for="id_vu4udm">
+                                        Genre
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="combination.genre" formControlName="Genre" name="Genre" id="genre" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                    <label for="id_vu4udm">
+                                        Publisher
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="combination.publisher" formControlName="Publisher" name="Publisher" id="publisher" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                    <label for="id_vu4udm">
+                                        ShortDescription
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="combination.shortDescription" formControlName="ShortDescription" name="ShortDescription" id="sh" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                    <label for="id_vu4udm">
+                                        TempCombination
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="combination.tempCombination" formControlName="TempCombination" name="TempCombination" id="tempC" required>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </form>
+                </mat-card>
+            </div><br><br><br><br><br><br><br>
+            <div class="mat-elevation-z1" *ngIf="isDataTableVisible">
+                <table mat-table [dataSource]="dataSource" matSort>
+              
+                  <ng-container matColumnDef="Id" style="display: none;">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Id</th>
+                    <td mat-cell *matCellDef="let element" class="left-text"> {{element.id }} </td>
+                  </ng-container>
+            
+                  <ng-container matColumnDef="Title">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Title </th>
+                    <td mat-cell *matCellDef="let element" class="left-text"> <a routerLink="/reader/book/{{element.id}}" routerLinkActive="active" target="_blank">{{element.title}}</a> </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="Author">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Author </th>
+                    <td mat-cell *matCellDef="let element" class="left-text"> {{element.author}} </td>
+                  </ng-container>
+            
+                  <ng-container matColumnDef="PublishedDate">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> PublishedDate </th>
+                    <td mat-cell *matCellDef="let element" class="left-text"> {{element.publishedDate | date: 'longDate'}} </td>
+                  </ng-container>
+            
+                  <ng-container matColumnDef="Publisher">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Publisher </th>
+                    <td mat-cell *matCellDef="let element" class="left-text"> {{element.publisher}} </td>
+                  </ng-container>
+            
+                  <ng-container matColumnDef="Language">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Language </th>
+                    <td mat-cell *matCellDef="let element" class="left-text"> {{element.language}} </td>
+                  </ng-container>
+              
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <div *ngIf="dataSource">
+                    <mat-paginator [length]="15"
+                    [pageSize]="1"
+                    (page)="pageChanged($event)"
+                    [showFirstLastButtons]="true"></mat-paginator>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

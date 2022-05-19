@@ -12,7 +12,9 @@ namespace CIL.DTOs
         public int Year { get; set; }
         public string Genre { get; set; }
         public string Publisher { get; set; }
-        public string CommonWord { get; set; }
+        public string ShortDescription { get; set; }
+        public string TempCombination { get; set; }
+        public int? ResultPercentage { get; set; }
         public bool IsSuccessful { get; set; }
     }
 }

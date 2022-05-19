@@ -1,0 +1,119 @@
+<div class="bee-block bee-block-3 bee-text">
+  <div class="bee-text-content"
+      style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+      <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+          <span style="font-size: 30px; line-height: 63px;">
+              <strong>
+                  YOUR CATEGORIES
+              </strong>
+          </span>
+      </p>
+  </div>
+</div>
+  <mat-form-field class="categories-list" appearance="fill">
+      <mat-label>Only unique values!</mat-label><br>
+      <mat-chip-list #chipList aria-label="Category selection" class="tags">
+        <mat-chip class="tag"
+          *ngFor="let category of categories"
+          (removed)="remove(category)">
+          {{category.name}}
+          <button matChipRemove>
+            <mat-icon class="cancel-tag">cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+          placeholder="New category..."
+          #categoryInput
+          [formControl]="categoryCtrl"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+
+    <div class="collection-container">
+      <div class="items">
+        <div class="items-head">
+          <p>My Collections</p>
+          <hr>
+        </div>
+        <div class="items-body">
+          <div class="items-body-content" *ngFor="let collection of collections">
+            <span><a target="_blank" routerLinkActive="active" routerLink="/reader/book-collection/{{collection.id}}">{{collection.name}} has category: {{collection.category.name}}</a></span>
+            <i class="fa fa-angle-right" style="font-size: 24px; color:#62716a">🠚</i>
+            
+          </div>
+        </div>
+      </div>
+    </div><br><br><br><br>
+    <div class="bee-page-container">
+      <div class="bee-row bee-row-9">
+          <div class="bee-row-content">
+              <div class="bee-col bee-col-1 bee-col-w12">
+                <mat-card class="bee-block bee-block-6 bee-form" id="bee-matcard" style="width:40%">
+                  <form autocomplete="off" [formGroup]="collectionService.formModel" (ngSubmit)="onSubmit()">
+                    <mat-card-content>
+                      <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
+                          <div class="bee-field bee-field-id_vu4udm" *ngIf="uuidValue" style="display: none;">
+                              <mat-form-field>
+                                  <input matInput [(ngModel)]="uuidValue" formControlName="Id" name="Id" required>
+                              </mat-form-field>
+                          </div>
+                          <div class="bee-field bee-field-id_vu4udm" *ngIf="userDetails" style="display: none;">
+                            <mat-form-field>
+                                <input matInput [(ngModel)]="userDetails.id" formControlName="User" name="User" required>
+                            </mat-form-field>
+                          </div>
+                          <div class="bee-field bee-field-id_vu4udm">
+                              <label for="id_vu4udm">
+                                  Name
+                              </label>
+                              <mat-form-field>
+                                  <input matInput formControlName="Name" name="Name" required>
+                              </mat-form-field>
+                          </div>
+                          <div class="bee-field bee-field-id_vu4udm">
+                            <label for="id_gyxlj2">
+                                Category
+                            </label>
+                            <mat-form-field class="example-full-width">
+                                <mat-select formControlName="Category">
+                                    <mat-option *ngFor="let category of categories" [value]="category.id">
+                                      {{category.name}}
+                                    </mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+                        </div>
+                      </div>
+                    </mat-card-content>
+                    <div class="bee-form-row">
+                    </div>
+                    <div class="bee-form-row">
+                    </div>
+                    <div class="bee-form-row">
+                    </div>
+                    <div class="bee-form-row">
+                      <div class="bee-field bee-field-id_j76u77">
+                          <div class="bee-button-container">
+                              <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width: 50%;" (click)="generateUUID();">ADD</button>
+                          </div>
+                      </div>
+                  </div>
+                  </form>
+                </mat-card>
+                  <div class="bee-block bee-block-7 bee-divider">
+                      <div class="spacer" style="height:10px;">
+                      </div>
+                  </div>
+                  <div class="bee-block bee-block-8 bee-divider">
+                      <div class="spacer" style="height:40px;">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+  
+    
+    

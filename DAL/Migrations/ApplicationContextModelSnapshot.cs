@@ -84,6 +84,27 @@ namespace DAL.Migrations
                     b.ToTable("Book");
                 });
 
+            modelBuilder.Entity("CIL.Models.BookCollection", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CollectionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("CollectionId");
+
+                    b.ToTable("BookCollection");
+                });
+
             modelBuilder.Entity("CIL.Models.BookFile", b =>
                 {
                     b.Property<Guid>("Id")
@@ -145,6 +166,57 @@ namespace DAL.Migrations
                     b.ToTable("BooksTypes");
                 });
 
+            modelBuilder.Entity("CIL.Models.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("CIL.Models.Collection", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Collection");
+                });
+
             modelBuilder.Entity("CIL.Models.Combination", b =>
                 {
                     b.Property<Guid>("Id")
@@ -160,7 +232,7 @@ namespace DAL.Migrations
                     b.Property<Guid?>("GenreId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsSuccessful")
+                    b.Property<bool?>("IsSuccessful")
                         .HasColumnType("bit");
 
                     b.Property<string>("Publisher")
@@ -169,10 +241,16 @@ namespace DAL.Migrations
                     b.Property<Guid?>("ReaderId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int?>("ResultPercentage")
+                        .HasColumnType("int");
+
                     b.Property<string>("ShortDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Year")
+                    b.Property<string>("TempCombination")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -199,6 +277,36 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genre");
+                });
+
+            modelBuilder.Entity("CIL.Models.Rate", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Mark")
+                        .HasColumnType("float");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Rate");
                 });
 
             modelBuilder.Entity("CIL.Models.Subscription", b =>
@@ -474,6 +582,17 @@ namespace DAL.Migrations
                         .HasForeignKey("ImageId");
                 });
 
+            modelBuilder.Entity("CIL.Models.BookCollection", b =>
+                {
+                    b.HasOne("CIL.Models.Book", "Book")
+                        .WithMany("BookCollections")
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("CIL.Models.Collection", "Collection")
+                        .WithMany("BookCollections")
+                        .HasForeignKey("CollectionId");
+                });
+
             modelBuilder.Entity("CIL.Models.BooksTypes", b =>
                 {
                     b.HasOne("CIL.Models.Book", "Book")
@@ -485,6 +604,25 @@ namespace DAL.Migrations
                         .HasForeignKey("TypeId");
                 });
 
+            modelBuilder.Entity("CIL.Models.Category", b =>
+                {
+                    b.HasOne("CIL.Models.User", "User")
+                        .WithMany("Categories")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("CIL.Models.Collection", b =>
+                {
+                    b.HasOne("CIL.Models.Category", "Category")
+                        .WithMany("Collections")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CIL.Models.User", "User")
+                        .WithMany("Collections")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("CIL.Models.Combination", b =>
                 {
                     b.HasOne("CIL.Models.Genre", null)
@@ -494,6 +632,17 @@ namespace DAL.Migrations
                     b.HasOne("CIL.Models.User", "Reader")
                         .WithMany("Combinations")
                         .HasForeignKey("ReaderId");
+                });
+
+            modelBuilder.Entity("CIL.Models.Rate", b =>
+                {
+                    b.HasOne("CIL.Models.Book", "Book")
+                        .WithMany("BookRates")
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("CIL.Models.User", "User")
+                        .WithMany("BookRates")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("CIL.Models.User", b =>

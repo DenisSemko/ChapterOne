@@ -6,12 +6,13 @@
     </div>
     <mat-card-content>
         <div class="card-body p-1">
-            <h6 class="card-title">
+            <h6 class="card-title" *ngIf="bookType">
                 <strong><a id="book-link" routerLink="/reader/book/{{book.id}}" routerLinkActive="active" target="_blank">{{book.title}}</a></strong><br>
                 {{book.author}}<br>
-                price $<br>
+                <strong style="color:#62716a;">{{bookType.price}} $</strong><br>
             </h6>
-            <ngb-rating [max]="5" [(rate)]="currentRating" [readonly]="true"></ngb-rating> <p style="font-style:italic;">(number reviews)</p>
+            <ngb-rating [max]="5" [(rate)]="currentRating" [readonly]="true"></ngb-rating> <p style="font-style:italic;" *ngIf="numberOfReviews">{{numberOfReviews}} reviews</p>
+            <button class="btn-collection" mat-raised-button type="submit" *ngIf="showAddCollectionButton" (click)="openCollectionDialog(book)">Add to Collection</button>
         </div>
     </mat-card-content>
     </mat-card>

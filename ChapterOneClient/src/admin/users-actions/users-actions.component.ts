@@ -13,7 +13,6 @@ export class UsersActionsComponent implements OnInit {
   local_data:any;
   constructor(public dialogRef: MatDialogRef<UsersActionsComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: User) { 
-      console.log(data);
       this.local_data = {...data};
       this.action = this.local_data.action;
     }

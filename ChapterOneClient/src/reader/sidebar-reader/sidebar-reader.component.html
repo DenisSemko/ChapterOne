@@ -37,13 +37,13 @@
     <mat-divider></mat-divider>
 
     <h2 matSubheader>My Activity</h2>
-    <a mat-list-item>
+    <a mat-list-item (click)="redirectToSearching();">
         <mat-icon>search</mat-icon>
         Search for a Book</a>
-    <a mat-list-item><mat-icon>library_books</mat-icon>
+    <a mat-list-item (click)="redirectToCollection();"><mat-icon>library_books</mat-icon>
         My Library</a>
-    <a mat-list-item><mat-icon>cloud_upload</mat-icon>
+    <a mat-list-item (click)="showMessage();"><mat-icon>cloud_upload</mat-icon>
         Upload Books</a>
-    <a mat-list-item><mat-icon>share</mat-icon>
+    <a mat-list-item (click)="showMessage();"><mat-icon>share</mat-icon>
         BookSharing</a>
 </mat-nav-list>
