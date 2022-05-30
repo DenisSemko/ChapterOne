@@ -1,9 +1,9 @@
 <div class="spCard-dropdown">
     <div class="card-list-title" fxLayout="row" fxLayoutAlign="space-between start">
-        <p>{{shoppingCartItems.length}} ITEM</p>
+        <p>{{shoppingCartItems.length}} {{'reader.cart.item' | translate }}</p>
     </div>
         <mat-divider></mat-divider>
-        <p class="woo-message" *ngIf="!shoppingCartItems.length">Please add books<p>
+        <p class="woo-message" *ngIf="!shoppingCartItems.length">{{'reader.cart.add' | translate }}<p>
 
         <div class="new-product" fxLayout="column" *ngIf="shoppingCartItems.length">
           <div class="item" fxLayout="row" fxLayoutAlign="start start" *ngFor="let item of shoppingCartItems">
@@ -20,10 +20,10 @@
           </div>
           <mat-divider></mat-divider>
           <div class="total" fxLayout="row" fxLayoutAlign="space-between center">
-              <p class="text-muted">Total: </p>
+              <p class="text-muted">{{'reader.cart.total' | translate }}: </p>
               <span>{{ getTotal() | currency }}</span>
             </div>
         </div>
   </div>
-  <button mat-stroked-button color="primary" class="shopping-button" *ngIf="shoppingCartItems.length" (click)="onSubmit();">PAY</button>
+  <button mat-stroked-button color="primary" class="shopping-button" *ngIf="shoppingCartItems.length" (click)="onSubmit();">{{'reader.subscription.pay' | translate }}</button>
   

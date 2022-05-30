@@ -17,12 +17,12 @@
                         <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
                             <span style="font-size: 30px; line-height: 63px;">
                                 <strong>
-                                    REGISTRATION
+                                    {{'registration.title' | translate }}
                                 </strong>
                             </span>
                         </p>
-                        <p style="font-size: 20px; line-height: 51px; text-align: center; letter-spacing: 3px;">
-                            PLEASE PROVIDE INFORMATION
+                        <p style="font-size: 20px; line-height: 51px; text-align: center; letter-spacing: 3px;" translate>
+                            registration.title_2
                         </p>
                     </div>
                 </div>
@@ -39,8 +39,8 @@
                       <mat-card-content>
                         <div class="bee-form-row">
                             <div class="bee-field bee-field-id_vu4udm">
-                                <label for="id_vu4udn">
-                                    Name
+                                <label for="id_vu4udn" translate>
+                                    common-fields.name
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput id="name" name="Name" formControlName="Name" required>
@@ -49,8 +49,8 @@
                         </div>  
                         <div class="bee-form-row">
                             <div class="bee-field bee-field-id_vu4udm">
-                                <label for="id_vu4udn">
-                                    Surname
+                                <label for="id_vu4udn" translate>
+                                    common-fields.surname
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput id="surname" name="Surname" formControlName="Surname" required>
@@ -59,8 +59,8 @@
                         </div>  
                         <div class="bee-form-row">
                             <div class="bee-field bee-field-id_vu4udm">
-                                <label for="id_vu4udn">
-                                    BirthDate
+                                <label for="id_vu4udn" translate>
+                                    common-fields.birthDate
                                 </label>
                                 <mat-form-field class="example-full-width" style="width:98%">
                                     <input matInput [max]="minDate" [matDatepicker]="picker" formControlName="BirthDate" required readonly>
@@ -71,8 +71,8 @@
                         </div>  
                         <div class="bee-form-row">
                             <div class="bee-field bee-field-id_vu4udm">
-                                <label for="id_vu4udm">
-                                    Username
+                                <label for="id_vu4udm" translate>
+                                    common-fields.username
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput id="username" name="Username" formControlName="Username" required>
@@ -81,8 +81,8 @@
                         </div>
                         <div class="bee-form-row">
                             <div class="bee-field bee-field-id_vu4udm">
-                                <label for="id_vu4udn">
-                                    Email
+                                <label for="id_vu4udn" translate>
+                                    common-fields.email
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput id="email" name="Email" formControlName="Email" required>
@@ -91,8 +91,8 @@
                         </div>  
                         <div class="bee-form-row">
                             <div class="bee-field bee-field-id_gyxlj1">
-                                <label for="id_gyxlj1">
-                                    Password
+                                <label for="id_gyxlj1" translate>
+                                    common-fields.password
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput id="password" matInput [type]="hide ? 'password' : 'text'" name="Password" formControlName="PasswordHash" required>
@@ -101,8 +101,8 @@
                         </div>
                         <div class="bee-form-row">
                             <div class="bee-field bee-field-id_vu4udm">
-                                <label for="id_gyxlj2">
-                                    Subscription
+                                <label for="id_gyxlj2" translate>
+                                    common-fields.subscription
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <mat-select formControlName="Subscription">
@@ -123,7 +123,7 @@
                       <div class="bee-form-row">
                         <div class="bee-field bee-field-id_j76u77">
                             <div class="bee-button-container">
-                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">REGISTER</button>
+                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">{{'registration.register' | translate }}</button>
                             </div>
                         </div>
                     </div>

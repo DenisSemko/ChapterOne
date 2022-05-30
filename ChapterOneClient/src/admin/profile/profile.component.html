@@ -8,7 +8,7 @@
                         <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
                             <span style="font-size: 30px; line-height: 63px;">
                                 <strong>
-                                    MY PROFILE
+                                    {{'admin.my-profile-2' | translate }}
                                 </strong>
                             </span>
                         </p>
@@ -20,7 +20,7 @@
                         <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
                             <div class="bee-field bee-field-id_vu4udm">
                                 <label for="id_vu4udm">
-                                    Name
+                                    {{'common-fields.name' | translate }}
                                 </label>
                                 <mat-form-field>
                                     <input matInput [(ngModel)]="userDetails.name" formControlName="Name" name="Name" required>
@@ -28,7 +28,7 @@
                             </div>
                             <div class="bee-field bee-field-id_vu4udm">
                                 <label for="id_vu4udm">
-                                    Middle Name
+                                    {{'common-fields.middle' | translate }}
                                 </label>
                                 <mat-form-field>
                                     <input matInput [(ngModel)]="userDetails.middleName" formControlName="MiddleName" name="MiddleName" required>
@@ -36,7 +36,7 @@
                             </div>
                             <div class="bee-field bee-field-id_vu4udm">
                                 <label for="id_vu4udm">
-                                    Surname
+                                    {{'common-fields.surname' | translate }}
                                 </label>
                                 <mat-form-field>
                                     <input matInput [(ngModel)]="userDetails.surname" formControlName="Surname" name="Surname" required>
@@ -46,7 +46,7 @@
                         <div class="bee-form-row" fxLayout="row" fxLayoutAlign="space-between">
                             <div class="bee-field bee-field-id_vu4udm">
                                 <label for="id_vu4udm">
-                                    Username
+                                    {{'common-fields.username' | translate }}
                                 </label>
                                 <mat-form-field>
                                     <input matInput [(ngModel)]="userDetails.userName" formControlName="Username" name="Username" required>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="bee-field bee-field-id_vu4udm">
                                 <label for="id_vu4udm">
-                                    Email
+                                    {{'common-fields.email' | translate }}
                                 </label>
                                 <mat-form-field>
                                     <input matInput [(ngModel)]="userDetails.email" formControlName="Email" name="Email" required>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="bee-field bee-field-id_vu4udm">
                                 <label for="id_vu4udm">
-                                    Phone Number
+                                    {{'common-fields.phone' | translate }}
                                 </label>
                                 <mat-form-field>
                                     <input matInput [(ngModel)]="userDetails.phoneNumber" formControlName="PhoneNumber" name="PhoneNumber" required>
@@ -72,7 +72,7 @@
                         <div class="bee-form-row" fxLayout="row" fxLayoutAlign="center center">
                             <div class="bee-field bee-field-id_vu4udm">
                                 <label for="id_vu4udm">
-                                    Address
+                                    {{'common-fields.address' | translate }}
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput [(ngModel)]="userDetails.address" formControlName="Address" name="Address" required>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="bee-field bee-field-id_vu4udm">
                                 <label for="id_vu4udm">
-                                    Birth Date
+                                    {{'common-fields.birthDate' | translate }}
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput [max]="minDate" [matDatepicker]="picker" [(ngModel)]="userDetails.birthDate" formControlName="BirthDate" required readonly>
@@ -99,7 +99,7 @@
                       <div class="bee-form-row">
                         <div class="bee-field bee-field-id_j76u77">
                             <div class="bee-button-container">
-                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">SEND</button>
+                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">{{'main.send' | translate }}</button>
                             </div>
                         </div>
                     </div>

@@ -1,9 +1,9 @@
-<button mat-button [matMenuTriggerFor]="filter">Filter Books</button>
+<button mat-button [matMenuTriggerFor]="filter">{{'reader.dashboard.filter' | translate }}</button>
 
 <mat-menu #filter="matMenu">
-  <button mat-menu-item (click)="resetFilter()">Reset</button>
-  <button mat-menu-item (click)="onFreeClick()">Free By Subscription</button>
-  <button mat-menu-item [matMenuTriggerFor]="genres">Genres</button>
+  <button mat-menu-item (click)="resetFilter()">{{'reader.dashboard.reset' | translate }}</button>
+  <button mat-menu-item (click)="onFreeClick()">{{'reader.dashboard.free' | translate }}</button>
+  <button mat-menu-item [matMenuTriggerFor]="genres">{{'reader.dashboard.genres' | translate }}</button>
 </mat-menu>
 
 <mat-menu #genres="matMenu">

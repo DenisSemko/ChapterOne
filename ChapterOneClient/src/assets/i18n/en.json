@@ -1,4 +1,43 @@
 {
+    "common-fields": {
+        "username": "Username",
+        "password": "Password",
+        "name": "Name",
+        "middle": "Middle Name",
+        "surname": "Surname",
+        "birthDate": "BirthDate",
+        "email": "Email",
+        "phone": "Phone Number",
+        "address": "Address",
+        "subscription": "Subscription",
+        "message": "Message",
+        "first": "First Name",
+        "country": "Country",
+        "region": "Region/State",
+        "city": "City",
+        "postcode": "PostCode"
+    },
+    "common-book": {
+        "title": "Title",
+        "author": "Author",
+        "publisher": "Publisher",
+        "genre": "Genre",
+        "published-date": "Published Date",
+        "language": "Language",
+        "isbn": "ISBN",
+        "short": "Short Description",
+        "age": "Reading Age",
+        "add-new": "ADD NEW BOOK",
+        "add-book": "ADD BOOK",
+        "book": "Book",
+        "type": "Type",
+        "price": "Price",
+        "category": "Category",
+        "collection": "Collection",
+        "percentage": "Percentage",
+        "success": "IsSuccessful",
+        "cross": "Cross out!"
+    },
     "header-main": {
         "about": "ABOUT",
         "contact": "CONTACT US",
@@ -8,12 +47,138 @@
     "login": {
         "title": "LOGIN",
         "title_2": "ENTER YOUR LOGIN AND PASSWORD",
-        "username": "Username",
-        "password": "Password",
         "enter": "ENTER" 
     },
     "registration": {
-
+        "title": "REGISTRATION",
+        "title_2": "PLEASE PROVIDE INFORMATION",
+        "register": "REGISTER"
+    },
+    "footer": {
+        "title": "NEWSLETTER",
+        "title_2": "Subscribe to get the latest updates and news about ChapterOne!",
+        "sign_up": "SIGN UP"
+    },
+    "main": {
+        "title": "-WELCOME-",
+        "title_2": "BOOK LOVERS !",
+        "context_1": "'A reader lives a thousand lives before he dies, the man who never reads lives only one.' (c) George R.R. Martin.",
+        "context_2": "Book reading is a very pleasant experience, but it also depends upon what book you are reading and what your interest is. There are several forms of entertainment available in the world, such as movies, television, sports, but the pleasure of reading isn't gone yet.",
+        "book_1": "NEW BOOKS",
+        "book_2": "ARE WAITING FOR YOU!",
+        "context_3": "Between those pages is a wonderful place to be. The moment you begin reading you are in a world from away from the reality. Everything is empty and as the words flow out, your imagination begins to give colours to the emptiness. Slowly the characters come into life and the plot builds up. The more involved you are the more real the story is. The power of the writer’s pen decides the fate of the plot and the people involved in it.",
+        "feedback": "LEAVE YOUR FEEDBACK",
+        "feedback_2": "OR ANY IDEAS YOU WANT TO BRING UP",
+        "send": "SEND",
+        "bestseller": "THIS MONTH'S",
+        "bestseller_2": "bestseller",
+        "bestseller_btn": "BOOK NOW"
+    },
+    "admin": {
+        "my-profile": "My Profile",
+        "sign-out": "Sign Out",
+        "dashboard-table": "Actions",
+        "add-admin": "ADD ADMIN",
+        "dashboard-title": "CHAPTER ONE'S USERS",
+        "add": "ADD",
+        "sidebar-title-1": "Update picture",
+        "activity": "My Activity",
+        "other": "Other Activity",
+        "users": "Users",
+        "backup": "Windows System BackUp",
+        "books": "Manage Books",
+        "request": "New Books Requests ",
+        "statistic-title": "OUR STATISTICS",
+        "my-profile-2": "MY PROFILE",
+        "add-picture": "Add picture",
+        "upload": "Upload an image",
+        "add-file": "Add file to book",
+        "upload-file": "Upload a file",
+        "subscription": {
+            "add": "ADD SUBSCRIPTION TO THE BOOK",
+            "price": "ADD PRICE TO THE BOOK",
+            "finish": "FINISH WITH THE BOOK"
+        }
+    },
+    "reader": {
+        "subscription": {
+            "title-1": "Your Subscription has not been paid yet!",
+            "title-2": "For more details, please click the button below",
+            "btn": "SEE DETAILS",
+            "my": "MY SUBSCRIPTION",
+            "current": "Current Subscription",
+            "price": "Its price",
+            "status": "Current Status",
+            "paid": "Paid Date",
+            "pay": "PAY"
+        },
+        "book-card": {
+            "reviews": "reviews",
+            "add": "Add to Collection"
+        },
+        "book-collection": {
+            "category": "YOUR CATEGORIES",
+            "my-collection": "My Collections",
+            "has-category": "has category",
+            "add-book": "Add a book to the existing collection!",
+            "delete": "DELETE COLLECTION"
+        },
+        "book-details": {
+            "by": "by ",
+            "available": "Available formats are",
+            "web": "Web",
+            "audio": "Audio",
+            "paper": "Paperback",
+            "price": "Price",
+            "free": "Free",
+            "bonus": "BONUS PLUS",
+            "bonus-context": "Get a bonus plus for buying more that three books",
+            "shipping": "FREE SHIPPING",
+            "shipping-context": "Free shipping on all orders over $99",
+            "money": "MONEY BACK GUARANTEE",
+            "money-context": "100% money back guarantee",
+            "support": "ONLINE SUPPORT 24/7",
+            "support-context": "Use our form on the main page!",
+            "year": "years and up",
+            "review-title": "LEAVE YOUR REVIEW",
+            "review-title-2": "Your email address will not be published. Required fields are marked *",
+            "submit-review": "Submit Review",
+            "description": "Description",
+            "details": "Details",
+            "reviews": "Reviews"
+        },
+        "sidebar": {
+            "search": "Search for a Book",
+            "library": "My Library",
+            "upload": "Upload Books",
+            "sharing": "BookSharing"
+        },
+        "dashboard": {
+            "filter": "Filter Books",
+            "reset": "Reset",
+            "free": "Free By Subscription",
+            "genres": "Genres"
+        },
+        "book-search": {
+            "title": "FIND A BOOK YOU WANT TO READ",
+            "title-2": "PLEASE CLICK ON A BUTTON TO GET THE GENERATED WORDS COMBINATION",
+            "new": "NEW",
+            "collections": "FROM COLLECTIONS",
+            "old": "USE OLD",
+            "success": "Was is successful to you?"
+        },
+        "cart": {
+            "item": "ITEM",
+            "add": "Please add books",
+            "total": "Total"
+        },
+        "payment" : {
+            "title": "PLEASE ENTER YOUR CARD DATA",
+            "title-2": "ARRANGE DELIVERY IN CASE PAPERBACK BOOK"
+        },
+        "delivery": {
+            "title": "DELIVERY PAGE",
+            "submit": "SUBMIT"
+        }
     } 
-    
 }

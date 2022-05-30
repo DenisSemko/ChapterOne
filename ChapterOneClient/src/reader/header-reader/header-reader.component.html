@@ -17,10 +17,10 @@
                         <mat-icon>g_language</mat-icon>
                     </button>
                     <mat-menu #language="matMenu">
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="useLanguage('en')">
                             <span class="flag-icon flag-icon-gb flag-icon-squared">English</span>
                         </button>
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="useLanguage('ukr')">
                             <span class="flag-icon flag-icon-ua flag-icon-squared">Українська</span>
                         </button>
                     </mat-menu>
@@ -47,11 +47,11 @@
                     <mat-menu #menu="matMenu">
                     <button mat-menu-item (click)="profileClick();" id="my_profile">
                         <mat-icon>person</mat-icon>
-                        My Profile
+                        {{'admin.my-profile' | translate }}
                     </button>
                       <button mat-menu-item (click)="logout();" id="sign_out">
                           <mat-icon>exit_to_app</mat-icon>
-                          Sign Out
+                          {{'admin.sign-out' | translate }}
                       </button>
                     </mat-menu>
                 </li>

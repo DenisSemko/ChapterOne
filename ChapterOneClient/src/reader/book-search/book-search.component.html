@@ -8,12 +8,12 @@
                       <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
                           <span style="font-size: 30px; line-height: 63px;">
                               <strong>
-                                  FIND A BOOK YOU WANT TO READ
+                                {{'reader.book-search.title' | translate }}
                               </strong>
                           </span>
                       </p>
                       <p id="message" style="font-size: 20px; line-height: 51px; text-align: center; letter-spacing: 3px;">
-                        PLEASE CLICK ON A BUTTON TO GET THE GENERATED WORDS COMBINATION
+                        {{'reader.book-search.title-2' | translate }}
                       </p>
                   </div>
               </div>
@@ -21,43 +21,43 @@
                 <div class="bee-form-row">
                   <div class="bee-field bee-field-id_j76u77">
                       <div class="bee-button-container">
-                          <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width: 92%;" (click)="generateCombination();">NEW</button>
+                          <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width: 92%;" (click)="generateCombination();">{{'reader.book-search.new' | translate }}</button>
                       </div>
                       <div class="bee-button-container" *ngIf="isCollectionButtonVisible">
-                        <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width: 98%;" (click)="generateCombinationFromCollection(readerId);">FROM COLLECTIONS</button>
+                        <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width: 98%;" (click)="generateCombinationFromCollection(readerId);">{{'reader.book-search.collections' | translate }}</button>
                       </div>
                       <div class="bee-button-container" *ngIf="isOldButtonVisible">
-                        <button mat-stroked-button [matMenuTriggerFor]="menu" color="primary" class="btn-block" id="old-button" [disabled]="isOldButtonDisable" style="cursor: pointer; width: 95%; background-color: #adb2ba;" (click)="getOldSchemes();">USE OLD</button>
+                        <button mat-stroked-button [matMenuTriggerFor]="menu" color="primary" class="btn-block" id="old-button" [disabled]="isOldButtonDisable" style="cursor: pointer; width: 95%; background-color: #adb2ba;" (click)="getOldSchemes();">{{'reader.book-search.old' | translate }}</button>
                         <mat-menu #menu="matMenu" class="old-combination-menu">
                             <table mat-table [dataSource]="oldCombinationsList" matSort style="width: 120%; cursor:pointer">
                           
                                 <ng-container matColumnDef="Author">
-                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> Author </th>
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.author' | translate }} </th>
                                   <td mat-cell *matCellDef="let element" class="left-text" (click)="applyOldScheme(element)"> {{element.author}} </td>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="Year">
-                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> Year </th>
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.year' | translate }} </th>
                                   <td mat-cell *matCellDef="let element" class="left-text"> {{element.year}} </td>
                                 </ng-container>
                           
                                 <ng-container matColumnDef="Genre">
-                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> Genre </th>
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.genre' | translate }} </th>
                                   <td mat-cell *matCellDef="let element" class="left-text"> {{element.genre}} </td>
                                 </ng-container>
                           
                                 <ng-container matColumnDef="Publisher">
-                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> Publisher </th>
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.publisher' | translate }} </th>
                                   <td mat-cell *matCellDef="let element" class="left-text"> {{element.publisher}} </td>
                                 </ng-container>
                           
                                 <ng-container matColumnDef="ShortDescription">
-                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> Short Description </th>
+                                  <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.short' | translate }} </th>
                                   <td mat-cell *matCellDef="let element" class="left-text"> {{element.shortDescription}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="ResultPercentage">
-                                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Percentage </th>
+                                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.percentage' | translate }} </th>
                                     <td mat-cell *matCellDef="let element" class="left-text"> {{element.resultPercentage}} </td>
                                   </ng-container>
                             
@@ -96,7 +96,7 @@
                           </div>
                           <div class="bee-field bee-field-id_vu4udm" style="display: none;">
                             <label for="id_vu4udm">
-                                IsSuccessful
+                                {{'common-book.success' | translate }}
                             </label>
                             <mat-form-field *ngIf="combination">
                                 <input matInput [(ngModel)]="combination.isSuccessful" formControlName="IsSuccessful" name="IsSuccessful">
@@ -120,51 +120,51 @@
                           </div>
                           <div class="bee-field bee-field-id_vu4udm">
                               <label for="id_vu4udm" id="authorLabel">
-                                  Author
+                                {{'common-book.author' | translate }}
                               </label>
                               <mat-form-field>
                                   <input matInput [(ngModel)]="author" formControlName="Author" name="Author" id="author">
-                                  <mat-checkbox [checked]="checked" color="primary" (change)="crossAuthor($event)" id="authorCheckBox">Cross out!</mat-checkbox>
+                                  <mat-checkbox [checked]="checked" color="primary" (change)="crossAuthor($event)" id="authorCheckBox">{{'common-book.cross' | translate }}</mat-checkbox>
                               </mat-form-field>
                           </div>
                           <div class="bee-field bee-field-id_vu4udm">
                             <label for="id_vu4udm" id="yearLabel">
-                                Year
+                                {{'common-book.year' | translate }}
                             </label>
                             <mat-form-field>
                                 <input matInput [(ngModel)]="year" formControlName="Year" name="Year" id="year">
-                                <mat-checkbox [checked]="checked" color="primary" (change)="crossYear($event)">Cross out!</mat-checkbox>
+                                <mat-checkbox [checked]="checked" color="primary" (change)="crossYear($event)">{{'common-book.cross' | translate }}</mat-checkbox>
                             </mat-form-field>
                         </div>
                       </div>
                       <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
                         <div class="bee-field bee-field-id_vu4udm">
                             <label for="id_vu4udm" id="genreLabel">
-                                Genre
+                                {{'common-book.genre' | translate }}
                             </label>
                             <mat-form-field>
                                 <input matInput [(ngModel)]="genre" formControlName="Genre" name="Genre" id="genre">
-                                <mat-checkbox [checked]="checked" color="primary" (change)="crossGenre($event)">Cross out!</mat-checkbox>
+                                <mat-checkbox [checked]="checked" color="primary" (change)="crossGenre($event)">{{'common-book.cross' | translate }}</mat-checkbox>
                             </mat-form-field>
                         </div>
                         <div class="bee-field bee-field-id_vu4udm">
                           <label for="id_vu4udm" id="publisherLabel">
-                              Publisher
+                            {{'common-book.publisher' | translate }}
                           </label>
                           <mat-form-field>
                               <input matInput [(ngModel)]="publisher" formControlName="Publisher" name="Publisher" id="publisher">
-                              <mat-checkbox [checked]="checked" color="primary" (change)="crossPublisher($event)">Cross out!</mat-checkbox>
+                              <mat-checkbox [checked]="checked" color="primary" (change)="crossPublisher($event)">{{'common-book.cross' | translate }}</mat-checkbox>
                           </mat-form-field>
                       </div>
                     </div>
                     <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
                       <div class="bee-field bee-field-id_vu4udm">
                           <label for="id_vu4udm" id="shortLabel">
-                              Short Description
+                            {{'common-book.short' | translate }}
                           </label>
                           <mat-form-field>
                               <input matInput [(ngModel)]="short" formControlName="ShortDescription" name="ShortDescription" id="short">
-                              <mat-checkbox [checked]="checked" color="primary" (change)="crossDescription($event)">Cross out!</mat-checkbox>
+                              <mat-checkbox [checked]="checked" color="primary" (change)="crossDescription($event)">{{'common-book.cross' | translate }}</mat-checkbox>
                           </mat-form-field>
                       </div>
                   </div>
@@ -176,7 +176,7 @@
                     <div class="bee-form-row">
                       <div class="bee-field bee-field-id_j76u77">
                           <div class="bee-button-container">
-                              <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;" (click)="generateUUID();">SEND</button>
+                              <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;" (click)="generateUUID();">{{'main.send' | translate }}</button>
                           </div>
                       </div>
                   </div>
@@ -190,13 +190,13 @@
                             <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between" *ngIf="combination">
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Was is successful to you?
+                                        {{'reader.book-search.success' | translate }}
                                     </label>
                                     <mat-checkbox color="primary" formControlName="IsSuccessful">Sure!</mat-checkbox>
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Percentage
+                                        {{'common-book.percentage' | translate }}
                                     </label>
                                     <mat-form-field>
                                         <input matInput formControlName="ResultPercentage" name="ResultPercentage" required>
@@ -204,7 +204,7 @@
                                 </div>
                                 <div class="bee-field bee-field-id_j76u77">
                                     <div class="bee-button-container" style="padding-top:43px;">
-                                        <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width:60%; height:88%;">SEND</button>
+                                        <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer; width:60%; height:88%;">{{'main.send' | translate }}</button>
                                     </div>
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm" style="display: none;">
@@ -285,27 +285,27 @@
                   </ng-container>
             
                   <ng-container matColumnDef="Title">
-                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Title </th>
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.title' | translate }} </th>
                     <td mat-cell *matCellDef="let element" class="left-text"> <a routerLink="/reader/book/{{element.id}}" routerLinkActive="active" target="_blank">{{element.title}}</a> </td>
                   </ng-container>
               
                   <ng-container matColumnDef="Author">
-                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Author </th>
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.author' | translate }} </th>
                     <td mat-cell *matCellDef="let element" class="left-text"> {{element.author}} </td>
                   </ng-container>
             
                   <ng-container matColumnDef="PublishedDate">
-                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> PublishedDate </th>
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.publishedDate' | translate }} </th>
                     <td mat-cell *matCellDef="let element" class="left-text"> {{element.publishedDate | date: 'longDate'}} </td>
                   </ng-container>
             
                   <ng-container matColumnDef="Publisher">
-                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Publisher </th>
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.publisher' | translate }} </th>
                     <td mat-cell *matCellDef="let element" class="left-text"> {{element.publisher}} </td>
                   </ng-container>
             
                   <ng-container matColumnDef="Language">
-                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Language </th>
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{'common-book.language' | translate }} </th>
                     <td mat-cell *matCellDef="let element" class="left-text"> {{element.language}} </td>
                   </ng-container>
               

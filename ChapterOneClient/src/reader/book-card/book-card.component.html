@@ -11,8 +11,8 @@
                 {{book.author}}<br>
                 <strong style="color:#62716a;">{{bookType.price}} $</strong><br>
             </h6>
-            <ngb-rating [max]="5" [(rate)]="currentRating" [readonly]="true"></ngb-rating> <p style="font-style:italic;" *ngIf="numberOfReviews">{{numberOfReviews}} reviews</p>
-            <button class="btn-collection" mat-raised-button type="submit" *ngIf="showAddCollectionButton" (click)="openCollectionDialog(book)">Add to Collection</button>
+            <ngb-rating [max]="5" [(rate)]="currentRating" [readonly]="true"></ngb-rating> <p style="font-style:italic;" *ngIf="numberOfReviews">{{numberOfReviews}} {{'reader.book-card.reviews' | translate }}</p>
+            <button class="btn-collection" mat-raised-button type="submit" *ngIf="showAddCollectionButton" (click)="openCollectionDialog(book)">{{'reader.book-card.add' | translate }}</button>
         </div>
     </mat-card-content>
     </mat-card>

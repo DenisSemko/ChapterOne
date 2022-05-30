@@ -2,37 +2,37 @@
     <div class="profile-card" *ngIf="userDetails">
         <label class="hoverable" for="fileInput">
             <img [src]="imageToShow ? imageToShow : 'https://www.w3schools.com/howto/img_avatar.png'"> 
-            <div class="hover-text">Update picture</div>
+            <div class="hover-text">{{'admin.sidebar-title-1' | translate }}</div>
             <div class="background"></div>
         </label>
         <br/>
         <input id="fileInput" type="file" (change)="OnSelectFile($event)">
         <div class="header">
-            <h3 id="name_sidebar">Name: {{userDetails.name}} {{userDetails.surname}} 
+            <h3 id="name_sidebar">{{'common-fields.name' | translate }}: {{userDetails.name}} {{userDetails.surname}} 
                 <img alt="verified" class="d2edcug0" referrerpolicy="origin-when-cross-origin" 
                     src="https://static.xx.fbcdn.net/assets/?revision=358494459481360&amp;name=ig-verifiedbadge-shared&amp;density=1" style="width:17px;"></h3>
-            <h3>Username: {{userDetails.userName}}</h3>
-            <h3>Email: {{userDetails.email}}</h3>
+            <h3>{{'common-fields.username' | translate }}: {{userDetails.userName}}</h3>
+            <h3>{{'common-fields.email' | translate }}: {{userDetails.email}}</h3>
         </div>
     </div>
     <mat-divider></mat-divider>
 
-    <h2 matSubheader>My Activity</h2>
+    <h2 matSubheader>{{'admin.activity' | translate }}</h2>
     <a mat-list-item (click)="redirectToUsers();">
         <mat-icon>view_list</mat-icon>
-        Users</a>
+        {{'admin.users' | translate }}</a>
     <a mat-list-item (click)="getBackup();"><mat-icon>done</mat-icon>
-        Windows System BackUp</a>
+        {{'admin.backup' | translate }}</a>
         
     <mat-divider></mat-divider>
-    <h2 matSubheader>Other activity</h2>
+    <h2 matSubheader>{{'admin.other' | translate }}</h2>
     <a mat-list-item (click)="redirectToManageBooks();">
         <mat-icon>book</mat-icon>
-        Manage Books
+        {{'admin.books' | translate }}
     </a>
     <a mat-list-item (click)="showMessage();">
     <mat-icon>collections_bookmark</mat-icon>
-    New Books Requests
+    {{'admin.request' | translate }}
     </a>
 
 </mat-nav-list>

@@ -7,7 +7,7 @@
                         <div class="profile-card">
                             <label class="hoverable" for="bookImage">
                                 <img [src]="bookImageToShow ? bookImageToShow : 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Flag_of_None_%28square%29.svg/768px-Flag_of_None_%28square%29.svg.png'"> 
-                                <div class="hover-text">Add picture</div>
+                                <div class="hover-text">{{'admin.add-picture' | translate }}</div>
                                 <div class="background"></div>
                             </label>
                             <br/>
@@ -19,7 +19,7 @@
                                 <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
                                     <span style="font-size: 20px; line-height: 50px;">
                                         <strong>
-                                            Upload an image
+                                            {{'admin.upload' | translate }}
                                         </strong>
                                     </span>
                                 </p>
@@ -28,7 +28,7 @@
                         <div class="profile-card">
                             <label class="hoverable" for="bookFile">
                                 <img [src]="'https://i.pinimg.com/originals/04/54/7c/04547c2b354abb70a85ed8a2d1b33e5f.png'"> 
-                                <div class="hover-text">Add file to book</div>
+                                <div class="hover-text">{{'admin.add-file' | translate }}</div>
                                 <div class="background"></div>
                             </label>
                             <br/>
@@ -40,7 +40,7 @@
                                 <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
                                     <span style="font-size: 20px; line-height: 50px;">
                                         <strong>
-                                            Upload a file
+                                            {{'admin.upload-file' | translate }}
                                         </strong>
                                     </span>
                                 </p>
@@ -55,7 +55,7 @@
                             <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
                                 <span style="font-size: 30px; line-height: 63px;">
                                     <strong>
-                                       ADD NEW BOOK
+                                        {{'common-book.add-new' | translate }}
                                     </strong>
                                 </span>
                             </p>
@@ -67,7 +67,7 @@
                             <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Title
+                                        {{'common-book.title' | translate }}
                                     </label>
                                     <mat-form-field>
                                         <input matInput formControlName="Title" name="Title">
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Author
+                                        {{'common-book.author' | translate }}
                                     </label>
                                     <mat-form-field>
                                         <input matInput formControlName="Author" name="Author">
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Publisher
+                                        {{'common-book.publisher' | translate }}
                                     </label>
                                     <mat-form-field>
                                         <input matInput formControlName="Publisher" name="Publisher">
@@ -93,7 +93,7 @@
                             <div class="bee-form-row" fxLayout="row" fxLayoutAlign="space-between">
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udn">
-                                        Published Date
+                                        {{'common-book.published-date' | translate }}
                                     </label>
                                     <mat-form-field class="example-full-width" style="width:75%">
                                         <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="PublishedDate" readonly>
@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Genre
+                                        {{'common-book.genre' | translate }}
                                     </label>
                                     <mat-form-field class="example-full-width">
                                         <mat-select formControlName="Genre">
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                       Language
+                                        {{'common-book.language' | translate }}
                                     </label>
                                     <mat-form-field>
                                         <input matInput formControlName="Language" name="Language">
@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Short Description
+                                        {{'common-book.short' | translate }}
                                     </label>
                                     <mat-form-field>
                                         <input matInput formControlName="ShortDescription" name="ShortDescription">
@@ -141,7 +141,7 @@
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Reading Age
+                                        {{'common-book.age' | translate }}
                                     </label>
                                     <mat-form-field>
                                         <input matInput type="number" min="0" max="99" formControlName="ReadingAge" name="ReadingAge" required>
@@ -158,7 +158,7 @@
                           <div class="bee-form-row">
                             <div class="bee-field bee-field-id_j76u77">
                                 <div class="bee-button-container">
-                                    <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">ADD BOOK</button>
+                                    <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">{{'common-book.add-book' | translate }}</button>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +195,7 @@
                             <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
                                 <span style="font-size: 30px; line-height: 63px;">
                                     <strong>
-                                        ADD SUBSCRIPTION TO THE BOOK
+                                        {{'admin.subscription.add' | translate }}
                                     </strong>
                                 </span>
                             </p>
@@ -207,7 +207,7 @@
                             <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
                                 <div class="bee-field bee-field-id_vu4udm" style="display: none;">
                                     <label for="id_vu4udm">
-                                        Book
+                                        {{'common-book.book' | translate }}
                                     </label>
                                     <mat-form-field *ngIf="addedBook">
                                         <input matInput [(ngModel)]="addedBook.id" formControlName="Book" name="Book">
@@ -215,7 +215,7 @@
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Subscription
+                                        {{'common-fields.subscription' | translate }}
                                     </label>
                                     <mat-form-field class="example-full-width">
                                         <mat-select formControlName="Subscription">
@@ -236,7 +236,7 @@
                             <div class="bee-form-row">
                             <div class="bee-field bee-field-id_j76u77">
                                 <div class="bee-button-container">
-                                    <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">ADD</button>
+                                    <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">{{'admin.add' | translate }}</button>
                                 </div>
                             </div>
                         </div>
@@ -267,7 +267,7 @@
                             <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
                                 <span style="font-size: 30px; line-height: 63px;">
                                     <strong>
-                                        ADD PRICE TO THE BOOK
+                                        {{'admin.subscription.price' | translate }}
                                     </strong>
                                 </span>
                             </p>
@@ -279,7 +279,7 @@
                             <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
                                 <div class="bee-field bee-field-id_vu4udm" style="display: none;">
                                     <label for="id_vu4udm">
-                                        Book
+                                        {{'common-book.book' | translate }}
                                     </label>
                                     <mat-form-field *ngIf="addedBook">
                                         <input matInput [(ngModel)]="addedBook.id" formControlName="Book" name="Book">
@@ -287,7 +287,7 @@
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Type
+                                        {{'common-book.type' | translate }}
                                     </label>
                                     <mat-form-field class="example-full-width">
                                         <mat-select formControlName="Type">
@@ -299,7 +299,7 @@
                                 </div>
                                 <div class="bee-field bee-field-id_vu4udm">
                                     <label for="id_vu4udm">
-                                        Price
+                                        {{'common-book.price' | translate }}
                                     </label>
                                     <mat-form-field>
                                         <input matInput [min]="0.0" formControlName="Price" type="number" name="Price">
@@ -316,7 +316,7 @@
                             <div class="bee-form-row">
                             <div class="bee-field bee-field-id_j76u77">
                                 <div class="bee-button-container">
-                                    <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">ADD</button>
+                                    <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">{{'admin.add' | translate }}</button>
                                 </div>
                             </div>
                         </div>
@@ -342,5 +342,5 @@
             </div>
         </div>
     </div>
-    <button mat-stroked-button color="primary" class="btn-block" id="finish-button" *ngIf="showSubscriptionPriceDiv" (click)="reload();">FINISH WITH THE BOOK</button>
+    <button mat-stroked-button color="primary" class="btn-block" id="finish-button" *ngIf="showSubscriptionPriceDiv" (click)="reload();">{{'admin.subscription.finish' | translate }}</button>
 </div>

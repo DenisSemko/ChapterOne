@@ -19,38 +19,38 @@
                                 </span>
                             </p>
                             <p style="font-size: 20px; line-height: 51px; text-align: center; letter-spacing: 3px;">
-                                by {{bookDetails.author}}
+                              {{'reader.book-details.by' | translate }} {{bookDetails.author}}
                             </p>
                             <p style="font-size: 20px; line-height: 51px; text-align: center; letter-spacing: 3px;">
-                              Available formats are:
+                              {{'reader.book-details.available' | translate }}:
                           </p>
                            <div class="row" style="justify-content:space-evenly;" *ngIf="userDetails">
                               <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center" *ngIf="showHideFreeCard" (click)="sendFreeBook(userDetails.id, bookDetails.id);">
                                  <mat-icon class="mat-icon-xlg m-0">computer</mat-icon>
                                  <div class="card-content">
-                                    <p>Web</p>
-                                    <span class="text-price">Price: Free</span>
+                                    <p>{{'reader.book-details.web' | translate }}</p>
+                                    <span class="text-price">{{'reader.book-details.price' | translate }}: {{'reader.book-details.free' | translate }}</span>
                                  </div>
                               </mat-card>
                               <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center" *ngIf="showHideWebCard" (click)="onWebClick(bookDetails, webBookPrice);">
                                  <mat-icon class="mat-icon-xlg m-0">computer</mat-icon>
                                  <div class="card-content">
-                                    <p>Web</p>
-                                    <span class="text-price" *ngIf="webBookPrice">Price: {{webBookPrice}} $</span>
+                                    <p>{{'reader.book-details.web' | translate }}</p>
+                                    <span class="text-price" *ngIf="webBookPrice">{{'reader.book-details.price' | translate }}: {{webBookPrice}} $</span>
                                  </div>
                               </mat-card>
                               <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center" *ngIf="showHideAudioCard" (click)="onAudioClick(bookDetails, audioBookPrice);">
                                  <mat-icon class="mat-icon-xlg m-0">audiotrack</mat-icon>
                                  <div class="card-content">
-                                    <p>Audio</p>
-                                    <span class="text-price" *ngIf="audioBookPrice">Price: {{audioBookPrice}} $</span>
+                                    <p>{{'reader.book-details.audio' | translate }}</p>
+                                    <span class="text-price" *ngIf="audioBookPrice">{{'reader.book-details.price' | translate }}: {{audioBookPrice}} $</span>
                                  </div>
                               </mat-card>
                               <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center" *ngIf="showHidePaperCard" (click)="onPaperbackClick(bookDetails, paperBookPrice);">
                                  <mat-icon class="mat-icon-xlg m-0">book</mat-icon>
                                  <div class="card-content">
-                                    <p>Paperback</p>
-                                    <span class="text-price" *ngIf="paperBookPrice">Price: {{paperBookPrice}} $</span>
+                                    <p>{{'reader.book-details.paper' | translate }}</p>
+                                    <span class="text-price" *ngIf="paperBookPrice">{{'reader.book-details.price' | translate }}: {{paperBookPrice}} $</span>
                                  </div>
                               </mat-card>
                            </div>
@@ -64,8 +64,8 @@
                               <mat-card class="light-block" fxLayout="row"  fxLayoutAlign="start center">
                                  <mat-icon class="mat-icon-xlg  m-0">card_giftcard</mat-icon>
                                  <div class="content ml-10">
-                                    <p>BONUS PLUS</p>
-                                    <span class="text-muted m-0">Get a bonus plus for buying more that three books</span>
+                                    <p>{{'reader.book-details.bonus' | translate }}</p>
+                                    <span class="text-muted m-0">{{'reader.book-details.bonus-context' | translate }}</span>
                                  </div>
                               </mat-card>
                            </div>
@@ -73,8 +73,8 @@
                               <mat-card class="light-block" fxLayout="row"  fxLayoutAlign="start center">
                                  <mat-icon class="mat-icon-xlg  m-0">local_shipping</mat-icon>
                                  <div class="content ml-10">
-                                    <p>FREE SHIPPING</p>
-                                    <span class="text-muted m-0">Free shipping on all orders over $99</span>
+                                    <p>{{'reader.book-details.shipping' | translate }}</p>
+                                    <span class="text-muted m-0">{{'reader.book-details.shipping-context' | translate }}</span>
                                  </div>
                               </mat-card>
                            </div>
@@ -82,8 +82,8 @@
                               <mat-card class="light-block" fxLayout="row"  fxLayoutAlign="start center">
                                  <mat-icon class="mat-icon-xlg m-0">monetization_on</mat-icon>
                                  <div class="content ml-10">
-                                    <p>MONEY BACK GUARANTEE</p>
-                                    <span class="text-muted m-0">100% money back guarantee</span>
+                                    <p>{{'reader.book-details.money' | translate }}</p>
+                                    <span class="text-muted m-0">{{'reader.book-details.money-context' | translate }}</span>
                                  </div>
                               </mat-card>
                            </div>
@@ -91,8 +91,8 @@
                               <mat-card class="light-block no-border" fxLayout="row"  fxLayoutAlign="start center">
                                  <mat-icon class="mat-icon-xlg m-0">history</mat-icon>
                                  <div class="content ml-10">
-                                    <p>ONLINE SUPPORT 24/7</p>
-                                    <span class="text-muted m-0">Use our form on the main page!</span>
+                                    <p>{{'reader.book-details.support' | translate }}</p>
+                                    <span class="text-muted m-0">{{'reader.book-details.support-context' | translate }}</span>
                                  </div>
                               </mat-card>
                            </div>
@@ -104,25 +104,25 @@
             <div class="review-wrapper">
                 <mat-card>
                    <mat-tab-group [@.disabled]="true" [selectedIndex]="0">
-                   <mat-tab label="Description">
+                   <mat-tab label="{{'reader.book-details.description' | translate }}">
                       <div class="full-desc lh">
                          <p class="text-muted">{{bookDetails.shortDescription}}</p>
                       </div>
                    </mat-tab>
-                   <mat-tab label="Details">
+                   <mat-tab label="{{'reader.book-details.details' | translate }}">
                       <div class="full-desc lh text-muted">
                          <p>{{bookDetails.title}}</p>
                          <ul class="px-2 mt-1">
-                            <li><strong>Genre: </strong>{{bookDetails.genre.name}}</li>
-                            <li><strong>Publisher: </strong>{{bookDetails.publisher}}</li>
-                            <li><strong>Language: </strong>{{bookDetails.language}}</li>
-                            <li><strong>Published Date: </strong>{{bookDetails.publishedDate | date: 'longDate'}}</li>
+                            <li><strong>{{'common-book.genre' | translate }}: </strong>{{bookDetails.genre.name}}</li>
+                            <li><strong>{{'common-book.publisher' | translate }}: </strong>{{bookDetails.publisher}}</li>
+                            <li><strong>{{'common-book.language' | translate }}: </strong>{{bookDetails.language}}</li>
+                            <li><strong>{{'common-book.published-date' | translate }}: </strong>{{bookDetails.publishedDate | date: 'longDate'}}</li>
                             <li><strong>ISBN: </strong>{{bookDetails.isbn}}</li>
-                            <li><strong>Reading Age: </strong>{{bookDetails.readingAge}} years and up</li>
+                            <li><strong>{{'common-book.age' | translate }}: </strong>{{bookDetails.readingAge}} {{'reader.book-details.year' | translate }}</li>
                          </ul>
                       </div>
                    </mat-tab>
-                   <mat-tab label="Reviews" *ngIf="reviews">
+                   <mat-tab label="{{'reader.book-details.reviews' | translate }}" *ngIf="reviews">
                       <div class="full-desc lh">
                          <mat-list class="reviews" *ngFor="let review of reviews">
                             <mat-list-item class="content">
@@ -135,9 +135,9 @@
                             </mat-list-item>
                          </mat-list>
                          <div class="writte-reviews mt-40">
-                            <h3 class="mt-2">LEAVE YOUR REVIEW</h3>
+                            <h3 class="mt-2">{{'reader.book-details.review-title' | translate }}</h3>
                             <div class="divider"></div>
-                            <p class="mt-2 text-muted">Your email address will not be published. Required fields are marked *</p>
+                            <p class="mt-2 text-muted">{{'reader.book-details.review-title-2' | translate }}</p>
                             <form fxLayout="row wrap" autocomplete="off" [formGroup]="rateService.formModel" (ngSubmit)="onSubmit()">
                                <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10" style="display:none;">
                                   <mat-form-field class="w-100" *ngIf="uuidValue">
@@ -170,7 +170,7 @@
                                   </mat-form-field>
                                </div><br><br><br><br>
                                <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
-                                  <button class="btn-project" mat-raised-button style="background-color: #62716a; width: 10%; color:white;" type="submit" (click)="generateUUID();">Submit Review</button>
+                                  <button class="btn-project" mat-raised-button style="background-color: #62716a; width: 10%; color:white;" type="submit" (click)="generateUUID();">{{'reader.book-details.submit-review' | translate }}</button>
                                </div>
                             </form>
                          </div>
