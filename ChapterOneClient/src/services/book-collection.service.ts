@@ -32,8 +32,5 @@ export class BookCollectionService {
     return this.http.get(environment.baseURI + 'BookCollection/' + collectionId);
   }
 
-  deleteBookCollection() {
-
-  }
 
 }

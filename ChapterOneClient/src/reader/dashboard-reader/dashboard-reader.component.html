@@ -1,3 +1,19 @@
+<button mat-button [matMenuTriggerFor]="filter">Filter Books</button>
+
+<mat-menu #filter="matMenu">
+  <button mat-menu-item (click)="resetFilter()">Reset</button>
+  <button mat-menu-item (click)="onFreeClick()">Free By Subscription</button>
+  <button mat-menu-item [matMenuTriggerFor]="genres">Genres</button>
+</mat-menu>
+
+<mat-menu #genres="matMenu">
+  <div *ngFor="let genre of genresList">
+    <button mat-menu-item (click)="onGenreClick(genre.name);">{{genre.name}}
+        <input type="hidden" [(ngModel)]="genre.name" id="genre">
+    </button>
+  </div>
+</mat-menu>
+
 <div class="row" fxLayout="row wrap" fxLayoutGap="16px grid">
     <div class="col-2" fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let book of booksList">
         <app-book-card [book]="book"></app-book-card>

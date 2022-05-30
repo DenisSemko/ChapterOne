@@ -120,6 +120,14 @@ namespace DAL.Repository.Concrete
             shortDescription = shortDescription.Replace("those", "");
             shortDescription = shortDescription.Replace("because", "");
             shortDescription = shortDescription.Replace("only", "");
+            shortDescription = shortDescription.Replace("from", "");
+            shortDescription = shortDescription.Replace("before", "");
+            shortDescription = shortDescription.Replace("after", "");
+            shortDescription = shortDescription.Replace("After", "");
+            shortDescription = shortDescription.Replace("they", "");
+            shortDescription = shortDescription.Replace("whose", "");
+            shortDescription = shortDescription.Replace("over", "");
+            shortDescription = shortDescription.Replace("more", "");
             string[] arr = shortDescription.Split(' ');
 
             foreach (string word in arr) 

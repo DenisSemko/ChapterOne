@@ -16,9 +16,12 @@ import { MatPaginator } from '@angular/material/paginator';
 export class DashboardReaderComponent implements OnInit {
   userDetails: any;
   booksList: Book[];
+  genresList: any;
   pagination: Pagination;
   pageNumber = 1;
   pageSize = 4;
+  filterButtonStatus: string = "";
+  genreName: any;
 
   constructor(public userService: UserService, public dialog: MatDialog, private subscriptionService: SubscriptionService,
     public bookService: BookService) { }
@@ -36,6 +39,7 @@ export class DashboardReaderComponent implements OnInit {
       }
     );
     this.getBooks();
+    this.getGenres();
   }
 
   checkSubscriptionPayment(user: any) {
@@ -81,6 +85,54 @@ export class DashboardReaderComponent implements OnInit {
 
   pageChanged(event: any): void {
     this.pageNumber = event.pageIndex + 1;
+    if(this.filterButtonStatus === "") {
+      this.getBooks();
+    } else if(this.filterButtonStatus === "Free") {
+      this.onFreeClick();
+    } else if(this.filterButtonStatus == "Genre") {
+      this.onGenreClick(this.genreName);
+    }
+  }
+
+  getGenres() {
+    this.bookService.getGenres().subscribe(
+      result => {
+        this.genresList = result;
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  onFreeClick() {
+    this.bookService.getBooksListFreeFilter(this.pageNumber, this.pageSize, this.userDetails.subscription.id).subscribe(
+      result => {
+        this.booksList = result.result;
+        this.pagination = result.pagination
+        this.filterButtonStatus = "Free";
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  onGenreClick(name: any) {
+    this.bookService.getBooksListGenreFilter(this.pageNumber, this.pageSize, name).subscribe(
+      result => {
+        this.booksList = result.result;
+        this.pagination = result.pagination
+        this.filterButtonStatus = "Genre";
+        this.genreName = (<HTMLInputElement>document.getElementById("genre"))?.value;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  resetFilter() {
+    this.filterButtonStatus = "";
     this.getBooks();
   }
 

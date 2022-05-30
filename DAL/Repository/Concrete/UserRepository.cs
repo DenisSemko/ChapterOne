@@ -43,7 +43,6 @@ namespace DAL.Repository.Concrete
 
         public async Task<bool> GetSubscriptionPaymentDays(Guid userId)
         {
-            const int days = 30;
             var currentDate = DateTime.Now;
             var user = await GetById(userId);
 
@@ -51,11 +50,18 @@ namespace DAL.Repository.Concrete
             {
                 if(user.TimeSubscriptionPaid != null)
                 {
-                    var dateDifference = currentDate - user.TimeSubscriptionPaid;
-                    var userDays = dateDifference.Value;
+                    var dateDifference = currentDate.DayOfYear - user.TimeSubscriptionPaid.Value.DayOfYear;
 
-                    if (userDays.Days > days)
+                    if (dateDifference == 0)
+                    {
                         return true;
+                    } else if(dateDifference > 0)
+                    {
+                        return true;
+                    } else
+                    {
+                        return false;
+                    }
                 } else
                 {
                     return false;

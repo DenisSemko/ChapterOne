@@ -26,6 +26,8 @@ namespace DAL.Repository.Concrete
         public IBookCollectionRepository BookCollectionRepository => new BookCollectionRepository(_applicationContext);
         public ICategoryRepository CategoryRepository => new CategoryRepository(_applicationContext);
         public ICollectionRepository CollectionRepository => new CollectionRepository(_applicationContext);
+        public ISubscriptionBookRepository SubscriptionBookRepository => new SubscriptionBookRepository(_applicationContext);
+        public IBookPaymentRepository BookPaymentRepository => new BookPaymentRepository(_applicationContext);
 
         public async Task<bool> Complete()
         {

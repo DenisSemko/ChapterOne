@@ -17,12 +17,12 @@
                         <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
                             <span style="font-size: 30px; line-height: 63px;">
                                 <strong>
-                                    LOGIN
+                                    {{'login.title' | translate }}
                                 </strong>
                             </span>
                         </p>
-                        <p style="font-size: 20px; line-height: 51px; text-align: center; letter-spacing: 3px;">
-                            ENTER YOUR LOGIN AND PASSWORD
+                        <p style="font-size: 20px; line-height: 51px; text-align: center; letter-spacing: 3px;" translate>
+                            login.title_2
                         </p>
                     </div>
                 </div>
@@ -39,8 +39,8 @@
                       <mat-card-content>
                         <div class="bee-form-row">
                             <div class="bee-field bee-field-id_vu4udm">
-                                <label for="id_vu4udm">
-                                    Username
+                                <label for="id_vu4udm" translate>
+                                    login.username
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput id="username" #Username="ngModel" name="Username" [(ngModel)]="formModel.Username" required>
@@ -49,8 +49,8 @@
                         </div>
                         <div class="bee-form-row">
                             <div class="bee-field bee-field-id_gyxlj1">
-                                <label for="id_gyxlj1">
-                                    Password
+                                <label for="id_gyxlj1" translate>
+                                    login.password
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput id="password" matInput [type]="hide ? 'password' : 'text'" #PasswordHash="ngModel" name="Password" [(ngModel)]="formModel.PasswordHash" required>
@@ -67,7 +67,7 @@
                       <div class="bee-form-row">
                         <div class="bee-field bee-field-id_j76u77">
                             <div class="bee-button-container">
-                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">SEND</button>
+                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">{{'login.enter' | translate }}</button>
                             </div>
                         </div>
                     </div>

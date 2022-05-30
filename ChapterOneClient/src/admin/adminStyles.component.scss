@@ -83,6 +83,12 @@ img {
 #fileInput{
   display: none;
 }
+#bookImage{
+  display: none;
+}
+#bookFile{
+  display: none;
+}
 h3{
     font-family: "Atma";
     font-size: 19px;
@@ -706,3 +712,11 @@ mat-header-cell, mat-cell {
         height: 95%;
     }
   }
+
+#finish-button {
+  cursor: pointer; 
+  width: 25%; 
+  margin-left: 40%;
+  background-color: #62716a;
+  color:white;
+}

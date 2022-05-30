@@ -10,5 +10,6 @@ namespace DAL.Repository.Abstract
     {
         public Task<IEnumerable<BooksTypes>> GetByBookId(Guid id);
         public Task<BooksTypes> GetWebByBookId(Guid id);
+        public Task<IEnumerable<CIL.Models.Type>> GetTypes();
     }
 }

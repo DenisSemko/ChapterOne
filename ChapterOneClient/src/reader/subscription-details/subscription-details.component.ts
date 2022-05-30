@@ -13,6 +13,7 @@ export class SubscriptionDetailsComponent implements OnInit {
   userDetails: any;
   subscriptionStatus: any;
   subscriptionDate: any;
+  timeSubscriptionPaid: any;
   constructor(private router: Router, public userService: UserService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -21,6 +22,7 @@ export class SubscriptionDetailsComponent implements OnInit {
     this.userService.getUserById(tokenInfo.id).subscribe(
       res => {
         this.userDetails = res
+        this.timeSubscriptionPaid = this.userDetails.timeSubscriptionPaid;
         this.checkStatusAndDate(this.userDetails.isSubscriptionPaid, this.userDetails.timeSubscriptionPaid);
       },
       err =>{
@@ -37,9 +39,15 @@ export class SubscriptionDetailsComponent implements OnInit {
     } else {
       this.subscriptionStatus = "Inactive";
     }
-    if(date) {
-      let paymentButton = document.getElementById("pay-button");
-      paymentButton!.style.pointerEvents = "none";
-    }
+  }
+
+  redirect() {
+    window.open('/reader/payment/subscription', '_blank');
+  }
+
+  onClick() {
+    var currentDate = new Date();
+    this.timeSubscriptionPaid = currentDate.setDate(currentDate.getDate() + 30);;
+    this.subscriptionStatus = "Active";
   }
 }

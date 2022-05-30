@@ -94,7 +94,9 @@ export class BookSearchComponent implements OnInit {
   generateCombination() {
     this.checked = false;
     this.isOldButtonDisable = false;
-    document.getElementById("old-button")!.style.backgroundColor="#62716a";
+    if(document.getElementById("old-button") != null) {
+      document.getElementById("old-button")!.style.backgroundColor="#62716a";
+    }
     this.getGeneratedCombination();
   }
 

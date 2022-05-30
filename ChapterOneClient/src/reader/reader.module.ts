@@ -16,6 +16,8 @@ import { BookCollectionComponent } from './book-collection/book-collection.compo
 import { BookCollectionModalComponent } from './book-collection-modal/book-collection-modal.component';
 import { CollectionComponent } from './collection/collection.component';
 import { CardModalComponent } from './card-modal/card-modal.component';
+import { PaymentComponent } from './payment/payment.component';
+import { DeliveryComponent } from './delivery/delivery.component';
 
 
 
@@ -35,7 +37,9 @@ import { CardModalComponent } from './card-modal/card-modal.component';
     BookCollectionComponent,
     BookCollectionModalComponent,
     CollectionComponent,
-    CardModalComponent
+    CardModalComponent,
+    PaymentComponent,
+    DeliveryComponent
   ],
   imports: [
     CommonModule,

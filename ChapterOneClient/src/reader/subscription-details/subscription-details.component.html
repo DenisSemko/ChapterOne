@@ -37,9 +37,9 @@
                                     Current Status: {{subscriptionStatus}}
                                 </label>
                             </div>
-                            <div class="bee-field bee-field-id_vu4udm">
+                            <div class="bee-field bee-field-id_vu4udm" *ngIf="timeSubscriptionPaid">
                                 <label for="id_vu4udm" id="subscription-details">
-                                    Last Paid Date: {{userDetails.timeSubscriptionPaid | date}}
+                                    Paid Date: {{timeSubscriptionPaid | date}}
                                 </label>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                       <div class="bee-form-row">
                         <div class="bee-field bee-field-id_j76u77">
                             <div class="bee-button-container">
-                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;" id="pay-button">PAY</button>
+                                <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;" id="pay-button" (click)="redirect()" (click)="onClick();">PAY</button>
                             </div>
                         </div>
                     </div>

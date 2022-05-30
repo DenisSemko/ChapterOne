@@ -1,10 +1,346 @@
-
-<div class="profile-card">
-    <label class="hoverable" for="fileInput">
-        <img [src]="imageToShow ? imageToShow : 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Flag_of_None_%28square%29.svg/768px-Flag_of_None_%28square%29.svg.png'"> 
-        <div class="hover-text">Update picture</div>
-        <div class="background"></div>
-    </label>
-    <br/>
-    <input id="fileInput" type="file" (change)="OnSelectFile($event)">
+<div class="bee-page-container">
+    <div class="bee-row bee-row-9">
+        <div class="bee-row-content">
+            <div class="bee-col bee-col-1 bee-col-w12">
+                <div class="container" fxFlex="20%">
+                    <div>
+                        <div class="profile-card">
+                            <label class="hoverable" for="bookImage">
+                                <img [src]="bookImageToShow ? bookImageToShow : 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Flag_of_None_%28square%29.svg/768px-Flag_of_None_%28square%29.svg.png'"> 
+                                <div class="hover-text">Add picture</div>
+                                <div class="background"></div>
+                            </label>
+                            <br/>
+                            <input id="bookImage" type="file" (change)="OnSelectBookImage($event)">
+                        </div>
+                        <div class="bee-block bee-block-3 bee-text">
+                            <div class="bee-text-content"
+                                style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+                                <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                                    <span style="font-size: 20px; line-height: 50px;">
+                                        <strong>
+                                            Upload an image
+                                        </strong>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="profile-card">
+                            <label class="hoverable" for="bookFile">
+                                <img [src]="'https://i.pinimg.com/originals/04/54/7c/04547c2b354abb70a85ed8a2d1b33e5f.png'"> 
+                                <div class="hover-text">Add file to book</div>
+                                <div class="background"></div>
+                            </label>
+                            <br/>
+                            <input id="bookFile" type="file" (change)="OnSelectBookFile($event)">
+                        </div>
+                        <div class="bee-block bee-block-3 bee-text">
+                            <div class="bee-text-content"
+                                style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+                                <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                                    <span style="font-size: 20px; line-height: 50px;">
+                                        <strong>
+                                            Upload a file
+                                        </strong>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div fxFlex="80%">
+                    <div class="bee-block bee-block-3 bee-text">
+                        <div class="bee-text-content"
+                            style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+                            <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                                <span style="font-size: 30px; line-height: 63px;">
+                                    <strong>
+                                       ADD NEW BOOK
+                                    </strong>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <mat-card class="bee-block bee-block-6 bee-form" id="bee-matcard" style="width:80%">
+                        <form autocomplete="off" [formGroup]="bookService.formModel" (ngSubmit)="onSubmit()">
+                          <mat-card-content>
+                            <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Title
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput formControlName="Title" name="Title">
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Author
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput formControlName="Author" name="Author">
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Publisher
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput formControlName="Publisher" name="Publisher">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="bee-form-row" fxLayout="row" fxLayoutAlign="space-between">
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udn">
+                                        Published Date
+                                    </label>
+                                    <mat-form-field class="example-full-width" style="width:75%">
+                                        <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="PublishedDate" readonly>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Genre
+                                    </label>
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select formControlName="Genre">
+                                            <mat-option *ngFor="let genre of genresList" [value]="genre.id">
+                                              {{genre.name}}
+                                            </mat-option>
+                                          </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                       Language
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput formControlName="Language" name="Language">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="bee-form-row" fxLayout="row" fxLayoutAlign="center center">
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        ISBN
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput formControlName="ISBN" name="ISBN">
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Short Description
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput formControlName="ShortDescription" name="ShortDescription">
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Reading Age
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput type="number" min="0" max="99" formControlName="ReadingAge" name="ReadingAge" required>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                          </mat-card-content>
+                          <div class="bee-form-row">
+                          </div>
+                          <div class="bee-form-row">
+                          </div>
+                          <div class="bee-form-row">
+                          </div>
+                          <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_j76u77">
+                                <div class="bee-button-container">
+                                    <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">ADD BOOK</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                      </mat-card>
+                    <div class="bee-block bee-block-7 bee-divider">
+                        <div class="spacer" style="height:10px;">
+                        </div>
+                    </div>
+                    <div class="bee-block bee-block-8 bee-divider">
+                        <div class="spacer" style="height:40px;">
+                        </div>
+                    </div>
+                    <div class="bee-block bee-block-9 bee-divider">
+                        <div class="spacer" style="height:10px;">
+                        </div>
+                    </div>
+                    <div class="bee-block bee-block-7 bee-divider">
+                        <div class="spacer" style="height:30px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bee-row bee-row-9" *ngIf="showSubscriptionPriceDiv">
+        <div class="bee-row-content">
+            <div class="bee-col bee-col-1 bee-col-w12">
+                <!-- add SubscriptionBook -->
+                <div fxFlex="50%">
+                    <div class="bee-block bee-block-3 bee-text">
+                        <div class="bee-text-content"
+                            style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+                            <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                                <span style="font-size: 30px; line-height: 63px;">
+                                    <strong>
+                                        ADD SUBSCRIPTION TO THE BOOK
+                                    </strong>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <mat-card class="bee-block bee-block-6 bee-form" id="bee-matcard" style="width:60%">
+                        <form autocomplete="off" [formGroup]="subsBookService.formModel" (ngSubmit)="onSubscriptionSubmit()">
+                            <mat-card-content>
+                            <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
+                                <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                    <label for="id_vu4udm">
+                                        Book
+                                    </label>
+                                    <mat-form-field *ngIf="addedBook">
+                                        <input matInput [(ngModel)]="addedBook.id" formControlName="Book" name="Book">
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Subscription
+                                    </label>
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select formControlName="Subscription">
+                                            <mat-option *ngFor="let sub of subscriptionsList" [value]="sub.id">
+                                              {{sub.name}}
+                                            </mat-option>
+                                          </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            </mat-card-content>
+                            <div class="bee-form-row">
+                            </div>
+                            <div class="bee-form-row">
+                            </div>
+                            <div class="bee-form-row">
+                            </div>
+                            <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_j76u77">
+                                <div class="bee-button-container">
+                                    <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">ADD</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        </mat-card>
+                    <div class="bee-block bee-block-7 bee-divider">
+                        <div class="spacer" style="height:10px;">
+                        </div>
+                    </div>
+                    <div class="bee-block bee-block-8 bee-divider">
+                        <div class="spacer" style="height:40px;">
+                        </div>
+                    </div>
+                    <div class="bee-block bee-block-9 bee-divider">
+                        <div class="spacer" style="height:10px;">
+                        </div>
+                    </div>
+                    <div class="bee-block bee-block-7 bee-divider">
+                        <div class="spacer" style="height:30px;">
+                        </div>
+                    </div>
+                </div>
+                <!-- add BookType -->
+                <div fxFlex="50%">
+                    <div class="bee-block bee-block-3 bee-text">
+                        <div class="bee-text-content"
+                            style="font-size: 14px; line-height: 150%; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #62716a;">
+                            <p style="font-size: 34px; line-height: 51px; text-align: center; letter-spacing: 3px;">
+                                <span style="font-size: 30px; line-height: 63px;">
+                                    <strong>
+                                        ADD PRICE TO THE BOOK
+                                    </strong>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <mat-card class="bee-block bee-block-6 bee-form" id="bee-matcard" style="width:70%">
+                        <form autocomplete="off" [formGroup]="bookService.bookTypeModel" (ngSubmit)="onBookTypeSubmit()">
+                            <mat-card-content>
+                            <div class="bee-form-row"  fxLayout="row" fxLayoutAlign="space-between">
+                                <div class="bee-field bee-field-id_vu4udm" style="display: none;">
+                                    <label for="id_vu4udm">
+                                        Book
+                                    </label>
+                                    <mat-form-field *ngIf="addedBook">
+                                        <input matInput [(ngModel)]="addedBook.id" formControlName="Book" name="Book">
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Type
+                                    </label>
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select formControlName="Type">
+                                            <mat-option *ngFor="let type of typesList" [value]="type.id">
+                                                {{type.name}}
+                                            </mat-option>
+                                            </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="bee-field bee-field-id_vu4udm">
+                                    <label for="id_vu4udm">
+                                        Price
+                                    </label>
+                                    <mat-form-field>
+                                        <input matInput [min]="0.0" formControlName="Price" type="number" name="Price">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            </mat-card-content>
+                            <div class="bee-form-row">
+                            </div>
+                            <div class="bee-form-row">
+                            </div>
+                            <div class="bee-form-row">
+                            </div>
+                            <div class="bee-form-row">
+                            <div class="bee-field bee-field-id_j76u77">
+                                <div class="bee-button-container">
+                                    <button mat-stroked-button color="primary" class="btn-block" style="cursor: pointer;">ADD</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        </mat-card>
+                    <div class="bee-block bee-block-7 bee-divider">
+                        <div class="spacer" style="height:10px;">
+                        </div>
+                    </div>
+                    <div class="bee-block bee-block-8 bee-divider">
+                        <div class="spacer" style="height:40px;">
+                        </div>
+                    </div>
+                    <div class="bee-block bee-block-9 bee-divider">
+                        <div class="spacer" style="height:10px;">
+                        </div>
+                    </div>
+                    <div class="bee-block bee-block-7 bee-divider">
+                        <div class="spacer" style="height:30px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button mat-stroked-button color="primary" class="btn-block" id="finish-button" *ngIf="showSubscriptionPriceDiv" (click)="reload();">FINISH WITH THE BOOK</button>
 </div>

@@ -1,13 +1,16 @@
 ﻿using BLL.Domain;
 using BLL.Services.Abstract;
 using CIL.DTOs;
+using CIL.Helpers;
 using CIL.Models;
 using DAL;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -25,13 +28,16 @@ namespace BLL.Services.Concrete
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly ApplicationContext _myDbContext;
+        private readonly EmailConfiguration _emailConfig;
 
-        public UserAuthService(UserManager<User> userManager, IConfiguration configuration, RoleManager<IdentityRole<Guid>> roleManager, ApplicationContext myDbContext)
+        public UserAuthService(UserManager<User> userManager, IConfiguration configuration, RoleManager<IdentityRole<Guid>> roleManager, ApplicationContext myDbContext,
+            EmailConfiguration emailConfig)
         {
             this._userManager = userManager;
             this._configuration = configuration;
             this._roleManager = roleManager;
             this._myDbContext = myDbContext;
+            this._emailConfig = emailConfig;
         }
 
         public async Task<AuthenticationResult> RegisterAsync(RegisterModel registerModel)
@@ -131,6 +137,8 @@ namespace BLL.Services.Concrete
                 await _userManager.AddToRoleAsync(newUser, UserRoles.Admin);
             }
 
+            SendEmail(newUser);
+
             return GenerateAuthenticationResultForUser(newUser);
         }
 
@@ -208,6 +216,28 @@ namespace BLL.Services.Concrete
                 }
             }
             return uniqueFileName;
+        }
+
+        private async void SendEmail(User user)
+        {
+            var emailMessage = new MimeMessage();
+            emailMessage.From.Add(new MailboxAddress("ChapterOne", _emailConfig.From));
+            emailMessage.To.Add(new MailboxAddress(user.UserName, user.Email));
+            emailMessage.Subject = "ChapterOne - Welcome";
+
+            string FilePath = Path.Combine(Directory.GetCurrentDirectory(), @"Resources", "welcome-email.html");
+            string EmailTemplateText = File.ReadAllText(FilePath);
+            BodyBuilder emailBodyBuilder = new BodyBuilder();
+            emailBodyBuilder.HtmlBody = EmailTemplateText;
+            emailMessage.Body = emailBodyBuilder.ToMessageBody();
+
+            var client = new SmtpClient();
+            await client.ConnectAsync(_emailConfig.SmtpServer, _emailConfig.Port, true);
+            client.AuthenticationMechanisms.Remove("XOAUTH2");
+            await client.AuthenticateAsync(_emailConfig.UserName, _emailConfig.Password);
+            await client.SendAsync(emailMessage);
+            await client.DisconnectAsync(true);
+            client.Dispose();
         }
     }
 }

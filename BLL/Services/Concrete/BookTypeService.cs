@@ -37,6 +37,12 @@ namespace BLL.Services.Concrete
             return result;
         }
 
+        public async Task<IEnumerable<CIL.Models.Type>> GetTypes()
+        {
+            var types = await _unitOfWork.BookTypeRepository.GetTypes();
+            return types;
+        }
+
         public async Task<BooksTypes> Add(BooksTypesDto bookDto)
         {
             try

@@ -111,34 +111,52 @@ namespace BLL.Services.Concrete
             var subscriptionPayment = GetSubscriptionPaymentDays(user.Result.Id);
             if (subscriptionPayment.Result)
             {
-                var emailMessage = new MimeMessage();
-                emailMessage.From.Add(new MailboxAddress("ChapterOne", _emailConfig.From));
-                emailMessage.To.Add(new MailboxAddress(user.Result.UserName, user.Result.Email));
-                emailMessage.Subject = "ChapterOne - Subscription Payment";
-
-                string FilePath = Path.Combine(Directory.GetCurrentDirectory(), @"Resources", "pay-subscription.html");
-                string EmailTemplateText = File.ReadAllText(FilePath);
-                BodyBuilder emailBodyBuilder = new BodyBuilder();
-                emailBodyBuilder.HtmlBody = EmailTemplateText;
-                emailMessage.Body = emailBodyBuilder.ToMessageBody();
-
-                var client = new SmtpClient();
-                await client.ConnectAsync(_emailConfig.SmtpServer, _emailConfig.Port, true);
-                client.AuthenticationMechanisms.Remove("XOAUTH2");
-                await client.AuthenticateAsync(_emailConfig.UserName, _emailConfig.Password);
-                await client.SendAsync(emailMessage);
-                await client.DisconnectAsync(true);
-                client.Dispose();
+                SendEmail(await user, "pay-subscription.html");
 
                 return true;
             }
 
             return false;
         }
+
+        public async Task<bool> SendSubscriptionPaymentSuccess(Guid userId)
+        {
+            var user = GetById(userId);
+            if (user != null)
+            {
+                SendEmail(await user, "pay-subscription-success.html");
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<bool> GetSubscriptionPaymentDays(Guid userId)
         {
             var result = await _unitOfWork.UserRepository.GetSubscriptionPaymentDays(userId);
             return result;
+        }
+
+        private async void SendEmail(User user, string name)
+        {
+            var emailMessage = new MimeMessage();
+            emailMessage.From.Add(new MailboxAddress("ChapterOne", _emailConfig.From));
+            emailMessage.To.Add(new MailboxAddress(user.UserName, user.Email));
+            emailMessage.Subject = "ChapterOne - Subscription Payment";
+
+            string FilePath = Path.Combine(Directory.GetCurrentDirectory(), @"Resources", name);
+            string EmailTemplateText = File.ReadAllText(FilePath);
+            BodyBuilder emailBodyBuilder = new BodyBuilder();
+            emailBodyBuilder.HtmlBody = EmailTemplateText;
+            emailMessage.Body = emailBodyBuilder.ToMessageBody();
+
+            var client = new SmtpClient();
+            await client.ConnectAsync(_emailConfig.SmtpServer, _emailConfig.Port, true);
+            client.AuthenticationMechanisms.Remove("XOAUTH2");
+            await client.AuthenticateAsync(_emailConfig.UserName, _emailConfig.Password);
+            await client.SendAsync(emailMessage);
+            await client.DisconnectAsync(true);
+            client.Dispose();
         }
     }
 }

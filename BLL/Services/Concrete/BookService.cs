@@ -5,8 +5,10 @@ using CIL.Helpers;
 using CIL.Models;
 using DAL;
 using DAL.Repository.Abstract;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,11 +22,13 @@ namespace BLL.Services.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ApplicationContext _applicationContext;
+        private readonly EmailConfiguration _emailConfig;
 
-        public BookService(IUnitOfWork unitOfWork, ApplicationContext applicationContext)
+        public BookService(IUnitOfWork unitOfWork, ApplicationContext applicationContext, EmailConfiguration emailConfig)
         {
             this._unitOfWork = unitOfWork;
             this._applicationContext = applicationContext;
+            this._emailConfig = emailConfig;
         }
 
         public async Task<IEnumerable<Book>> Get()
@@ -36,6 +40,17 @@ namespace BLL.Services.Concrete
         {
             return await _unitOfWork.BookRepository.GetBookWithPagination(bookParams);
         }
+
+        public async Task<PagedList<Book>> GetBookWithPaginationFreeFilter(BookParams bookParams, Guid subscriptionId)
+        {
+            return await _unitOfWork.BookRepository.GetBookWithPaginationFreeFilter(bookParams, subscriptionId);
+        }
+
+        public async Task<PagedList<Book>> GetBookWithPaginationGenreFilter(BookParams bookParams, string name)
+        {
+            return await _unitOfWork.BookRepository.GetBookWithPaginationGenreFilter(bookParams, name);
+        }
+
         public async Task<Book> GetById(Guid id)
         {
             var result = await _unitOfWork.BookRepository.GetById(id);
@@ -99,7 +114,12 @@ namespace BLL.Services.Concrete
             var validWebExtensions = new List<string>
             {
                 ".pdf",
-                ".txt"
+                ".txt",
+                ".epub",
+                ".mobi",
+                ".fb2",
+                ".doc",
+                ".docx"
             };
 
             var validAudioExtension = new List<string>
@@ -163,6 +183,47 @@ namespace BLL.Services.Concrete
             }
 
             return "Not Found";
+        }
+
+
+        public async Task<bool> SendFreeBook(Guid userId, Guid bookId)
+        {
+            var user = await _unitOfWork.UserRepository.GetById(userId);
+            var book = await GetById(bookId);
+
+            var fileName = book.BookWebFile.Substring(16);
+            var path = Path.Combine(Directory.GetCurrentDirectory(), @"Resources\Files", fileName);
+            if(path != null)
+            {
+                SendFreeBookFile(user, "send-free-book.html", path);
+                return true;
+            }
+            return false;
+        }
+
+        private async void SendFreeBookFile(User user, string name, string filename)
+        {
+            var emailMessage = new MimeMessage();
+            emailMessage.From.Add(new MailboxAddress("ChapterOne", _emailConfig.From));
+            emailMessage.To.Add(new MailboxAddress(user.UserName, user.Email));
+            emailMessage.Subject = "ChapterOne - Book";
+
+            string FilePath = Path.Combine(Directory.GetCurrentDirectory(), @"Resources", name);
+            string EmailTemplateText = File.ReadAllText(FilePath);
+            BodyBuilder emailBodyBuilder = new BodyBuilder();
+            emailBodyBuilder.HtmlBody = EmailTemplateText;
+            emailBodyBuilder.Attachments.Add(filename);
+            emailMessage.Body = emailBodyBuilder.ToMessageBody();
+
+            
+
+            var client = new SmtpClient();
+            await client.ConnectAsync(_emailConfig.SmtpServer, _emailConfig.Port, true);
+            client.AuthenticationMechanisms.Remove("XOAUTH2");
+            await client.AuthenticateAsync(_emailConfig.UserName, _emailConfig.Password);
+            await client.SendAsync(emailMessage);
+            await client.DisconnectAsync(true);
+            client.Dispose();
         }
     }
 }

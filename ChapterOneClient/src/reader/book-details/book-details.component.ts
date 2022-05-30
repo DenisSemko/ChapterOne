@@ -6,6 +6,11 @@ import { BookService } from 'src/services/book.service';
 import { RateService } from 'src/services/rate.service';
 import { UserService } from 'src/services/user.service';
 import { UUID } from 'angular2-uuid';
+import { SubscriptionBookService } from 'src/services/subscription-book.service';
+import { MockCartService } from 'src/services/mock-cart.service';
+import { Book } from 'src/models/book';
+import { Observable, of } from 'rxjs';
+import { CartItem } from 'src/models/cart-item';
 
 @Component({
   selector: 'app-book-details',
@@ -26,23 +31,36 @@ export class BookDetailsComponent implements OnInit {
   webBookPrice: any;
   audioBookPrice: any;
   paperBookPrice: any;
+  showHideFreeCard: boolean = false;
+  showHideWebCard: boolean = false;
+  showHideAudioCard: boolean = false;
+  showHidePaperCard: boolean = false;
+
+  public cartItems : Observable<CartItem[]> = of([]);
+  public shoppingCartItems  : CartItem[] = [];
 
 
   constructor(public bookService: BookService, public router: Router, 
     public rateService: RateService, public userService: UserService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, public subscriptionBookService: SubscriptionBookService,
+    public mockCartService: MockCartService) { }
 
   ngOnInit(): void {
     this.bookId = this.router.url.substring(13, this.router.url.length);
     let token = localStorage.getItem('accessToken') as string;
     let tokenInfo = this.userService.getDecodedAccessToken(token);
 
+    this.getCurrentUser(tokenInfo.id);
     this.getBookById(this.bookId);
     this.getBookRating(this.bookId);
     this.getNumberOfReviews(this.bookId);
     this.getReviews(this.bookId);
-    this.getCurrentUser(tokenInfo.id);
     this.getBookPrices(this.bookId);
+    this.findBookInFreeList(tokenInfo.id, this.bookId);
+
+    this.cartItems = this.mockCartService.getItems();
+    this.cartItems.subscribe(shoppingCartItems => this.shoppingCartItems = shoppingCartItems);
+
   }
 
   getBookById(id: any) {
@@ -144,11 +162,14 @@ export class BookDetailsComponent implements OnInit {
         for(var i = 0; i < result.length; i++) {
           if(result[i].type.name == 'WebFile') {
             this.webBookPrice = result[i].price;
+            this.showHideWebCard = true;
           } else if(result[i].type.name == 'AudioFile') {
             this.audioBookPrice = result[i].price;
+            this.showHideAudioCard = true;
           } else if(result[i].type.name == 'Paperback') {
             this.paperBookPrice = result[i].price;
-          }
+            this.showHidePaperCard = true;
+          } 
         }
       }, 
       error => {
@@ -156,4 +177,43 @@ export class BookDetailsComponent implements OnInit {
       }
     )
   }
+
+  findBookInFreeList(userId: any, bookId: any) {
+    this.subscriptionBookService.findBookInFreeBooks(userId, bookId).subscribe(
+      result => {
+        if(result) {
+          this.showHideWebCard = false;
+          this.showHideFreeCard = true;
+        } else {
+          this.showHideFreeCard = false;
+          this.showHideWebCard = true;
+        }
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  sendFreeBook(userId: any, bookId: any) {
+    this.bookService.sendFreeBook(userId, bookId).subscribe(
+      result => {
+        this.toastr.success("You may get the book on your email!", "Success!")
+      }, 
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+    onWebClick(book: Book, price: any) {
+      this.mockCartService.addToCart(book, "Web", price);
+    }
+
+    onAudioClick(book: Book, price: any) {
+      this.mockCartService.addToCart(book, "Audio", price);
+    }
+
+    onPaperbackClick(book: Book, price: any) {
+      this.mockCartService.addToCart(book, "Paperback", price);
+    }
 }

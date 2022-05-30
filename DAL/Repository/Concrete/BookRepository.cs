@@ -29,6 +29,23 @@ namespace DAL.Repository.Concrete
             return await PagedList<Book>.CreateAsync(result, bookParams.PageNumber, bookParams.PageSize);
         }
 
+        public async Task<PagedList<Book>> GetBookWithPaginationFreeFilter(BookParams bookParams, Guid subscriptionId)
+        {
+            var bookSubscriptions = myDbContext.SubscriptionsBooks.Where(o => o.Subscription.Id == subscriptionId)
+                .Include(o => o.Book).Include(o => o.Subscription)
+                .AsNoTracking();
+            var books = bookSubscriptions.Select(x => x.Book).AsNoTracking();
+            return await PagedList<Book>.CreateAsync(books, bookParams.PageNumber, bookParams.PageSize);
+        }
+
+        public async Task<PagedList<Book>> GetBookWithPaginationGenreFilter(BookParams bookParams, string name)
+        {
+            var books = myDbContext.Book.Where(o => o.Genre.Name == name)
+                .Include(o => o.Genre).Include(o => o.Image).Include(o => o.File)
+                .AsNoTracking();
+            return await PagedList<Book>.CreateAsync(books, bookParams.PageNumber, bookParams.PageSize);
+        }
+
         public new async Task<Book> GetById(Guid id)
         {
             var result = await myDbContext.Book.Where(o => o.Id == id)

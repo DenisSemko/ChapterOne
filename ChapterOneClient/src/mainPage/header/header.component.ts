@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,9 @@ export class HeaderComponent implements OnInit {
   navbarfixed:boolean = false;
   isMainPage:boolean = true;
 
-  constructor() { }
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('en');
+   }
 
   ngOnInit(): void {
   }
@@ -28,5 +31,10 @@ export class HeaderComponent implements OnInit {
       this.navbarfixed = false;
     }
   }
+
+  useLanguage(language: string): void {
+    this.translate.use(language);
+  }
+
 
 }

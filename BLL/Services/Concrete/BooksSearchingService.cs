@@ -26,14 +26,7 @@ namespace BLL.Services.Concrete
         {
             this._unitOfWork = unitOfWork;
             this._applicationContext = applicationContext;
-            this._schemesAttributes = new List<string>()
-            {
-                "Author",
-                "Year",
-                "Genre",
-                "Publisher",
-                "ShortDescription"
-            };
+            this._schemesAttributes = new List<string>();
         }
 
         public async Task<IEnumerable<Book>> FindBooks(CombinationDto combinationDto)
@@ -44,43 +37,112 @@ namespace BLL.Services.Concrete
             var booksByPublisher = await _applicationContext.Book.Where(x => x.Publisher == combinationDto.Publisher).ToListAsync();
             var booksByDescription = await _applicationContext.Book.Where(x => x.ShortDescription.Contains(combinationDto.ShortDescription)).ToListAsync();
 
+            CheckSchemesAttributes(booksByAuthor, booksByYear, booksByGenre, booksByPublisher, booksByDescription);
+
             var findBooks = new List<Book>();
-            while (findBooks.Count() == 0)
+            var schemes = SchemesGeneration(_schemesAttributes).ToList();
+
+            while(findBooks.Count() == 0)
             {
-                var five = GetSchemeByFive(booksByAuthor, booksByYear, booksByGenre, booksByPublisher, booksByDescription, combinationDto);
-                if(five.Count() > 0)
+                var schemesByFive = schemes.Where(x => x.Count() == 5).FirstOrDefault();
+                if(schemesByFive != null)
                 {
-                    findBooks.AddRange(five);
+                    var findBooksByFive = GetIntersectionByFive(booksByAuthor, booksByYear, booksByGenre, booksByPublisher, booksByDescription).ToList();
+                    if(findBooksByFive.Count() > 0)
+                    {
+                        findBooks.AddRange(findBooksByFive);
+                        break;
+                    }
+                }
+                var schemesByFour = schemes.Where(x => x.Count() == 4).ToList();
+                if (schemesByFour.Count() > 0)
+                {
+                    var findBooksByFour = GetSchemeByFour(booksByAuthor, booksByYear, booksByGenre, booksByPublisher, booksByDescription, combinationDto).ToList();
+                    if (findBooksByFour.Count() > 0)
+                    {
+                        findBooks.AddRange(findBooksByFour);
+                        break;
+                    }
+                }
+                var schemesByThree = schemes.Where(x => x.Count() == 3).ToList();
+                if (schemesByThree.Count() > 0)
+                {
+                    var findBooksByThree = GetSchemeByThree(booksByAuthor, booksByYear, booksByGenre, booksByPublisher, booksByDescription, combinationDto).ToList();
+                    if (findBooksByThree.Count() > 0)
+                    {
+                        findBooks.AddRange(findBooksByThree);
+                        break;
+                    }
+                }
+                var schemesByTwo = schemes.Where(x => x.Count() == 2).ToList();
+                if (schemesByTwo.Count() > 0)
+                {
+                    var findBooksByTwo = GetSchemeByTwo(booksByAuthor, booksByYear, booksByGenre, booksByPublisher, booksByDescription, combinationDto).ToList();
+                    if (findBooksByTwo.Count() > 0)
+                    {
+                        findBooks.AddRange(findBooksByTwo);
+                        break;
+                    }
+                }
+                var oneAuthor = booksByAuthor;
+                var oneYear = booksByYear;
+                var oneGenre = booksByGenre;
+                var onePublisher = booksByPublisher;
+                var oneWord = booksByDescription;
+                if (oneAuthor.Count() > 0)
+                {
+                    findBooks.AddRange(oneAuthor);
                     break;
                 }
-                var four = GetSchemeByFour(booksByAuthor, booksByYear, booksByGenre, booksByPublisher, booksByDescription, combinationDto);
-                if (four.Count() > 0)
+                else if (oneYear.Count() > 0)
                 {
-                    findBooks.AddRange(four);
+                    findBooks.AddRange(oneYear);
                     break;
                 }
-                var three = GetSchemeByThree(booksByAuthor, booksByYear, booksByGenre, booksByPublisher, booksByDescription, combinationDto);
-                if (three.Count() > 0)
+                else if (oneGenre.Count() > 0)
                 {
-                    findBooks.AddRange(three);
+                    findBooks.AddRange(oneGenre);
                     break;
                 }
-                var two = GetSchemeByTwo(booksByAuthor, booksByYear, booksByGenre, booksByPublisher, booksByDescription, combinationDto);
-                if (two.Count() > 0)
+                else if (onePublisher.Count() > 0)
                 {
-                    findBooks.AddRange(two);
+                    findBooks.AddRange(onePublisher);
                     break;
                 }
-                var one = booksByAuthor;
-                if(one.Count() > 0)
+                else if (oneWord.Count() > 0)
                 {
-                    findBooks.AddRange(one);
+                    findBooks.AddRange(oneWord);
                     break;
                 }
+
                 break;
             }
-
+            
             return findBooks;
+        }
+
+        private void CheckSchemesAttributes(List<Book> booksByAuthor, List<Book> booksByYear, List<Book> booksByGenre, List<Book> booksByPublisher, List<Book> booksByDescription)
+        {
+            if(booksByAuthor.Count() >= 1)
+            {
+                _schemesAttributes.Add("Author");
+            }
+            if (booksByYear.Count() >= 1)
+            {
+                _schemesAttributes.Add("Year");
+            }
+            if (booksByGenre.Count() >= 1)
+            {
+                _schemesAttributes.Add("Genre");
+            }
+            if (booksByPublisher.Count() >= 1)
+            {
+                _schemesAttributes.Add("Publisher");
+            }
+            if (booksByDescription.Count() >= 1)
+            {
+                _schemesAttributes.Add("ShortDescription");
+            }
         }
 
         private IEnumerable<T[]> SchemesGeneration<T>(IEnumerable<T> source)
@@ -97,16 +159,15 @@ namespace BLL.Services.Concrete
                  .ToArray());
         }
 
-        private List<Book> GetSchemeByFive(List<Book> booksByAuthor, List<Book> booksByYear, List<Book> booksByGenre, List<Book> booksByPublisher, List<Book> booksByDescription, CombinationDto temp)
+        private IEnumerable<T> GetIntersectionByFive<T>(IEnumerable<T> first, IEnumerable<T> second, IEnumerable<T> third, IEnumerable<T> fourth, IEnumerable<T> fifth)
         {
-            var findBooksByFive = booksByAuthor.Intersect(booksByYear).Intersect(booksByGenre).Intersect(booksByPublisher).Intersect(booksByDescription);
-            var result = findBooksByFive.ToList();
-            if (findBooksByFive.Count() > 0)
-            {
-                var scheme = SchemesGeneration(_schemesAttributes)
-                    .Where(x => x.SequenceEqual(new string[] { "Author", "Year", "Genre", "Publisher", "ShortDescription" })).FirstOrDefault();
-                temp.TempCombination = string.Join(" ", scheme);
-            }
+            var result = first.Intersect(second).Intersect(third).Intersect(fourth).Intersect(fifth);
+            return result;
+        }
+
+        private IEnumerable<T> IntersectByFour<T>(IEnumerable<T> first, IEnumerable<T> second, IEnumerable<T> third, IEnumerable<T> fourth)
+        {
+            var result = first.Intersect(second).Intersect(third).Intersect(fourth);
             return result;
         }
 
@@ -115,7 +176,7 @@ namespace BLL.Services.Concrete
             var findBooksByFour = new List<Book>();
             while (findBooksByFour.Count() == 0)
             {
-                var findBooksByFourFirst = booksByAuthor.Intersect(booksByYear).Intersect(booksByGenre).Intersect(booksByPublisher).ToList();
+                var findBooksByFourFirst = IntersectByFour(booksByAuthor, booksByYear, booksByGenre, booksByPublisher).ToList();
                 if(findBooksByFourFirst.Count() > 0)
                 {
                     findBooksByFour.AddRange(findBooksByFourFirst);

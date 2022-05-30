@@ -1,0 +1,19 @@
+{
+    "header-main": {
+        "about": "ABOUT",
+        "contact": "CONTACT US",
+        "registration": "REGISTRATION",
+        "login": "LOGIN"
+    },
+    "login": {
+        "title": "LOGIN",
+        "title_2": "ENTER YOUR LOGIN AND PASSWORD",
+        "username": "Username",
+        "password": "Password",
+        "enter": "ENTER" 
+    },
+    "registration": {
+
+    } 
+    
+}

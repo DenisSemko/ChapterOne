@@ -13,6 +13,7 @@ namespace CIL.Helpers
         {
             CreateMap<UserDto, User>();
             CreateMap<BookAddDto, Book>();
+            CreateMap<UserSubscriptionDto, User>();
             CreateMap<Guid, Genre>();
             CreateMap<Guid, BookImage>();
             CreateMap<Guid, BookFile>();

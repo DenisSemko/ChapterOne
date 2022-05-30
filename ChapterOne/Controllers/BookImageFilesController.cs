@@ -30,6 +30,22 @@ namespace ChapterOne.Controllers
             return File(image, _fileContentTypeService.GetContentType(path));
         }
 
+        [HttpGet("{userId}/{bookId}/send-free-book")]
+        public async Task<ActionResult<bool>> SendFreeBook(Guid userId, Guid bookId)
+        {
+            try
+            {
+                var result = await _bookService.SendFreeBook(userId, bookId);
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         [HttpPost("{bookId:Guid}/upload-files")]
         public async Task<ActionResult<string>> UploadImage([FromRoute] Guid bookId, IFormFile profileImage)
         {

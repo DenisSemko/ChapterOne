@@ -11,6 +11,8 @@ namespace DAL.Repository.Abstract
     {
         public new Task<IEnumerable<Book>> Get();
         public Task<PagedList<Book>> GetBookWithPagination(BookParams bookParams);
+        public Task<PagedList<Book>> GetBookWithPaginationFreeFilter(BookParams bookParams, Guid subscriptionId);
+        public Task<PagedList<Book>> GetBookWithPaginationGenreFilter(BookParams bookParams, string name);
         public new Task<Book> GetById(Guid id);
         public Task<Book> FindByISBN(string isbn);
         public Task<Book> FindByTitle(string title);

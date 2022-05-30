@@ -38,20 +38,28 @@
                     </label>
                     <ul class="bee-horizontal with-bee-hamburger">
                         <li>
-                            <a href="#about" target="_self" title="">
-                                ABOUT</a>
+                            <a target="_self" title="" (click)="useLanguage('en')" style="cursor: pointer;">
+                                ENGLISH</a>
                         </li>
                         <li>
-                            <a href="#contact-us" target="_self" title="">
-                                CONTACT US</a>
+                            <a target="_self" title="" (click)="useLanguage('ukr')" style="cursor: pointer;">
+                                УКРАЇНСЬКА</a>
                         </li>
                         <li>
-                            <a routerLink="/login" routerLinkActive="active" target="_self" title="">
-                                LOGIN</a>
+                            <a href="#about" target="_self" title="" translate>
+                                header-main.about</a>
                         </li>
                         <li>
-                            <a routerLink="/register" routerLinkActive="active" target="_self" title="">
-                                REGISTRATION</a>
+                            <a href="#contact-us" target="_self" title="" translate>
+                                header-main.contact</a>
+                        </li>
+                        <li>
+                            <a routerLink="/login" routerLinkActive="active" target="_self" title="" translate>
+                                header-main.login</a>
+                        </li>
+                        <li>
+                            <a routerLink="/register" routerLinkActive="active" target="_self" title="" translate>
+                                header-main.registration</a>
                         </li>
                     </ul>
                 </nav>

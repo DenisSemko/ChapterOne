@@ -37,5 +37,23 @@ namespace ChapterOne.Controllers
             }
             return result;
         }
+
+        [HttpGet("most-popular")]
+        public async Task<BookRateStatisticDto> GetMostPopularBook()
+        {
+            var data = await _statisticService.GetMostPopularBook();
+            var result = new BookRateStatisticDto();
+            var booksList = new List<string>();
+            var marksList = new List<double>();
+            foreach (var d in data)
+            {
+                booksList.Add(d.Key);
+                result.Books = booksList.ToArray();
+
+                marksList.Add(d.Value);
+                result.Marks = marksList.ToArray();
+            }
+            return result;
+        }
     }
 }

@@ -16,6 +16,8 @@ import { BookSearchComponent } from 'src/reader/book-search/book-search.componen
 import { CollectionComponent } from 'src/reader/collection/collection.component';
 import { DashboardReaderComponent } from 'src/reader/dashboard-reader/dashboard-reader.component';
 import { DefaultReaderComponent } from 'src/reader/default-reader/default-reader.component';
+import { DeliveryComponent } from 'src/reader/delivery/delivery.component';
+import { PaymentComponent } from 'src/reader/payment/payment.component';
 import { ProfileReaderComponent } from 'src/reader/profile-reader/profile-reader.component';
 import { SubscriptionDetailsComponent } from 'src/reader/subscription-details/subscription-details.component';
 
@@ -92,6 +94,21 @@ const routes: Routes = [
     {
       path: 'book-collection/:id',
         component: CollectionComponent,
+        canActivate:[AuthGuard]
+    },
+    {
+      path: 'payment/book',
+        component: PaymentComponent,
+        canActivate:[AuthGuard]
+    },
+    {
+      path: 'payment/subscription',
+        component: PaymentComponent,
+        canActivate:[AuthGuard]
+    },
+    {
+      path: 'delivery',
+        component: DeliveryComponent,
         canActivate:[AuthGuard]
     }]
   },

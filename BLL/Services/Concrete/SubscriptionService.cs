@@ -26,5 +26,6 @@ namespace BLL.Services.Concrete
             var result = await _unitOfWork.SubscriptionRepository.Add(section);
             return result;
         }
+
     }
 }

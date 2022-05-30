@@ -43,5 +43,38 @@ namespace ChapterOne.Controllers
                     "Error retrieving data from the database");
             }
         }
+        [HttpGet("{subscriptionId:Guid}/free-books")]
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooksWithPaginationFreeFilter([FromQuery] BookParams bookParams, Guid subscriptionId)
+        {
+            try
+            {
+                var result = await _bookService.GetBookWithPaginationFreeFilter(bookParams, subscriptionId);
+                Response.AddPagination(result.CurrentPage, result.PageSize, result.TotalCount, result.TotalPages);
+                if (result == null) return NotFound();
+
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet("{name}/genre-books")]
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooksWithPaginationGenreFilter([FromQuery] BookParams bookParams, string name)
+        {
+            try
+            {
+                var result = await _bookService.GetBookWithPaginationGenreFilter(bookParams, name);
+                Response.AddPagination(result.CurrentPage, result.PageSize, result.TotalCount, result.TotalPages);
+                if (result == null) return NotFound();
+
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -21,6 +21,21 @@ namespace ChapterOne.Controllers
             this._bookTypeService = bookTypeService;
         }
 
+        [HttpGet]
+        public async Task<IEnumerable<CIL.Models.Type>> GetTypes()
+        {
+            try
+            {
+                var result = await _bookTypeService.GetTypes();
+
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpGet("{id:Guid}")]
         public async Task<IEnumerable<BooksTypes>> GetBookById(Guid id)
         {

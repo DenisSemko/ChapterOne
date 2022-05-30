@@ -24,22 +24,29 @@
                             <p style="font-size: 20px; line-height: 51px; text-align: center; letter-spacing: 3px;">
                               Available formats are:
                           </p>
-                           <div class="row" style="justify-content:space-evenly;">
-                              <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center">
+                           <div class="row" style="justify-content:space-evenly;" *ngIf="userDetails">
+                              <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center" *ngIf="showHideFreeCard" (click)="sendFreeBook(userDetails.id, bookDetails.id);">
+                                 <mat-icon class="mat-icon-xlg m-0">computer</mat-icon>
+                                 <div class="card-content">
+                                    <p>Web</p>
+                                    <span class="text-price">Price: Free</span>
+                                 </div>
+                              </mat-card>
+                              <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center" *ngIf="showHideWebCard" (click)="onWebClick(bookDetails, webBookPrice);">
                                  <mat-icon class="mat-icon-xlg m-0">computer</mat-icon>
                                  <div class="card-content">
                                     <p>Web</p>
                                     <span class="text-price" *ngIf="webBookPrice">Price: {{webBookPrice}} $</span>
                                  </div>
                               </mat-card>
-                              <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center">
+                              <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center" *ngIf="showHideAudioCard" (click)="onAudioClick(bookDetails, audioBookPrice);">
                                  <mat-icon class="mat-icon-xlg m-0">audiotrack</mat-icon>
                                  <div class="card-content">
                                     <p>Audio</p>
                                     <span class="text-price" *ngIf="audioBookPrice">Price: {{audioBookPrice}} $</span>
                                  </div>
                               </mat-card>
-                              <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center">
+                              <mat-card class="card-web" fxLayout="row"  fxLayoutAlign="start center" *ngIf="showHidePaperCard" (click)="onPaperbackClick(bookDetails, paperBookPrice);">
                                  <mat-icon class="mat-icon-xlg m-0">book</mat-icon>
                                  <div class="card-content">
                                     <p>Paperback</p>

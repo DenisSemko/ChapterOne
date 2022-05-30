@@ -15,5 +15,7 @@ export class StatisticsService {
   getSubscriptionUserStat() {
     return this.http.get(environment.baseURI + 'Statistic');
   }
+
+  
 }
 

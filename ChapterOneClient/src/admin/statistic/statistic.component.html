@@ -9,8 +9,11 @@
             </span>
         </p>
     </div>
-    <div style="display: block">  
+    <div fxFlex="50%">  
         <echarts [initOpts]="initOpts" [options]="options"></echarts>
+    </div>  
+    <div fxFlex="50%">  
+        <echarts [initOpts]="initBarChartOpts" [options]="barChartOpt"></echarts>
     </div>  
 </div>  
 

@@ -55,5 +55,25 @@ namespace ChapterOne.Controllers
                 throw;
             }
         }
+
+        [HttpGet("{user:Guid}/send-subscription-success")]
+        public async Task<ActionResult<bool>> SendSubscriptionPaymentSuccess(Guid user)
+        {
+            try
+            {
+                if (user == null)
+                {
+                    return BadRequest();
+                }
+
+                var result = await _userService.SendSubscriptionPaymentSuccess(user);
+                return result;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

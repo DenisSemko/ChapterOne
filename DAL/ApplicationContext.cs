@@ -23,6 +23,9 @@ namespace DAL
         public DbSet<BookCollection> BookCollection {  get; set; }
         public DbSet<Collection> Collection {  get; set; }
         public DbSet<Rate> Rate {  get; set; }
+        public DbSet<SubscriptionsBooks> SubscriptionsBooks {  get; set; }
+        public DbSet<BookPayment> BookPayments {  get; set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options) { }
 
@@ -164,6 +167,42 @@ namespace DAL
 
             modelBuilder.Entity<User>()
                 .HasMany(s => s.Categories)
+                .WithOne(a => a.User);
+
+            //SubscriptionBooks - Subscription
+            modelBuilder.Entity<SubscriptionsBooks>()
+                 .HasOne(s => s.Subscription)
+                 .WithMany(a => a.SubscriptionsBooks);
+
+            modelBuilder.Entity<Subscription>()
+                .HasMany(s => s.SubscriptionsBooks)
+                .WithOne(a => a.Subscription);
+
+            //SubscriptionBooks - Book
+            modelBuilder.Entity<SubscriptionsBooks>()
+                 .HasOne(s => s.Book)
+                 .WithMany(a => a.SubscriptionsBooks);
+
+            modelBuilder.Entity<Book>()
+                .HasMany(s => s.SubscriptionsBooks)
+                .WithOne(a => a.Book);
+
+            //BookPayment - Book
+            modelBuilder.Entity<BookPayment>()
+                 .HasOne(s => s.Book)
+                 .WithMany(a => a.BookPayments);
+
+            modelBuilder.Entity<Book>()
+                .HasMany(s => s.BookPayments)
+                .WithOne(a => a.Book);
+
+            //BookPayment - User
+            modelBuilder.Entity<BookPayment>()
+                 .HasOne(s => s.User)
+                 .WithMany(a => a.BookPayments);
+
+            modelBuilder.Entity<User>()
+                .HasMany(s => s.BookPayments)
                 .WithOne(a => a.User);
 
 

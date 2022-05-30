@@ -5,7 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatCardModule } from '@angular/material/card'; 
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MatInputModule } from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -33,6 +33,10 @@ import { AngularD3CloudModule } from 'angular-d3-cloud'
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { NgxPaymentCardModule } from 'ngx-payment-card'; 
+import { NgPaymentCardModule } from 'ng-payment-card';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 
 
@@ -65,12 +69,21 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     NgbModule,
     MatCheckboxModule,
     MatAutocompleteModule,
+    NgPaymentCardModule,
     MatSidenavModule,
     MatTabsModule,
     MatChipsModule,
     BrowserAnimationsModule,
     MatTooltipModule,
     AngularD3CloudModule,
+    NgxPaymentCardModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  }),
     MatListModule,
     NgxEchartsModule.forRoot({
       echarts: () => import("echarts")
@@ -115,7 +128,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatChipsModule,
     NgxEchartsModule,
     NgbModule,
-    AngularD3CloudModule
+    AngularD3CloudModule,
+    NgxPaymentCardModule,
+    NgPaymentCardModule,
+    TranslateModule
   ]
 })
 export class SharedModule { }
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

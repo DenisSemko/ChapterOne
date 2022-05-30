@@ -15,5 +15,9 @@ namespace CIL.Models
         [JsonIgnore]
         [IgnoreDataMember]
         public ICollection<User> UserSubscription { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public ICollection<SubscriptionsBooks> SubscriptionsBooks { get; set; }
     }
 }

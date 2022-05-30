@@ -11,21 +11,29 @@ import { environment } from 'src/environments/environment';
 export class StatisticComponent implements OnInit {
 
   initOpts: any;
+  initBarChartOpts: any;
   options: any;
+  barChartOpt: any;
   subscriptionData: any;
+  bookData: any;
   numbers = [];
   subscriptions = [];
   constructor(private statistic: StatisticsService, private http: HttpClient) {
    }
 
   ngOnInit(): void {
+    this.getSubscriptionUserStatistic();
+    this.getBookRateStatistic();
+  }
+
+  getSubscriptionUserStatistic() {
     this.http.get(environment.baseURI + 'Statistic').subscribe(
       res => {
       this.subscriptionData = res as SubscriptionUserStatistic;
 
       this.initOpts = {
         renderer: "svg",
-        width: 500,
+        width: 800,
         height: 500
       };
     
@@ -72,9 +80,48 @@ export class StatisticComponent implements OnInit {
           }
         ]
       };
-    });;
-    
-  
+    });
+  }
+
+  getBookRateStatistic() {
+    this.http.get(environment.baseURI + 'Statistic' + '/most-popular').subscribe(
+      res => {
+      this.bookData = res as BookRateStatistic;
+
+      this.initBarChartOpts = {
+        renderer: "svg",
+        width: 600,
+        height: 500
+      };
+
+      this.barChartOpt = {
+        title: {
+          text: "Most Popular Books by its Marks",
+          left: "center"
+        },
+        tooltip: {
+          trigger: "item",
+          width: "100%"
+        },
+        xAxis: {
+          type: 'category',
+          data: [this.bookData.books[0], this.bookData.books[1], this.bookData.books[2]]
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: [this.bookData.marks[0], this.bookData.marks[1], this.bookData.marks[2]],
+            type: 'bar',
+            showBackground: true,
+            backgroundStyle: {
+              color: 'rgba(180, 180, 180, 0.2)'
+            }
+          }
+        ]
+      };
+    });
   }
 }
 
@@ -82,3 +129,8 @@ interface SubscriptionUserStatistic {
   subscriptions: Array<string>;  
   number: Array<number>;  
 } 
+
+interface BookRateStatistic {
+  books: Array<string>;
+  marks: Array<number>;
+}

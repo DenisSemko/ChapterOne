@@ -8,5 +8,6 @@ namespace BLL.Services.Abstract
     public interface IStatisticService
     {
         public Task<Dictionary<string, double>> GetSubscriptionUser();
+        public Task<Dictionary<string, double>> GetMostPopularBook();
     }
 }

@@ -37,5 +37,13 @@ namespace CIL.Models
         [JsonIgnore]
         [IgnoreDataMember]
         public ICollection<Rate> BookRates { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public ICollection<SubscriptionsBooks> SubscriptionsBooks { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public ICollection<BookPayment> BookPayments { get; set; }
     }
 }

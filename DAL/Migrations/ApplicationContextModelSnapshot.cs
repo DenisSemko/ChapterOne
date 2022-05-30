@@ -142,6 +142,30 @@ namespace DAL.Migrations
                     b.ToTable("BookImage");
                 });
 
+            modelBuilder.Entity("CIL.Models.BookPayment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BookPayments");
+                });
+
             modelBuilder.Entity("CIL.Models.BooksTypes", b =>
                 {
                     b.Property<Guid>("Id")
@@ -324,6 +348,27 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subscription");
+                });
+
+            modelBuilder.Entity("CIL.Models.SubscriptionsBooks", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("SubscriptionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("SubscriptionsBooks");
                 });
 
             modelBuilder.Entity("CIL.Models.Type", b =>
@@ -593,6 +638,17 @@ namespace DAL.Migrations
                         .HasForeignKey("CollectionId");
                 });
 
+            modelBuilder.Entity("CIL.Models.BookPayment", b =>
+                {
+                    b.HasOne("CIL.Models.Book", "Book")
+                        .WithMany("BookPayments")
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("CIL.Models.User", "User")
+                        .WithMany("BookPayments")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("CIL.Models.BooksTypes", b =>
                 {
                     b.HasOne("CIL.Models.Book", "Book")
@@ -643,6 +699,17 @@ namespace DAL.Migrations
                     b.HasOne("CIL.Models.User", "User")
                         .WithMany("BookRates")
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("CIL.Models.SubscriptionsBooks", b =>
+                {
+                    b.HasOne("CIL.Models.Book", "Book")
+                        .WithMany("SubscriptionsBooks")
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("CIL.Models.Subscription", "Subscription")
+                        .WithMany("SubscriptionsBooks")
+                        .HasForeignKey("SubscriptionId");
                 });
 
             modelBuilder.Entity("CIL.Models.User", b =>

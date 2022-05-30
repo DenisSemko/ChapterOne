@@ -26,5 +26,11 @@ namespace DAL.Repository.Concrete
                 .Include(x => x.Book).Include(x => x.Type).FirstOrDefaultAsync();
             return bookTypes;
         }
+
+        public async Task<IEnumerable<CIL.Models.Type>> GetTypes()
+        {
+            var types = await myDbContext.Type.ToListAsync();
+            return types;
+        }
     }
 }
