@@ -45,9 +45,4 @@ export class SubscriptionDetailsComponent implements OnInit {
     window.open('/reader/payment/subscription', '_blank');
   }
 
-  onClick() {
-    var currentDate = new Date();
-    this.timeSubscriptionPaid = currentDate.setDate(currentDate.getDate() + 30);;
-    this.subscriptionStatus = "Active";
-  }
 }

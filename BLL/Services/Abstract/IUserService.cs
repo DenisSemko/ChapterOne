@@ -1,4 +1,5 @@
-﻿using CIL.Models;
+﻿using CIL.DTOs;
+using CIL.Models;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace BLL.Services.Abstract
         public Task<User> GetById(Guid id);
         public Task<User> Add(User item);
         public Task<User> Update(User item);
+        public Task<User> UpdateUserSubscription(string username);
         public Task<User> DeleteById(Guid id);
         public Task<string> UploadImage(Guid userId, IFormFile profileImage);
         public Task<bool> SendSubscriptionPayment(Guid user);

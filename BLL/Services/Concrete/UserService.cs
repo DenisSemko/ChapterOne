@@ -137,6 +137,25 @@ namespace BLL.Services.Concrete
             return result;
         }
 
+        public async Task<User> UpdateUserSubscription(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            if(user.IsSubscriptionPaid == null)
+            {
+                user.IsSubscriptionPaid = true;
+                user.TimeSubscriptionPaid = DateTime.Now.AddDays(30);
+            } else if(user.IsSubscriptionPaid == true)
+            {
+                user.TimeSubscriptionPaid = DateTime.Now.AddDays(30);
+            } else if(user.IsSubscriptionPaid == false)
+            {
+                user.IsSubscriptionPaid = true;
+                user.TimeSubscriptionPaid = DateTime.Now.AddDays(30);
+            }
+            await _unitOfWork.UserRepository.Update(user);
+            return user;
+        }
+
         private async void SendEmail(User user, string name)
         {
             var emailMessage = new MimeMessage();

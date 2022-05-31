@@ -97,7 +97,7 @@ namespace ChapterOne.Controllers
             }
         }
 
-        [HttpPut("update-subscription")]
+        /*[HttpPut("update-subscription")]
         public async Task<ActionResult<User>> UpdateUserSubscription(UserSubscriptionDto userDto)
         {
             try
@@ -105,6 +105,20 @@ namespace ChapterOne.Controllers
                 var user = await _userManager.FindByNameAsync(userDto.Username);
                 _mapper.Map(userDto, user);
                 await _unitOfWork.UserRepository.Update(user);
+                return user;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }*/
+        [HttpGet("{username}/update-subscription")]
+        public async Task<ActionResult<User>> UpdateUserSubscription(string username)
+        {
+            try
+            {
+                var user = await _userService.UpdateUserSubscription(username);
                 return user;
             }
             catch (Exception)

@@ -26,5 +26,9 @@ export class SubscriptionService {
     return this.http.get(environment.baseURI + 'SubscriptionPayment/' + userId + "/send-subscription-success");
   }
 
+  updateUserSubscription(username: string) {
+    return this.http.get(environment.baseURI + "User/" + username + "/update-subscription");
+  }
+
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { User } from 'src/models/user';
 import { CollectionService } from 'src/services/collection.service';
 import { MockCartService } from 'src/services/mock-cart.service';
 import { SubscriptionService } from 'src/services/subscription.service';
@@ -14,6 +15,7 @@ import { UserService } from 'src/services/user.service';
 export class PaymentComponent implements OnInit {
 
   cc: any;
+  userDetails: any;
   constructor(private toastr: ToastrService, public router: Router, public subscriptionPayment: SubscriptionService,
     public service: UserService, public mockCartService: MockCartService) { }
 
@@ -42,7 +44,6 @@ export class PaymentComponent implements OnInit {
     let tokenInfo = this.service.getDecodedAccessToken(token);
     
     if(this.checkUrl()) {
-      console.log(tokenInfo.id);
       this.mockCartService.sendBookPaymentSuccess(tokenInfo.id).subscribe(
         result => {
           this.router.navigateByUrl("/reader/dashboard");
@@ -52,6 +53,7 @@ export class PaymentComponent implements OnInit {
         }
       );
     } else {
+      this.updateUserSubscription(tokenInfo.id);
       this.subscriptionPayment.sendSubscriptionPaymentSuccess(tokenInfo.id).subscribe(
         result => {
           this.router.navigateByUrl("/reader/dashboard");
@@ -61,6 +63,25 @@ export class PaymentComponent implements OnInit {
         }
       );
     }
+  }
+
+  updateUserSubscription(userId: any) {
+    this.service.getUserById(userId).subscribe(
+      result => {
+        this.userDetails = result as User;
+        this.subscriptionPayment.updateUserSubscription(this.userDetails.userName).subscribe(
+          result => {
+    
+          },
+          error => {
+            console.log(error);
+          }
+        ); 
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   checkUrl() : boolean{

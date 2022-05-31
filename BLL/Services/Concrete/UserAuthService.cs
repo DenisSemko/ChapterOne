@@ -84,6 +84,8 @@ namespace BLL.Services.Concrete
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
             }
 
+            SendEmail(newUser);
+
             return GenerateAuthenticationResultForUser(newUser);
         }
 
