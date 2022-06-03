@@ -36,7 +36,8 @@
         "collection": "Колекція",
         "percentage": "Процент",
         "success": "Чи успішна",
-        "cross": "Вичеркнути!"
+        "cross": "Вичеркнути!",
+        "year": "Рік"
     },
     "header-main": {
         "about": "ПРО НАС",

@@ -36,7 +36,8 @@
         "collection": "Collection",
         "percentage": "Percentage",
         "success": "IsSuccessful",
-        "cross": "Cross out!"
+        "cross": "Cross out!",
+        "year": "Year"
     },
     "header-main": {
         "about": "ABOUT",
