@@ -71,7 +71,6 @@ namespace ChapterOne.Controllers
             }
         }
 
-        //Update
 
         [HttpDelete("{id:Guid}")]
         public async Task<ActionResult<Book>> DeleteById(Guid id)
