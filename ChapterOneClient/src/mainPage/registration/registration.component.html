@@ -86,6 +86,7 @@
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput id="email" name="Email" formControlName="Email" required>
+                                <label class="text-danger" *ngIf="service.formModel.get('Email').errors?.email">Invalid email address!</label>
                                 </mat-form-field>
                             </div>
                         </div>  
@@ -96,6 +97,8 @@
                                 </label>
                                 <mat-form-field class="example-full-width">
                                     <input matInput id="password" matInput [type]="hide ? 'password' : 'text'" name="Password" formControlName="PasswordHash" required>
+                                    <label class="text-danger" *ngIf="service.formModel.get('PasswordHash').errors?.minlength">Minimum length is 8!</label>
+                                    <label class="text-danger" *ngIf="service.formModel.get('PasswordHash').errors?.pattern">At least one upper-case letter, one lower case, one symbol, one number</label>
                                 </mat-form-field>
                             </div>
                         </div>

@@ -22,7 +22,7 @@ export class UserService {
     BirthDate : [''],
     Username : ['', Validators.required],
     Email : ['', Validators.email],
-    PasswordHash : ['', [Validators.required, Validators.minLength(8)]],
+    PasswordHash : ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&].{8,}$")])],
     Subscription : ['']
 
   })

@@ -41,6 +41,10 @@ export class AddBookComponent implements OnInit {
           this.toastr.success('Image for book has been successfully added!', 'Success');
         }, 
         error => {
+          this.toastr.error(`${error.error.title}`);
+          for(let i in error.error.errors) {
+            this.toastr.error(`${error.error.errors[i]}`);
+          }
           console.log(error);
         }
       )
@@ -74,6 +78,10 @@ export class AddBookComponent implements OnInit {
       result => {
         this.genresList = result;
       }, error => {
+        this.toastr.error(`${error.error.title}`);
+          for(let i in error.error.errors) {
+            this.toastr.error(`${error.error.errors[i]}`);
+          }
         console.log(error);
       }
     )
@@ -86,6 +94,10 @@ export class AddBookComponent implements OnInit {
         const index = this.subscriptionsList.indexOf(this.subscriptionsList[0]);
         this.subscriptionsList.splice(index, 1);
       }, error => {
+        this.toastr.error(`${error.error.title}`);
+          for(let i in error.error.errors) {
+            this.toastr.error(`${error.error.errors[i]}`);
+          }
         console.log(error);
       }
     )
@@ -96,6 +108,10 @@ export class AddBookComponent implements OnInit {
       result => {
         this.typesList = result;
       }, error => {
+        this.toastr.error(`${error.error.title}`);
+          for(let i in error.error.errors) {
+            this.toastr.error(`${error.error.errors[i]}`);
+          }
         console.log(error);
       }
     )
@@ -108,8 +124,12 @@ export class AddBookComponent implements OnInit {
           this.toastr.success('New book has been successfully created!', 'Success');
           this.showSubscriptionPriceDiv = true;
       },
-      (err: any) => {
-        console.log(err);
+      (error: any) => {
+        this.toastr.error(`${error.error.title}`);
+          for(let i in error.error.errors) {
+            this.toastr.error(`${error.error.errors[i]}`);
+          }
+        console.log(error);
       }
     )
   }
@@ -119,8 +139,12 @@ export class AddBookComponent implements OnInit {
       (res:any) => {
           this.toastr.success('Added successfully!', 'Success');
       },
-      (err: any) => {
-        console.log(err);
+      (error: any) => {
+        this.toastr.error(`${error.error.title}`);
+          for(let i in error.error.errors) {
+            this.toastr.error(`${error.error.errors[i]}`);
+          }
+        console.log(error);
       }
     )
   }
@@ -130,8 +154,12 @@ export class AddBookComponent implements OnInit {
       (res:any) => {
           this.toastr.success('Added successfully!', 'Success');
       },
-      (err: any) => {
-        console.log(err);
+      (error: any) => {
+        this.toastr.error(`${error.error.title}`);
+          for(let i in error.error.errors) {
+            this.toastr.error(`${error.error.errors[i]}`);
+          }
+        console.log(error);
       }
     )
   }
