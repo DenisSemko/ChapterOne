@@ -94,6 +94,10 @@ export class UserService {
     return this.http.get(environment.baseURI + 'User/' + id);
   }
 
+  getCurrentUser() {
+    return this.http.get(environment.baseURI + 'User/current-user', {headers: this.tokenHeader});
+  }
+
   getAllUsers() {
     return this.http.get(environment.baseURI + 'User');
   }

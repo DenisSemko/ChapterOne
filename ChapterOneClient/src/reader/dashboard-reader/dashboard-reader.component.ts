@@ -14,6 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['../readerStyles.component.scss']
 })
 export class DashboardReaderComponent implements OnInit {
+  public id: any;
   userDetails: any;
   booksList: Book[];
   genresList: any;
@@ -135,7 +136,5 @@ export class DashboardReaderComponent implements OnInit {
     this.filterButtonStatus = "";
     this.getBooks();
   }
-
-
 
 }

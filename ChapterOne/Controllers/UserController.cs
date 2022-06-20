@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ChapterOne.Controllers
@@ -41,6 +42,14 @@ namespace ChapterOne.Controllers
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
             return Ok(await _userService.Get());
+        }
+
+        [HttpGet("current-user")]
+        public ActionResult<Guid> GetCurrentUser()
+        {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.FindFirst("id")?.Value;
+            return Guid.Parse(userId);
         }
 
         [HttpGet("{id:Guid}")]
