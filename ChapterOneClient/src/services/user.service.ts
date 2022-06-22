@@ -99,7 +99,7 @@ export class UserService {
   }
 
   getAllUsers() {
-    return this.http.get(environment.baseURI + 'User');
+    return this.http.get(environment.baseURI + 'User', {headers: this.tokenHeader});
   }
 
   updateProfile(body: any) {

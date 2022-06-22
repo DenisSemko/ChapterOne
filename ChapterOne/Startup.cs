@@ -136,7 +136,7 @@ namespace ChapterOne
             app.UseRouting();
 
             app.UseCors(builder =>
-            builder.WithOrigins("http://localhost:4200")
+            builder.WithOrigins("https://localhost:4200")
             .AllowAnyHeader()
             .AllowCredentials()
             .AllowAnyMethod());

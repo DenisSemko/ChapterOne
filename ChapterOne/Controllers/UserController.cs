@@ -38,6 +38,7 @@ namespace ChapterOne.Controllers
             this._userManager = userManager;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
