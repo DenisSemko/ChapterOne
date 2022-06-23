@@ -123,6 +123,38 @@ namespace ChapterOne.Controllers
                 throw;
             }
         }*/
+        /*[HttpPut("update-subscription")]
+        public async Task<ActionResult<User>> FOR GITHUB %(UserSubscriptionDto userDto)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(userDto.Username);
+                _mapper.Map(userDto, user);
+                await _unitOfWork.UserRepository.Update(user);
+                return user;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }*/
+        /*[HttpPut("update-subscription")]
+        public async Task<ActionResult<User>> FOR GITHUB %(UserSubscriptionDto userDto)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(userDto.Username);
+                _mapper.Map(userDto, user);
+                await _unitOfWork.UserRepository.Update(user);
+                return user;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }*/
         [HttpGet("{username}/update-subscription")]
         public async Task<ActionResult<User>> UpdateUserSubscription(string username)
         {
