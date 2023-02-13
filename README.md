@@ -51,16 +51,15 @@ Back-end project has N-Layered Architecture that consists of 5 layers:
 ## Features
 List the ready features here:
 - Authorization & Authentication with ASP.Identity and JWT token
-- Admin/Sportsman/Doctor roles
+- Admin/Reader roles
 - User Account Functionality
 - Manage user accounts as an *admin*
 - Create and upload a data backup as an *admin*
-- Take health tests as a *sportsman*
-- Receive analysis results in different formats as a *sportsman*
-- Obtain admission to competitions as a *sportsman*
-- View the results of analyzes of athletes of the same section as a *doctor*
-- Chat system as a *sportsman* and as a *doctor*
-- Manage personal notes as a *sportsman* and as a *doctor*
+- View system statistics as an *admin*
+- Find a book using the book search and Raselection algorithm as a *reader*
+- View the entire list of available books and each one separately the book in details as a *reader*
+- Rate and purchase books in different formats as a *reader*
+- Download e-books and audio-books according to the subscription as a *reader*
 
 ## Screenshots
 <img src="https://user-images.githubusercontent.com/53062219/218501488-6c1516ff-5e06-476c-8063-5a9848ee5693.png" height="450" />
